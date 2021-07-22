@@ -10,11 +10,12 @@ using ModelLibrary_Estore_1;
 
 namespace Enterprise_Store_beta_1._0
 {
-    class Manager
+    internal class Manager
     {
-        internal BindingSource GetListDocumentBuy()
+        #region Получаем список док-тов "Покупка/комиссия"
+        internal static BindingSource GetListDocumentBuy()
         {
-            DataGridView DGV = new();
+            //DataGridView DGV = new();
             BindingSource bind_DGV_BuyForm = new();
             //создание экземпляра контекста данных
             using Db_Enterprise_Store_Context db = new();
@@ -38,13 +39,43 @@ namespace Enterprise_Store_beta_1._0
                 .ToList(); //преобразуем полученные данные в список
             #endregion
 
-            #region //привязываем данные к эл-ту управления DGV - DataGridView
-            //для представления в форме
-
+            #region //создаём объект источник данных для привязки к DGV
             bind_DGV_BuyForm.DataSource = suppliesView;
-            
-            #endregion
             return bind_DGV_BuyForm;
+            #endregion
         }
+        #endregion
+
+        #region //получение списка товаров в док-те "Покупка/комиссия"
+        ///<summary>
+        ///Формирует представление списка товаров док-та "Покупка/комиссия"
+        ///</summary>
+        ///
+        internal static BindingSource GetListProductBuy(int SupplyID)
+        {
+            BindingSource bind_DGV_CreateBuy = new();
+            #region //Запрос к БД: отображение д-та "Покупка/комиссия"
+            using Db_Enterprise_Store_Context db = new();
+            //список товаров соответствующих коду док-та <Поступление товаров>
+            //выбранного для редактирования
+            var _supPrQty = db.SupplyPriceQtys.Where(s => s.SupplyId == SupplyID)
+                .Include(s => s.Product)
+                .Select(s => new
+                { //формирование представления
+                    s.ProductId,
+                    s.Product.ProductName,
+                    s.PricePurchase,
+                    s.Quantity,
+                    Summa = s.PricePurchase * (decimal)s.Quantity
+                })
+                .ToList();
+
+            //Привязка данных
+            bind_DGV_CreateBuy.DataSource = _supPrQty;
+
+            return bind_DGV_CreateBuy;
+            #endregion
+        }
+        #endregion
     }
 }

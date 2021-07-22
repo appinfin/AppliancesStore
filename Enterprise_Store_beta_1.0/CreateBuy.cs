@@ -10,7 +10,8 @@ namespace Enterprise_Store_beta_1._0
     public partial class CreateBuy_Form : Form
     {
         public int SupplyID { get; set; } //id док-та "Покупка/комиссия"
-        BuyForm buyForm;
+
+        readonly BuyForm buyForm;
 
         #region //Форма док-та "Покупка/комиссия"
         public CreateBuy_Form(BuyForm buyForm)
@@ -26,7 +27,7 @@ namespace Enterprise_Store_beta_1._0
         {
             //получение даты, контрагента, склада
             using Db_Enterprise_Store_Context db = new();
-            var date = db.Supplies.Where(s => s.SupplyId == this.SupplyID)
+            var date = db.Supplies.Where(s => s.SupplyId == SupplyID)
                     .Include(c => c.CounterpartysCounterparty)
                     .Include(st => st.StoragesStorage)
                     .Select(r => new
@@ -38,51 +39,53 @@ namespace Enterprise_Store_beta_1._0
                     .ToList();
 
             #region //формирование представления даты, контрагента и склада в DGV этой формы
-            this.txtDate_CreateBuy.Text = date[0].Date.ToString();
-            this.txtCounterparty_CreateBuy.Text = date[0].CounterpartyName.ToString();
-            this.txtStorage_CreateBuy.Text = date[0].StorageName.ToString();
+            txtDate_CreateBuy.Text = date[0].Date.ToString();
+            txtCounterparty_CreateBuy.Text = date[0].CounterpartyName.ToString();
+            txtStorage_CreateBuy.Text = date[0].StorageName.ToString();
             #endregion
 
             #region //добавляем № док-та в шапке окна
-            this.Text = "";
-            this.Text = $"Поступление товаров: Покупка/Комиссия № {this.SupplyID}";
+            Text = "";
+            Text = $"Поступление товаров: Покупка/Комиссия № {SupplyID}";
             #endregion
         }
         #endregion
 
-        #region //получение списка товаров в док-те "Покупка/комиссия"
-        ///<summary>
-        ///Формирует представление списка товаров док-та "Покупка/комиссия"
-        ///</summary>
-        public void GetListProductBuy()
-        {
-            #region //Запрос к БД: отображение д-та "Покупка/комиссия"
-            using Db_Enterprise_Store_Context db = new();
-            //список товаров соответствующих коду док-та <Поступление товаров>
-            //выбранного для редактирования
-            var _supPrQty = db.SupplyPriceQtys.Where(s => s.SupplyId == this.SupplyID)
-                .Include(s => s.Product)
-                .Select(s => new
-                { //формирование представления
-                    s.ProductId,
-                    s.Product.ProductName,
-                    s.PricePurchase,
-                    s.Quantity,
-                    Summa = s.PricePurchase * (decimal)s.Quantity
-                })
-                .ToList();
+        #region ПОКА закоментировано
+        //#region //получение списка товаров в док-те "Покупка/комиссия"
+        /////<summary>
+        /////Формирует представление списка товаров док-та "Покупка/комиссия"
+        /////</summary>
+        //public void GetListProductBuy()
+        //{
+        //    #region //Запрос к БД: отображение д-та "Покупка/комиссия"
+        //    using Db_Enterprise_Store_Context db = new();
+        //    //список товаров соответствующих коду док-та <Поступление товаров>
+        //    //выбранного для редактирования
+        //    var _supPrQty = db.SupplyPriceQtys.Where(s => s.SupplyId == this.SupplyID)
+        //        .Include(s => s.Product)
+        //        .Select(s => new
+        //        { //формирование представления
+        //            s.ProductId,
+        //            s.Product.ProductName,
+        //            s.PricePurchase,
+        //            s.Quantity,
+        //            Summa = s.PricePurchase * (decimal)s.Quantity
+        //        })
+        //        .ToList();
 
-            //Привязка данных
-            bind_DGV_CreateBuy.DataSource = _supPrQty;
-            DGV_CreateBuy.DataSource = bind_DGV_CreateBuy;
+        //    //Привязка данных
+        //    bind_DGV_CreateBuy.DataSource = _supPrQty;
+        //    DGV_CreateBuy.DataSource = bind_DGV_CreateBuy;
 
-            lblSumma.Text = "Сумма: " + db.SupplyPriceQtys
-                                    .Where(s => s.SupplyId == this.SupplyID)
-                                    .Select(p => p.PricePurchase * (decimal)p.Quantity)
-                                    .Sum()
-                                    .ToString("C");
-            #endregion
-        }
+        //    lblSumma.Text = "Сумма: " + db.SupplyPriceQtys
+        //                            .Where(s => s.SupplyId == this.SupplyID)
+        //                            .Select(p => p.PricePurchase * (decimal)p.Quantity)
+        //                            .Sum()
+        //                            .ToString("C");
+        //    #endregion
+        //}
+        //#endregion 
         #endregion
 
         #region //Выбор из каталога и добавление строки в список док-та "Покупка/комиссия"
@@ -103,7 +106,7 @@ namespace Enterprise_Store_beta_1._0
                 //создаём экземпляр новой строки
                 //для таблицы <Покупка товара / Цена / Кол-во>
                 SupplyPriceQty newRow = new();
-                newRow.SupplyId = this.SupplyID;
+                newRow.SupplyId = SupplyID;
                 newRow.ProductId = SelectedId;
                 newRow.PricePurchase = f.PricePurchase;
                 newRow.Quantity = (double)f.Quantity;
@@ -112,9 +115,15 @@ namespace Enterprise_Store_beta_1._0
                 try
                 {
                     using Db_Enterprise_Store_Context db = new();
-                    var r = db.Add(newRow);
-                    var r2 = db.SaveChanges();
-                    this.GetListProductBuy();
+                    db.Add(newRow);
+                    db.SaveChanges();
+                    lblSumma.Text = "Сумма: " + db.SupplyPriceQtys
+                                    .Where(s => s.SupplyId == SupplyID)
+                                    .Select(p => p.PricePurchase * (decimal)p.Quantity)
+                                    .Sum()
+                                    .ToString("C");
+                    DGV_CreateBuy.DataSource = Manager.GetListProductBuy(SupplyID);
+                    this.Refresh();
                 }
                 catch (Exception)
                 {
@@ -245,7 +254,7 @@ namespace Enterprise_Store_beta_1._0
             {
                 using Db_Enterprise_Store_Context db = new();
                 //выбираем строки 
-                var res = db.SupplyPriceQtys.Where(s => s.SupplyId == this.SupplyID).AsEnumerable();
+                var res = db.SupplyPriceQtys.Where(s => s.SupplyId == SupplyID).AsEnumerable();
                 int countFind = res.Count();
                 db.RemoveRange(res);
                 int countSave = db.SaveChanges();
@@ -253,7 +262,7 @@ namespace Enterprise_Store_beta_1._0
                 {
                     DGV_CreateBuy.Rows.Clear();
                     decimal O = 0;
-                    this.lblSumma.Text = "Сумма: " + O.ToString("C");
+                    lblSumma.Text = "Сумма: " + O.ToString("C");
                 }
                 else
                 {
@@ -312,8 +321,7 @@ namespace Enterprise_Store_beta_1._0
 
         private void ButOK_CreateBuy_Click(object sender, EventArgs e)
         {
-            Manager manager = new();
-            buyForm.DGV_BuyForm.DataSource = manager.GetListDocumentBuy();
+            buyForm.DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
             buyForm.Refresh();
         }
 

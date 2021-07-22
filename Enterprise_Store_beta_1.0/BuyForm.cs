@@ -17,11 +17,10 @@ namespace Enterprise_Store_beta_1._0
     /// </summary>
     public partial class BuyForm : Form
     {
-        internal Manager manager;
+        //private readonly Manager manager;
         public BuyForm()
         {
             InitializeComponent();
-            manager = new();
         }
 
         #region //Отображение док-тов "Покупка/комиссия"
@@ -29,8 +28,7 @@ namespace Enterprise_Store_beta_1._0
         {
             #region //привязываем данные к эл-ту управления DGV_BuyForm - DataGridView
             //для представления в форме
-            bind_DGV_BuyForm.DataSource = manager.GetListDocumentBuy();
-            DGV_BuyForm.DataSource = bind_DGV_BuyForm;
+            DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
 
             //формат вывода даты год/мес./день час/мин./сек.
             DGV_BuyForm.Columns["Date"].DefaultCellStyle.Format = "G";
@@ -67,7 +65,8 @@ namespace Enterprise_Store_beta_1._0
             //получаем ID созданного док-та и передаём его в форму док-та
             createBuy_Form.SupplyID = tracking.Entity.SupplyId;
             createBuy_Form.GetAttributeDocumentBuy(); //получаем и устанавливаем атрибуты док-та
-            createBuy_Form.GetListProductBuy();
+            //createBuy_Form.GetListProductBuy();
+            createBuy_Form.DGV_CreateBuy.DataSource = Manager.GetListProductBuy(createBuy_Form.SupplyID);
             createBuy_Form.Show(); //отображаем форму
             #endregion
         }
@@ -104,7 +103,8 @@ namespace Enterprise_Store_beta_1._0
             };
 
             createBuy_Form.GetAttributeDocumentBuy();
-            createBuy_Form.GetListProductBuy();
+            //createBuy_Form.GetListProductBuy();
+            createBuy_Form.DGV_CreateBuy.DataSource = Manager.GetListProductBuy(createBuy_Form.SupplyID);
             createBuy_Form.Show(); //отображаем форму
         }
         #endregion
@@ -122,12 +122,12 @@ namespace Enterprise_Store_beta_1._0
                 using Db_Enterprise_Store_Context db = new();
 
                 Supply selectedSupply = new() { SupplyId = idS };
-                var res = db.Attach(selectedSupply);
-                var res2 = db.Remove(selectedSupply);
+                db.Attach(selectedSupply);
+                db.Remove(selectedSupply);
                 try
                 {
                     var countSave = db.SaveChanges();
-                    this.DGV_BuyForm.DataSource = manager.GetListDocumentBuy();
+                    this.DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
                     this.Refresh();
                 }
                 catch
@@ -141,8 +141,7 @@ namespace Enterprise_Store_beta_1._0
         #region //Обновить список док-тов "Покупка/комиссия"
         internal void TStrip_BuyForm_Refresh_Click(object sender, EventArgs e)
         {
-            
-            this.DGV_BuyForm.DataSource = manager.GetListDocumentBuy();
+            this.DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
             this.Refresh();
         } 
         #endregion
