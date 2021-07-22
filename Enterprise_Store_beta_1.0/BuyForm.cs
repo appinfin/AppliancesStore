@@ -27,41 +27,16 @@ namespace Enterprise_Store_beta_1._0
         #region //Отображение док-тов "Покупка/комиссия"
         private void BuyForm_Load(object sender, EventArgs e)
         {
-            //#region Запрос к бд таблица Supplies, выборка всех док-тов "Покупка/комиссия"
-            ////создание экземпляра контекста данных
-            //using Db_Enterprise_Store_Context db = new();
-
-            //var suppliesView = db.Supplies
-            //    .Include(c => c.CounterpartysCounterparty)
-            //    .Include(s => s.StoragesStorage)
-            //    .Include(spq => spq.SupplyPriceQties)
-            //    .Select(b => new
-            //    {
-            //        b.SupplyId,
-            //        b.Date,
-            //        b.CounterpartysCounterparty.CounterpartyName,
-            //        b.StoragesStorage.StorageName,
-            //        TotalPriceSupply = b.SupplyPriceQties.Select(p => p.PricePurchase * (decimal)p.Quantity).Sum()
-            //    })
-            //    .OrderByDescending(d => d.Date) //сортируем по убыванию даты
-            //    .Skip(0) //пропускаем число строк от начала списка например 0
-            //    .Take(30) //получаем нужное кол-во строк например 30
-            //    .ToList(); //преобразуем полученные данные в список
-            //#endregion
-
-
             #region //привязываем данные к эл-ту управления DGV_BuyForm - DataGridView
             //для представления в форме
-            //Manager manager = new();
-
             bind_DGV_BuyForm.DataSource = manager.GetListDocumentBuy();
             DGV_BuyForm.DataSource = bind_DGV_BuyForm;
 
-            ////формат вывода даты год/мес./день час/мин./сек.
+            //формат вывода даты год/мес./день час/мин./сек.
             DGV_BuyForm.Columns["Date"].DefaultCellStyle.Format = "G";
             DGV_BuyForm.Columns["TotalPriceSupply"].DefaultCellStyle.Format = "C";
 
-            ////изменяем заголовок колонок(столбцов) представления
+            //изменяем заголовок колонок(столбцов) представления
             DGV_BuyForm.Columns["SupplyId"].HeaderText = "Код";
             DGV_BuyForm.Columns["SupplyId"].Visible = true;
             DGV_BuyForm.Columns["Date"].HeaderText = "Дата";
@@ -86,7 +61,7 @@ namespace Enterprise_Store_beta_1._0
             using Db_Enterprise_Store_Context db = new();
             Supply supply = new();
             var tracking = db.Add(supply); //добавление и получение данных о док-те "Покупка/комиссия"
-
+            
             db.SaveChanges();
 
             //получаем ID созданного док-та и передаём его в форму док-та
@@ -164,7 +139,7 @@ namespace Enterprise_Store_beta_1._0
         #endregion
 
         #region //Обновить список док-тов "Покупка/комиссия"
-        private void TStrip_BuyForm_Refresh_Click(object sender, EventArgs e)
+        internal void TStrip_BuyForm_Refresh_Click(object sender, EventArgs e)
         {
             
             this.DGV_BuyForm.DataSource = manager.GetListDocumentBuy();

@@ -11,11 +11,16 @@ namespace Enterprise_Store_beta_1._0
     {
         public int SupplyID { get; set; } //id док-та "Покупка/комиссия"
         BuyForm buyForm;
+
+        #region //Форма док-та "Покупка/комиссия"
         public CreateBuy_Form(BuyForm buyForm)
         {
             InitializeComponent();
             this.buyForm = buyForm;
+            splitContainer_CreateBuy.Panel2Collapsed = true;
         }
+        #endregion
+
         #region //получение атрибутов док-та "Покупка/комиссия"
         public void GetAttributeDocumentBuy()
         {
@@ -116,16 +121,6 @@ namespace Enterprise_Store_beta_1._0
                     MessageBox.Show("ERROR !!!");
                 }
             }
-        }
-        #endregion
-
-        #region //Форма док-та "Покупка/комиссия"
-        public CreateBuy_Form()
-        {
-            InitializeComponent();
-
-            //скрываем правую панель <Подбор товаров>
-            splitContainer_CreateBuy.Panel2Collapsed = true;
         }
         #endregion
 
@@ -320,6 +315,11 @@ namespace Enterprise_Store_beta_1._0
             Manager manager = new();
             buyForm.DGV_BuyForm.DataSource = manager.GetListDocumentBuy();
             buyForm.Refresh();
+        }
+
+        private void CreateBuy_Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
         }
     }
 }
