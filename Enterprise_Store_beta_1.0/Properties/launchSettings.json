@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Enterprise_Store_beta_1.0": {
+      "commandName": "Project",
+      "sqlDebugging": true
+    }
+  }
+}
