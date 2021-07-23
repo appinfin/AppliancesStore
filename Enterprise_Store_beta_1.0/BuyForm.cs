@@ -1,8 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using ModelLibrary_Estore_1;
+﻿using ModelLibrary_Estore_1;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Enterprise_Store_beta_1._0
@@ -59,15 +56,18 @@ namespace Enterprise_Store_beta_1._0
             using Db_Enterprise_Store_Context db = new();
             Supply supply = new();
             var tracking = db.Add(supply); //добавление и получение данных о док-те "Покупка/комиссия"
-            
+
             db.SaveChanges();
 
             //получаем ID созданного док-та и передаём его в форму док-та
             createBuy_Form.SupplyID = tracking.Entity.SupplyId;
-            createBuy_Form.GetAttributeDocumentBuy(); //получаем и устанавливаем атрибуты док-та
-            //createBuy_Form.GetListProductBuy();
-            createBuy_Form.DGV_CreateBuy.DataSource = Manager.GetListProductBuy(createBuy_Form.SupplyID);
+            Manager.SetAttributeDocumentBuy(db, createBuy_Form); //устанавливаем атрибуты док-та
+            createBuy_Form.lblSumma.Text = "Сумма: "
+                                            + Manager.GetSummaDocumentBuy(createBuy_Form.DGV_CreateBuy)
+                                            .ToString("C");
+
             createBuy_Form.Show(); //отображаем форму
+
             #endregion
         }
         #endregion
@@ -84,7 +84,7 @@ namespace Enterprise_Store_beta_1._0
                 this.Dock = DockStyle.None;
                 this.DesktopBounds = _desktopBounds;
             }
-        } 
+        }
         #endregion
 
         #region //Редактирование док-та <Поступление товаров> - двойной клик по строке док-та
@@ -102,9 +102,12 @@ namespace Enterprise_Store_beta_1._0
                 MdiParent = this.MdiParent
             };
 
-            createBuy_Form.GetAttributeDocumentBuy();
-            //createBuy_Form.GetListProductBuy();
+            using Db_Enterprise_Store_Context db = new();
+            Manager.SetAttributeDocumentBuy(db, createBuy_Form); //устанавливаем атрибуты док-та
             createBuy_Form.DGV_CreateBuy.DataSource = Manager.GetListProductBuy(createBuy_Form.SupplyID);
+            createBuy_Form.lblSumma.Text = "Сумма: "
+                                            + Manager.GetSummaDocumentBuy(createBuy_Form.DGV_CreateBuy)
+                                            .ToString("C");
             createBuy_Form.Show(); //отображаем форму
         }
         #endregion
@@ -134,7 +137,7 @@ namespace Enterprise_Store_beta_1._0
                 {
                     MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
                 }
-            } 
+            }
         }
         #endregion
 
@@ -143,7 +146,7 @@ namespace Enterprise_Store_beta_1._0
         {
             this.DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
             this.Refresh();
-        } 
+        }
         #endregion
     }
 }

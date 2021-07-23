@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace Enterprise_Store_beta_1._0
 {
     public partial class CreateBuy_Form
@@ -173,7 +174,7 @@ namespace Enterprise_Store_beta_1._0
             this.lblSumma.Name = "lblSumma";
             this.lblSumma.Size = new System.Drawing.Size(78, 21);
             this.lblSumma.TabIndex = 7;
-            this.lblSumma.Text = "Сумма: ";
+            this.lblSumma.Text = String.Format("Сумма {0:C2}", 0);
             // 
             // tabLayoutPanel_CreateBuy
             // 
@@ -420,19 +421,19 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.TableLayoutPanel tabLayoutPanel_CreateBuy;
         private System.Windows.Forms.Button butSelectStorage_CreateBuy;
         private System.Windows.Forms.Button butSelectDate_CreateBuy;
-        private System.Windows.Forms.Label lblDate_CreateBuy;
-        private System.Windows.Forms.Label lblStorage_CreateBuy;
-        private System.Windows.Forms.Label lblProvider_CreateBuy;
-        private System.Windows.Forms.TextBox txtDate_CreateBuy;
-        private System.Windows.Forms.TextBox txtCounterparty_CreateBuy;
-        private System.Windows.Forms.TextBox txtStorage_CreateBuy;
+        internal System.Windows.Forms.Label lblDate_CreateBuy;
+        internal System.Windows.Forms.Label lblStorage_CreateBuy;
+        internal System.Windows.Forms.Label lblProvider_CreateBuy;
+        internal System.Windows.Forms.TextBox txtDate_CreateBuy;
+        internal System.Windows.Forms.TextBox txtCounterparty_CreateBuy;
+        internal System.Windows.Forms.TextBox txtStorage_CreateBuy;
         private System.Windows.Forms.Button butSelectProvider_CreateBuy;
         private System.Windows.Forms.DataGridView DGVcatalog_CreateBuy;
         private System.Windows.Forms.DataGridViewTextBoxColumn contextMenuStripDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource bind_DGV_CreateBuy;
         internal System.Windows.Forms.DataGridView DGV_CreateBuy;
         private System.Windows.Forms.BindingSource bind_DGVcatalog_CreateBuy;
-        private System.Windows.Forms.Label lblSumma;
+        internal System.Windows.Forms.Label lblSumma;
         
         private System.Windows.Forms.Button butClearList_CreateBuy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;

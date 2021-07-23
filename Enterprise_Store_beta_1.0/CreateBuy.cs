@@ -10,7 +10,6 @@ namespace Enterprise_Store_beta_1._0
     public partial class CreateBuy_Form : Form
     {
         public int SupplyID { get; set; } //id док-та "Покупка/комиссия"
-
         readonly BuyForm buyForm;
 
         #region //Форма док-та "Покупка/комиссия"
@@ -22,119 +21,9 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        #region //получение атрибутов док-та "Покупка/комиссия"
-        public void GetAttributeDocumentBuy()
-        {
-            //получение даты, контрагента, склада
-            using Db_Enterprise_Store_Context db = new();
-            var date = db.Supplies.Where(s => s.SupplyId == SupplyID)
-                    .Include(c => c.CounterpartysCounterparty)
-                    .Include(st => st.StoragesStorage)
-                    .Select(r => new
-                    {
-                        r.Date,
-                        r.CounterpartysCounterparty.CounterpartyName,
-                        r.StoragesStorage.StorageName
-                    })
-                    .ToList();
 
-            #region //формирование представления даты, контрагента и склада в DGV этой формы
-            txtDate_CreateBuy.Text = date[0].Date.ToString();
-            txtCounterparty_CreateBuy.Text = date[0].CounterpartyName.ToString();
-            txtStorage_CreateBuy.Text = date[0].StorageName.ToString();
-            #endregion
-
-            #region //добавляем № док-та в шапке окна
-            Text = "";
-            Text = $"Поступление товаров: Покупка/Комиссия № {SupplyID}";
-            #endregion
-        }
-        #endregion
-
-        #region ПОКА закоментировано
-        //#region //получение списка товаров в док-те "Покупка/комиссия"
-        /////<summary>
-        /////Формирует представление списка товаров док-та "Покупка/комиссия"
-        /////</summary>
-        //public void GetListProductBuy()
-        //{
-        //    #region //Запрос к БД: отображение д-та "Покупка/комиссия"
-        //    using Db_Enterprise_Store_Context db = new();
-        //    //список товаров соответствующих коду док-та <Поступление товаров>
-        //    //выбранного для редактирования
-        //    var _supPrQty = db.SupplyPriceQtys.Where(s => s.SupplyId == this.SupplyID)
-        //        .Include(s => s.Product)
-        //        .Select(s => new
-        //        { //формирование представления
-        //            s.ProductId,
-        //            s.Product.ProductName,
-        //            s.PricePurchase,
-        //            s.Quantity,
-        //            Summa = s.PricePurchase * (decimal)s.Quantity
-        //        })
-        //        .ToList();
-
-        //    //Привязка данных
-        //    bind_DGV_CreateBuy.DataSource = _supPrQty;
-        //    DGV_CreateBuy.DataSource = bind_DGV_CreateBuy;
-
-        //    lblSumma.Text = "Сумма: " + db.SupplyPriceQtys
-        //                            .Where(s => s.SupplyId == this.SupplyID)
-        //                            .Select(p => p.PricePurchase * (decimal)p.Quantity)
-        //                            .Sum()
-        //                            .ToString("C");
-        //    #endregion
-        //}
-        //#endregion 
-        #endregion
-
-        #region //Выбор из каталога и добавление строки в список док-та "Покупка/комиссия"
-        /// <summary>
-        /// Добавляет товар в список док-та "Покупка/комиссия"
-        /// </summary>
-        /// <param name="SelectedId"></param>
-        internal void AddProductInListBuy(int SelectedId)
-        {
-            //получаем наименование выбранного товара для отображения в заголовке окна <Кол-во, цена>
-            var ProductName = DGVcatalog_CreateBuy.CurrentRow.Cells["name"].Value.ToString();
-
-            //создаём диалоговое окно <Кол-во, цена>
-            var f = new SetPriceQty();
-            f.Text += " " + ProductName;
-            if (f.ShowDialog() == DialogResult.OK)
-            {
-                //создаём экземпляр новой строки
-                //для таблицы <Покупка товара / Цена / Кол-во>
-                SupplyPriceQty newRow = new();
-                newRow.SupplyId = SupplyID;
-                newRow.ProductId = SelectedId;
-                newRow.PricePurchase = f.PricePurchase;
-                newRow.Quantity = (double)f.Quantity;
-                //_ = f.PricePurchase * f.Quantity;
-
-                try
-                {
-                    using Db_Enterprise_Store_Context db = new();
-                    db.Add(newRow);
-                    db.SaveChanges();
-                    lblSumma.Text = "Сумма: " + db.SupplyPriceQtys
-                                    .Where(s => s.SupplyId == SupplyID)
-                                    .Select(p => p.PricePurchase * (decimal)p.Quantity)
-                                    .Sum()
-                                    .ToString("C");
-                    DGV_CreateBuy.DataSource = Manager.GetListProductBuy(SupplyID);
-                    this.Refresh();
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("ERROR !!!");
-                }
-            }
-        }
-        #endregion
 
         #region //Каталог товаров
-
         #region // Открытие панели "Каталог товаров" - КНОПКА <подобрать товар>
         private void ButDisplayDGVcatalog_CreateBuy_Click(object sender, EventArgs e)
         {
@@ -173,6 +62,52 @@ namespace Enterprise_Store_beta_1._0
             #endregion
         }
         #endregion
+        
+
+        #region //Выбор из каталога и добавление строки в список док-та "Покупка/комиссия"
+        // AddProductInListBuy(int SelectedId)
+        /// <summary>
+        /// Добавляет товар в список док-та "Покупка/комиссия"
+        /// </summary>
+        /// <param name="SelectedId"></param>
+        internal void AddProductInListBuy(int SelectedId)
+        {
+            //получаем наименование выбранного товара для отображения в заголовке окна <Кол-во, цена>
+            var ProductName = DGVcatalog_CreateBuy.CurrentRow.Cells["name"].Value.ToString();
+
+            //создаём диалоговое окно <Кол-во, цена>
+            var f = new SetPriceQty();
+            f.Text += " " + ProductName;
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                //создаём экземпляр новой строки
+                //для таблицы <Покупка товара / Цена / Кол-во>
+                SupplyPriceQty newRow = new();
+                newRow.SupplyId = SupplyID;
+                newRow.ProductId = SelectedId;
+                newRow.PricePurchase = f.PricePurchase;
+                newRow.Quantity = (double)f.Quantity;
+
+                try
+                {
+                    //сохраняем в БД
+                    using Db_Enterprise_Store_Context db = new();
+                    db.Add(newRow);
+                    db.SaveChanges();
+
+                    //привязка списка товаров к DGV и обновление отображения
+                    DGV_CreateBuy.DataSource = Manager.GetListProductBuy(SupplyID);
+                    this.Refresh();
+                    this.lblSumma.Text = "Сумма: "
+                                            + Manager.GetSummaDocumentBuy(this.DGV_CreateBuy)
+                                            .ToString("C");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("ERROR !!!");
+                }
+            }
+        }
         #endregion
 
         #region //Двойной клик по строке товара или группы товаров
@@ -241,6 +176,7 @@ namespace Enterprise_Store_beta_1._0
             #endregion
         }
         #endregion
+        #endregion
 
         #region //Очистка списка товаров в док-те <Покупка/комиссия>
         //нажатее кнопки <Очистить список>
@@ -260,9 +196,8 @@ namespace Enterprise_Store_beta_1._0
                 int countSave = db.SaveChanges();
                 if (countFind.Equals(countSave))
                 {
-                    DGV_CreateBuy.Rows.Clear();
-                    decimal O = 0;
-                    lblSumma.Text = "Сумма: " + O.ToString("C");
+                    DGV_CreateBuy.Rows.Clear(); //очистка DGV
+                    lblSumma.Text = String.Format("Сумма {0:C2}", 0);
                 }
                 else
                 {
@@ -271,11 +206,9 @@ namespace Enterprise_Store_beta_1._0
             }
         }
 
-
         #endregion
 
         #region //Календарь и кнопка для его отображения
-
         private void ButSelectDate_CreateBuy_Click(object sender, EventArgs e)
         {
             //если не отображается, тогда отобразить
@@ -289,19 +222,21 @@ namespace Enterprise_Store_beta_1._0
             {
                 this.monthCalendar1.Visible = false; //скрыть
                 using Db_Enterprise_Store_Context db = new();
-                var curentDoc = db.Supplies
+                var currentDoc = db.Supplies
                     .Where(s => s.SupplyId == SupplyID)
                     .FirstOrDefault();
-                var curentDateDoc = curentDoc.Date;//старые значения даты для textBox при ошибке для отката
-                curentDoc.Date = monthCalendar1.SelectionStart;
-                int resSave = db.SaveChanges();
-                if (resSave != 1)
+                var currentDateDoc = currentDoc.Date;//старые значения даты для textBox при ошибке для отката
+                currentDoc.Date = monthCalendar1.SelectionStart;
+                try 
                 {
-                    if ( DialogResult.OK == MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз."))
-                    {
-                        this.txtDate_CreateBuy.Text = curentDateDoc.ToString();
-                    }
+                    int resSave = db.SaveChanges();
                 }
+                catch
+                {
+                    txtDate_CreateBuy.Text = currentDateDoc.ToString();
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+                
             }
         }
 

@@ -41,6 +41,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_ctxMenu_BuyForm_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.tStrip_ctxtMenu_BuyForm_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.tStrip_ctxMenu_BuyForm_Edit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip_BuyForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_BuyForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_BuyForm)).BeginInit();
@@ -102,6 +103,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_BuyForm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_BuyForm.Size = new System.Drawing.Size(663, 532);
             this.DGV_BuyForm.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.DGV_BuyForm, "ДВОЙНОЙ КЛИК левой кнопкой мыши\r\nОТКРЫТЬ документ");
             this.DGV_BuyForm.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_BuyForm_CellDoubleClick);
             // 
             // ctxtMenu_BuyForm
@@ -134,6 +136,10 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_ctxMenu_BuyForm_Edit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.tStrip_ctxMenu_BuyForm_Edit.Size = new System.Drawing.Size(161, 22);
             this.tStrip_ctxMenu_BuyForm_Edit.Text = "Изменить";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipTitle = "Открытие документа";
             // 
             // BuyForm
             // 
@@ -172,5 +178,6 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_BuyForm_Open;
         private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_BuyForm_Edit;
         private System.Windows.Forms.ToolStripButton tStrip_BuyForm_Refresh;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
