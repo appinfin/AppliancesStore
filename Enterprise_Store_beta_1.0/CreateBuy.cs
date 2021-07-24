@@ -193,13 +193,13 @@ namespace Enterprise_Store_beta_1._0
                 var res = db.SupplyPriceQtys.Where(s => s.SupplyId == SupplyID).AsEnumerable();
                 int countFind = res.Count();
                 db.RemoveRange(res);
-                int countSave = db.SaveChanges();
-                if (countFind.Equals(countSave))
+                try
                 {
+                    db.SaveChanges();
                     DGV_CreateBuy.Rows.Clear(); //очистка DGV
                     lblSumma.Text = String.Format("Сумма {0:C2}", 0);
                 }
-                else
+                catch
                 {
                     MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
                 }

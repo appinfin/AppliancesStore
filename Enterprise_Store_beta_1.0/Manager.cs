@@ -72,7 +72,6 @@ namespace Enterprise_Store_beta_1._0
         #region // Получаем список док-тов "Покупка/комиссия"
         internal static BindingSource GetListDocumentBuy()
         {
-            //DataGridView DGV = new();
             BindingSource bind_DGV_BuyForm = new();
             //создание экземпляра контекста данных
             using Db_Enterprise_Store_Context db = new();

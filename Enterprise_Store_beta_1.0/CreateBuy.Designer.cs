@@ -34,8 +34,10 @@ namespace Enterprise_Store_beta_1._0
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            
             this.butSelectStorage_CreateBuy = new System.Windows.Forms.Button();
             this.butSelectProvider_CreateBuy = new System.Windows.Forms.Button();
             this.butOK_CreateBuy = new System.Windows.Forms.Button();
@@ -172,9 +174,9 @@ namespace Enterprise_Store_beta_1._0
             this.lblSumma.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblSumma.Location = new System.Drawing.Point(17, 411);
             this.lblSumma.Name = "lblSumma";
-            this.lblSumma.Size = new System.Drawing.Size(78, 21);
+            this.lblSumma.Size = new System.Drawing.Size(126, 21);
             this.lblSumma.TabIndex = 7;
-            this.lblSumma.Text = String.Format("Сумма {0:C2}", 0);
+            this.lblSumma.Text = "Сумма 0,00 ₽";
             // 
             // tabLayoutPanel_CreateBuy
             // 
@@ -290,7 +292,7 @@ namespace Enterprise_Store_beta_1._0
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
@@ -302,20 +304,29 @@ namespace Enterprise_Store_beta_1._0
             this.PricePurchase,
             this.Summa});
             this.DGV_CreateBuy.Cursor = System.Windows.Forms.Cursors.Default;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_CreateBuy.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGV_CreateBuy.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.DGV_CreateBuy.Location = new System.Drawing.Point(12, 133);
             this.DGV_CreateBuy.Name = "DGV_CreateBuy";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.DGV_CreateBuy.RowHeadersVisible = false;
             this.DGV_CreateBuy.RowTemplate.Height = 23;
             this.DGV_CreateBuy.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.DGV_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.DGV_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_CreateBuy.Size = new System.Drawing.Size(485, 270);
             this.DGV_CreateBuy.TabIndex = 6;
             // 
@@ -372,13 +383,18 @@ namespace Enterprise_Store_beta_1._0
             // 
             // DGVcatalog_CreateBuy
             // 
+            this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVcatalog_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVcatalog_CreateBuy.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.DGVcatalog_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGVcatalog_CreateBuy.Location = new System.Drawing.Point(3, 133);
             this.DGVcatalog_CreateBuy.Name = "DGVcatalog_CreateBuy";
+            this.DGVcatalog_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.DGVcatalog_CreateBuy.RowHeadersVisible = false;
             this.DGVcatalog_CreateBuy.RowTemplate.Height = 23;
             this.DGVcatalog_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVcatalog_CreateBuy.Size = new System.Drawing.Size(382, 271);
