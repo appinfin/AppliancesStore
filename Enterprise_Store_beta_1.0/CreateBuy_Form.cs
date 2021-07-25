@@ -41,8 +41,7 @@ namespace Enterprise_Store_beta_1._0
 
             //соединяем списки productGroupName и productsWithoutGroupName
             //вставляем список в список с указанного индекса
-            productGroupName.InsertRange(productGroupName.Count - 1, productsWithoutGroupName);
-
+            productGroupName.InsertRange(productGroupName.Count, productsWithoutGroupName);
             //привязка списка каталога товаров к DGV
             bind_DGVcatalog_CreateBuy.DataSource = productGroupName;
             DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
@@ -51,7 +50,7 @@ namespace Enterprise_Store_beta_1._0
             #region //Представление выборки в DGVcatalog_CreateBuy
             DGVcatalog_CreateBuy.Columns["id"].Visible = false;
             //DGVcatalog_CreateBuy.Columns["category"].Visible = false;
-            DGVcatalog_CreateBuy.Columns["category"].HeaderText = ""; //заголовок 
+            DGVcatalog_CreateBuy.Columns["category"].HeaderText = ""; //заголовок
             DGVcatalog_CreateBuy.Columns["name"].HeaderText = "Номенклатура";
             #endregion
 
@@ -229,7 +228,7 @@ namespace Enterprise_Store_beta_1._0
                 currentDoc.Date = monthCalendar1.SelectionStart;
                 try 
                 {
-                    int resSave = db.SaveChanges();
+                    db.SaveChanges();
                 }
                 catch
                 {
@@ -245,12 +244,8 @@ namespace Enterprise_Store_beta_1._0
         {
             this.txtDate_CreateBuy.Text = "" + monthCalendar1.SelectionStart;
         }
-        
-
         private void MonthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
         {
-            //this.txtDate_CreateBuy.Text = " соб2";
-            //MessageBox.Show("СОБЫТИЕ MonthCalendar1_DateSelected");
         }
         #endregion
 
@@ -264,5 +259,33 @@ namespace Enterprise_Store_beta_1._0
         {
             buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
         }
+
+        #region// Открываем каталог контрагентов
+        private void butSelectCounterparty_CreateBuy_Click(object sender, EventArgs e)
+        {
+            CatalogCounterparty_Form catalogCounterparty = new();
+
+            if (catalogCounterparty.ShowDialog() == DialogResult.OK)
+            {
+                using Db_Enterprise_Store_Context db = new();
+                //получаем строку из БД по id текущего открытого док-та "Покупка/комиссия"
+                var currentDoc = db.Supplies
+                    .Where(s => s.SupplyId == SupplyID)
+                    .FirstOrDefault();
+                currentDoc.CounterpartysCounterpartyId = catalogCounterparty.CounterpartyID;
+
+                try
+                {
+                    db.SaveChanges();
+                    Manager.SetAttributeDocumentBuy(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
+                }
+                catch
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+            
+        } 
+        #endregion
     }
 }

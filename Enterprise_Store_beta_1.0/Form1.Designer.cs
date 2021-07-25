@@ -39,6 +39,7 @@ namespace Enterprise_Store_beta_1._0
             this.MenuWindowsVertical = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsCascade = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsArrangeIcons = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_Form1_CatalogCounterperty = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,7 +61,8 @@ namespace Enterprise_Store_beta_1._0
             // MenuFileForm1
             // 
             this.MenuFileForm1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.create_form});
+            this.create_form,
+            this.tStrip_Form1_CatalogCounterperty});
             this.MenuFileForm1.Name = "MenuFileForm1";
             this.MenuFileForm1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.MenuFileForm1.Size = new System.Drawing.Size(45, 20);
@@ -72,20 +74,20 @@ namespace Enterprise_Store_beta_1._0
             this.toolStripMenuBuy,
             this.toolStripMenuSell});
             this.create_form.Name = "create_form";
-            this.create_form.Size = new System.Drawing.Size(117, 22);
+            this.create_form.Size = new System.Drawing.Size(190, 22);
             this.create_form.Text = "Создать";
             // 
             // toolStripMenuBuy
             // 
             this.toolStripMenuBuy.Name = "toolStripMenuBuy";
-            this.toolStripMenuBuy.Size = new System.Drawing.Size(120, 22);
+            this.toolStripMenuBuy.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuBuy.Text = "Покупка";
             this.toolStripMenuBuy.Click += new System.EventHandler(this.toolStripMenuBuy_Click);
             // 
             // toolStripMenuSell
             // 
             this.toolStripMenuSell.Name = "toolStripMenuSell";
-            this.toolStripMenuSell.Size = new System.Drawing.Size(120, 22);
+            this.toolStripMenuSell.Size = new System.Drawing.Size(180, 22);
             this.toolStripMenuSell.Text = "Продажа";
             this.toolStripMenuSell.Click += new System.EventHandler(this.toolStripMenuSell_Click);
             // 
@@ -127,7 +129,13 @@ namespace Enterprise_Store_beta_1._0
             this.MenuWindowsArrangeIcons.Name = "MenuWindowsArrangeIcons";
             this.MenuWindowsArrangeIcons.Size = new System.Drawing.Size(151, 22);
             this.MenuWindowsArrangeIcons.Text = "Все внутри";
-            
+            // 
+            // tStrip_Form1_CatalogCounterperty
+            // 
+            this.tStrip_Form1_CatalogCounterperty.Name = "tStrip_Form1_CatalogCounterperty";
+            this.tStrip_Form1_CatalogCounterperty.Size = new System.Drawing.Size(190, 22);
+            this.tStrip_Form1_CatalogCounterperty.Text = "Каталог контрагентов";
+            this.tStrip_Form1_CatalogCounterperty.Click += new System.EventHandler(this.tStrip_Form1_CatalogCounterperty_Click);
             // 
             // Form1
             // 
@@ -140,7 +148,6 @@ namespace Enterprise_Store_beta_1._0
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Enterprise Store beta 1.0";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -159,6 +166,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsVertical;
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsCascade;
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsArrangeIcons;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_Form1_CatalogCounterperty;
     }
 }
 

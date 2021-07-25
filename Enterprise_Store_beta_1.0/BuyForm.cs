@@ -14,8 +14,9 @@ namespace Enterprise_Store_beta_1._0
     /// </summary>
     public partial class BuyForm : Form
     {
+        //объект с привязываемыми данными из БД
         public BindingSource bind_DGV_BuyForm { get; set; }
-        //private readonly Manager manager;
+
         public BuyForm()
         {
             InitializeComponent();
@@ -24,15 +25,14 @@ namespace Enterprise_Store_beta_1._0
         #region //Отображение док-тов "Покупка/комиссия"
         private void BuyForm_Load(object sender, EventArgs e)
         {
-            #region //привязываем данные к эл-ту управления DGV_BuyForm - DataGridView
-            //для представления в форме
-            //DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
+            #region //привязываем данные к эл-ту управления DGV_BuyForm
             DGV_BuyForm.DataSource = bind_DGV_BuyForm;
             //формат вывода даты год/мес./день час/мин./сек.
             DGV_BuyForm.Columns["Date"].DefaultCellStyle.Format = "G";
+            //формат в валюте
             DGV_BuyForm.Columns["TotalPriceSupply"].DefaultCellStyle.Format = "C";
 
-            //изменяем заголовок колонок(столбцов) представления
+            //изменяем заголовок колонок представления
             DGV_BuyForm.Columns["SupplyId"].HeaderText = "Код";
             DGV_BuyForm.Columns["SupplyId"].Visible = true;
             DGV_BuyForm.Columns["Date"].HeaderText = "Дата";

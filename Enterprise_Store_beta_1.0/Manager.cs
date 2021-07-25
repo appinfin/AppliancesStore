@@ -7,7 +7,7 @@ namespace Enterprise_Store_beta_1._0
 {
     internal class Manager
     {
-        #region //установка атрибутов док-та "Покупка/комиссия"
+        #region //установка атрибутов док-та "Покупка/комиссия" по Id док-та
         public static void SetAttributeDocumentBuy(Db_Enterprise_Store_Context db, CreateBuy_Form createBuy_Form)
         {
             //получение даты, контрагента, склада
@@ -102,8 +102,6 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        
-
         #region //Получаем итоговую сумму док-та "Покупка/комиссия"
         //GetSummaDocumentBuy(DataGridView dataGridView)
         /// <summary>
@@ -125,9 +123,36 @@ namespace Enterprise_Store_beta_1._0
             {
                 return 0;
             }
-            
+
             return summa;
         }
+        #endregion
+
+        #region// Получаем список контрагентов
+        internal static BindingSource GetListCouterparty()
+        {
+            BindingSource bind_DGV_BuyForm = new();
+            //создание экземпляра контекста данных
+            using Db_Enterprise_Store_Context db = new();
+
+            #region Запрос к бд таблица Supplies, выборка всех док-тов "Покупка/комиссия"
+            var counterparty = db.Counterpartys
+                .Select(c => new
+                {
+                    c.CounterpartyId,
+                    c.CounterpartyName,
+                    c.InnOgrnKpp
+                })
+                .ToList();
+
+
+            #endregion
+
+            #region //создаём объект источник данных для привязки к DGV
+            bind_DGV_BuyForm.DataSource = counterparty;
+            return bind_DGV_BuyForm;
+            #endregion
+        } 
         #endregion
     }
 }

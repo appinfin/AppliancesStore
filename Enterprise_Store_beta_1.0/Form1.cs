@@ -78,15 +78,29 @@ namespace Enterprise_Store_beta_1._0
                 buyForm.bind_DGV_BuyForm = Manager.GetListDocumentBuy();
                 buyForm.Show();
             }
-        } 
-        #endregion
-        #endregion
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            
-            //toolStripMenuBuy_Click(sender, e);
         }
+        #endregion
 
+        #endregion
+
+        private void tStrip_Form1_CatalogCounterperty_Click(object sender, EventArgs e)
+        {
+            bool ok = true;
+            foreach (Form f in Application.OpenForms)
+                if (f.Name == "CatalogCounterparty_Form")
+                {
+                    ok = false;
+                }
+            if (ok)
+            {
+                //var t = Task.Run(() => Manager.GetListDocumentBuy());
+                CatalogCounterparty_Form сatalogCounterparty_Form = new();
+                сatalogCounterparty_Form.MdiParent = this;
+                //t.Wait();
+                //buyForm.bind_DGV_BuyForm = t.Result;
+
+                сatalogCounterparty_Form.Show();
+            }
+        }
     }
 }

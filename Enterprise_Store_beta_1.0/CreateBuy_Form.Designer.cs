@@ -37,9 +37,8 @@ namespace Enterprise_Store_beta_1._0
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            
             this.butSelectStorage_CreateBuy = new System.Windows.Forms.Button();
-            this.butSelectProvider_CreateBuy = new System.Windows.Forms.Button();
+            this.butSelectCounterparty_CreateBuy = new System.Windows.Forms.Button();
             this.butOK_CreateBuy = new System.Windows.Forms.Button();
             this.butDisplayDGVcatalog_CreateBuy = new System.Windows.Forms.Button();
             this.splitContainer_CreateBuy = new System.Windows.Forms.SplitContainer();
@@ -85,15 +84,16 @@ namespace Enterprise_Store_beta_1._0
             this.butSelectStorage_CreateBuy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.butSelectStorage_CreateBuy.UseVisualStyleBackColor = true;
             // 
-            // butSelectProvider_CreateBuy
+            // butSelectCounterparty_CreateBuy
             // 
-            this.butSelectProvider_CreateBuy.Location = new System.Drawing.Point(341, 30);
-            this.butSelectProvider_CreateBuy.Name = "butSelectProvider_CreateBuy";
-            this.butSelectProvider_CreateBuy.Size = new System.Drawing.Size(32, 21);
-            this.butSelectProvider_CreateBuy.TabIndex = 2;
-            this.butSelectProvider_CreateBuy.Text = "...";
-            this.butSelectProvider_CreateBuy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.butSelectProvider_CreateBuy.UseVisualStyleBackColor = true;
+            this.butSelectCounterparty_CreateBuy.Location = new System.Drawing.Point(341, 30);
+            this.butSelectCounterparty_CreateBuy.Name = "butSelectCounterparty_CreateBuy";
+            this.butSelectCounterparty_CreateBuy.Size = new System.Drawing.Size(32, 21);
+            this.butSelectCounterparty_CreateBuy.TabIndex = 2;
+            this.butSelectCounterparty_CreateBuy.Text = "...";
+            this.butSelectCounterparty_CreateBuy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.butSelectCounterparty_CreateBuy.UseVisualStyleBackColor = true;
+            this.butSelectCounterparty_CreateBuy.Click += new System.EventHandler(this.butSelectCounterparty_CreateBuy_Click);
             // 
             // butOK_CreateBuy
             // 
@@ -192,7 +192,7 @@ namespace Enterprise_Store_beta_1._0
             this.tabLayoutPanel_CreateBuy.Controls.Add(this.txtDate_CreateBuy, 1, 0);
             this.tabLayoutPanel_CreateBuy.Controls.Add(this.txtCounterparty_CreateBuy, 1, 1);
             this.tabLayoutPanel_CreateBuy.Controls.Add(this.txtStorage_CreateBuy, 1, 2);
-            this.tabLayoutPanel_CreateBuy.Controls.Add(this.butSelectProvider_CreateBuy, 2, 1);
+            this.tabLayoutPanel_CreateBuy.Controls.Add(this.butSelectCounterparty_CreateBuy, 2, 1);
             this.tabLayoutPanel_CreateBuy.Location = new System.Drawing.Point(12, 12);
             this.tabLayoutPanel_CreateBuy.Name = "tabLayoutPanel_CreateBuy";
             this.tabLayoutPanel_CreateBuy.RowCount = 4;
@@ -392,6 +392,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle5;
             this.DGVcatalog_CreateBuy.Location = new System.Drawing.Point(3, 133);
+            this.DGVcatalog_CreateBuy.MultiSelect = false;
             this.DGVcatalog_CreateBuy.Name = "DGVcatalog_CreateBuy";
             this.DGVcatalog_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DGVcatalog_CreateBuy.RowHeadersVisible = false;
@@ -443,7 +444,7 @@ namespace Enterprise_Store_beta_1._0
         internal System.Windows.Forms.TextBox txtDate_CreateBuy;
         internal System.Windows.Forms.TextBox txtCounterparty_CreateBuy;
         internal System.Windows.Forms.TextBox txtStorage_CreateBuy;
-        private System.Windows.Forms.Button butSelectProvider_CreateBuy;
+        private System.Windows.Forms.Button butSelectCounterparty_CreateBuy;
         private System.Windows.Forms.DataGridView DGVcatalog_CreateBuy;
         private System.Windows.Forms.DataGridViewTextBoxColumn contextMenuStripDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource bind_DGV_CreateBuy;
