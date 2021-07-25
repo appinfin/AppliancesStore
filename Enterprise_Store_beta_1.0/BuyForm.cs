@@ -14,6 +14,7 @@ namespace Enterprise_Store_beta_1._0
     /// </summary>
     public partial class BuyForm : Form
     {
+        public BindingSource bind_DGV_BuyForm { get; set; }
         //private readonly Manager manager;
         public BuyForm()
         {
@@ -25,8 +26,8 @@ namespace Enterprise_Store_beta_1._0
         {
             #region //привязываем данные к эл-ту управления DGV_BuyForm - DataGridView
             //для представления в форме
-            DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
-
+            //DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
+            DGV_BuyForm.DataSource = bind_DGV_BuyForm;
             //формат вывода даты год/мес./день час/мин./сек.
             DGV_BuyForm.Columns["Date"].DefaultCellStyle.Format = "G";
             DGV_BuyForm.Columns["TotalPriceSupply"].DefaultCellStyle.Format = "C";

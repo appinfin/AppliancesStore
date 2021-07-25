@@ -70,8 +70,12 @@ namespace Enterprise_Store_beta_1._0
                 }
             if (ok)
             {
+                //var t = Task.Run(() => Manager.GetListDocumentBuy());
                 var buyForm = new BuyForm();
                 buyForm.MdiParent = this;
+                //t.Wait();
+                //buyForm.bind_DGV_BuyForm = t.Result;
+                buyForm.bind_DGV_BuyForm = Manager.GetListDocumentBuy();
                 buyForm.Show();
             }
         } 

@@ -35,7 +35,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_BuyForm_Actions = new System.Windows.Forms.ToolStripDropDownButton();
             this.tStrip_BuyForm_Action_CreateBuy = new System.Windows.Forms.ToolStripMenuItem();
             this.tStrip_BuyForm_Refresh = new System.Windows.Forms.ToolStripButton();
-            this.bind_DGV_BuyForm = new System.Windows.Forms.BindingSource(this.components);
+            
             this.DGV_BuyForm = new System.Windows.Forms.DataGridView();
             this.ctxtMenu_BuyForm = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tStrip_ctxMenu_BuyForm_Open = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,7 +43,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_ctxMenu_BuyForm_Edit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip_BuyForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_BuyForm)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.bind_DGV_BuyForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_BuyForm)).BeginInit();
             this.ctxtMenu_BuyForm.SuspendLayout();
             this.SuspendLayout();
@@ -159,7 +159,6 @@ namespace Enterprise_Store_beta_1._0
             this.Resize += new System.EventHandler(this.BuyForm_Resize);
             this.toolStrip_BuyForm.ResumeLayout(false);
             this.toolStrip_BuyForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_BuyForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_BuyForm)).EndInit();
             this.ctxtMenu_BuyForm.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -171,7 +170,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStrip toolStrip_BuyForm;
         private System.Windows.Forms.ToolStripDropDownButton tStrip_BuyForm_Actions;
         private System.Windows.Forms.ToolStripMenuItem tStrip_BuyForm_Action_CreateBuy;
-        private System.Windows.Forms.BindingSource bind_DGV_BuyForm;
+        //private System.Windows.Forms.BindingSource bind_DGV_BuyForm;
         internal System.Windows.Forms.DataGridView DGV_BuyForm;
         private System.Windows.Forms.ContextMenuStrip ctxtMenu_BuyForm;
         private System.Windows.Forms.ToolStripMenuItem tStrip_ctxtMenu_BuyForm_Delete;
