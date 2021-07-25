@@ -129,7 +129,7 @@ namespace Enterprise_Store_beta_1._0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 372);
+            this.ClientSize = new System.Drawing.Size(500, 400);
             this.Controls.Add(this.DGV_CatalogCounterparty_Form);
             this.Controls.Add(this.tStrip_CatalogCounterparty);
             this.Name = "CatalogCounterparty_Form";

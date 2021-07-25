@@ -285,7 +285,32 @@ namespace Enterprise_Store_beta_1._0
                 }
             }
             
-        } 
+        }
         #endregion
+
+        private void butSelectStorage_CreateBuy_Click(object sender, EventArgs e)
+        {
+            CatalogStorage_Form catalogStorage = new();
+
+            if (catalogStorage.ShowDialog() == DialogResult.OK)
+            {
+                using Db_Enterprise_Store_Context db = new();
+                //получаем строку из БД по id текущего открытого док-та "Покупка/комиссия"
+                var currentDoc = db.Supplies
+                    .Where(s => s.SupplyId == SupplyID)
+                    .FirstOrDefault();
+                currentDoc.StoragesStorageId = catalogStorage.StorageID;
+
+                try
+                {
+                    db.SaveChanges();
+                    Manager.SetAttributeDocumentBuy(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
+                }
+                catch
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+        }
     }
 }

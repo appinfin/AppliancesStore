@@ -131,11 +131,11 @@ namespace Enterprise_Store_beta_1._0
         #region// Получаем список контрагентов
         internal static BindingSource GetListCouterparty()
         {
-            BindingSource bind_DGV_BuyForm = new();
+            BindingSource bind_DGV_Counterparty = new();
             //создание экземпляра контекста данных
             using Db_Enterprise_Store_Context db = new();
 
-            #region Запрос к бд таблица Supplies, выборка всех док-тов "Покупка/комиссия"
+            #region Запрос к бд таблица Counterpartys, выборка контрагентов
             var counterparty = db.Counterpartys
                 .Select(c => new
                 {
@@ -149,10 +149,36 @@ namespace Enterprise_Store_beta_1._0
             #endregion
 
             #region //создаём объект источник данных для привязки к DGV
-            bind_DGV_BuyForm.DataSource = counterparty;
-            return bind_DGV_BuyForm;
+            bind_DGV_Counterparty.DataSource = counterparty;
+            return bind_DGV_Counterparty;
             #endregion
-        } 
+        }
+        #endregion
+
+        #region// Получаем список складов
+        internal static BindingSource GetListStorage()
+        {
+            BindingSource bind_DGV_Storage = new();
+            //создание экземпляра контекста данных
+            using Db_Enterprise_Store_Context db = new();
+
+            #region Запрос к бд Storages, выборка складов
+            var storages = db.Storages
+                .Select(s => new
+                {
+                    s.StorageId,
+                    s.StorageName
+                })
+                .ToList();
+
+
+            #endregion
+
+            #region //создаём объект источник данных для привязки к DGV
+            bind_DGV_Storage.DataSource = storages;
+            return bind_DGV_Storage;
+            #endregion
+        }
         #endregion
     }
 }

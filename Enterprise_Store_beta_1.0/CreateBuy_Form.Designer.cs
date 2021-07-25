@@ -83,6 +83,7 @@ namespace Enterprise_Store_beta_1._0
             this.butSelectStorage_CreateBuy.Text = "...";
             this.butSelectStorage_CreateBuy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.butSelectStorage_CreateBuy.UseVisualStyleBackColor = true;
+            this.butSelectStorage_CreateBuy.Click += new System.EventHandler(this.butSelectStorage_CreateBuy_Click);
             // 
             // butSelectCounterparty_CreateBuy
             // 

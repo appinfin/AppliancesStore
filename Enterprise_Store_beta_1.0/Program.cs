@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace Enterprise_Store_beta_1._0
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //string path = Directory.GetCurrentDirectory();
             Application.Run(new Form1());
             //Application.Run(new CatalogCounterparty_Form());
             //Application.Run(new Calendar_Form());
