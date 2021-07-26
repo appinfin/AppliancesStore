@@ -74,18 +74,18 @@ namespace Enterprise_Store_beta_1._0
         #endregion
 
         #region //Изменение размеров формы -!!! ДОРАБОТАТЬ !!!-
-        private void BuyForm_Resize(object sender, EventArgs e)
-        {
-            //Отображение дочерней формы в рамках родительской формы
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Normal;
-                this.Dock = DockStyle.Fill;
-                var _desktopBounds = this.DesktopBounds;
-                this.Dock = DockStyle.None;
-                this.DesktopBounds = _desktopBounds;
-            }
-        }
+        //private void BuyForm_Resize(object sender, EventArgs e)
+        //{
+        //    //Отображение дочерней формы в рамках родительской формы
+        //    if (this.WindowState == FormWindowState.Maximized)
+        //    {
+        //        this.WindowState = FormWindowState.Normal;
+        //        this.Dock = DockStyle.Fill;
+        //        var _desktopBounds = this.DesktopBounds;
+        //        this.Dock = DockStyle.None;
+        //        this.DesktopBounds = _desktopBounds;
+        //    }
+        //}
         #endregion
 
         #region //Редактирование док-та <Поступление товаров> - двойной клик по строке док-та

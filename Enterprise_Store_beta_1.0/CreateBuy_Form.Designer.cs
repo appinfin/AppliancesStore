@@ -59,6 +59,9 @@ namespace Enterprise_Store_beta_1._0
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PricePurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Summa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.butCatalogProduct_Delete = new System.Windows.Forms.Button();
+            this.butCatalogProduct_Edit = new System.Windows.Forms.Button();
+            this.butCatalogProduct_Add = new System.Windows.Forms.Button();
             this.DGVcatalog_CreateBuy = new System.Windows.Forms.DataGridView();
             this.contextMenuStripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bind_DGV_CreateBuy = new System.Windows.Forms.BindingSource(this.components);
@@ -138,6 +141,10 @@ namespace Enterprise_Store_beta_1._0
             // 
             // splitContainer_CreateBuy.Panel2
             // 
+            this.splitContainer_CreateBuy.Panel2.AutoScroll = true;
+            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Delete);
+            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Edit);
+            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Add);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.DGVcatalog_CreateBuy);
             this.splitContainer_CreateBuy.Size = new System.Drawing.Size(892, 465);
             this.splitContainer_CreateBuy.SplitterDistance = 500;
@@ -382,12 +389,40 @@ namespace Enterprise_Store_beta_1._0
             this.Summa.ReadOnly = true;
             this.Summa.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // butCatalogProduct_Delete
+            // 
+            this.butCatalogProduct_Delete.Location = new System.Drawing.Point(178, 99);
+            this.butCatalogProduct_Delete.Name = "butCatalogProduct_Delete";
+            this.butCatalogProduct_Delete.Size = new System.Drawing.Size(75, 28);
+            this.butCatalogProduct_Delete.TabIndex = 1;
+            this.butCatalogProduct_Delete.Text = "Удалить";
+            this.butCatalogProduct_Delete.UseVisualStyleBackColor = true;
+            // 
+            // butCatalogProduct_Edit
+            // 
+            this.butCatalogProduct_Edit.Location = new System.Drawing.Point(97, 99);
+            this.butCatalogProduct_Edit.Name = "butCatalogProduct_Edit";
+            this.butCatalogProduct_Edit.Size = new System.Drawing.Size(75, 28);
+            this.butCatalogProduct_Edit.TabIndex = 1;
+            this.butCatalogProduct_Edit.Text = "Изменить";
+            this.butCatalogProduct_Edit.UseVisualStyleBackColor = true;
+            // 
+            // butCatalogProduct_Add
+            // 
+            this.butCatalogProduct_Add.Location = new System.Drawing.Point(16, 99);
+            this.butCatalogProduct_Add.Name = "butCatalogProduct_Add";
+            this.butCatalogProduct_Add.Size = new System.Drawing.Size(75, 28);
+            this.butCatalogProduct_Add.TabIndex = 1;
+            this.butCatalogProduct_Add.Text = "Добавить";
+            this.butCatalogProduct_Add.UseVisualStyleBackColor = true;
+            // 
             // DGVcatalog_CreateBuy
             // 
             this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVcatalog_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGVcatalog_CreateBuy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVcatalog_CreateBuy.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.DGVcatalog_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -460,5 +495,8 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.DataGridViewTextBoxColumn PricePurchase;
         private System.Windows.Forms.DataGridViewTextBoxColumn Summa;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.Button butCatalogProduct_Delete;
+        private System.Windows.Forms.Button butCatalogProduct_Edit;
+        private System.Windows.Forms.Button butCatalogProduct_Add;
     }
 }

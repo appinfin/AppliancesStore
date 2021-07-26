@@ -156,7 +156,7 @@ namespace Enterprise_Store_beta_1._0
             this.Text = "Покупка/Комиссия";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.BuyForm_Load);
-            this.Resize += new System.EventHandler(this.BuyForm_Resize);
+            //this.Resize += new System.EventHandler(this.BuyForm_Resize);
             this.toolStrip_BuyForm.ResumeLayout(false);
             this.toolStrip_BuyForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_BuyForm)).EndInit();
