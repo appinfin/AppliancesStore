@@ -77,7 +77,7 @@ namespace Enterprise_Store_beta_1._0
             //создаём диалоговое окно <Кол-во, цена>
             var f = new SetPriceQty();
             f.Text += " " + ProductName;
-            if (f.ShowDialog() == DialogResult.OK)
+            if (f.ShowDialog() == DialogResult.OK)//f.ShowDialog() == DialogResult.OK
             {
                 //создаём экземпляр новой строки
                 //для таблицы <Покупка товара / Цена / Кол-во>

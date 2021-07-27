@@ -43,7 +43,7 @@ namespace Enterprise_Store_beta_1._0
             this.txtPrice.Size = new System.Drawing.Size(100, 21);
             this.txtPrice.TabIndex = 0;
             this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtPrice.Text = "0.00";
+            this.txtPrice.Text = "0,00";
             // 
             // txtQty
             // 
@@ -63,6 +63,7 @@ namespace Enterprise_Store_beta_1._0
             this.setPriceQtyOK.Text = "добавить";
             this.setPriceQtyOK.UseVisualStyleBackColor = true;
             this.setPriceQtyOK.Click += new System.EventHandler(this.SetPriceQtyOK_Click);
+
             // 
             // lblPrice
             // 

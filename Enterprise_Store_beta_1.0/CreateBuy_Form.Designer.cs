@@ -334,7 +334,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_CreateBuy.RowHeadersVisible = false;
             this.DGV_CreateBuy.RowTemplate.Height = 23;
             this.DGV_CreateBuy.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.DGV_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_CreateBuy.Size = new System.Drawing.Size(485, 270);
             this.DGV_CreateBuy.TabIndex = 6;
             // 

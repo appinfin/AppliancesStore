@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,11 +24,28 @@ namespace Enterprise_Store_beta_1._0
 
         private void SetPriceQtyOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            Decimal.TryParse(txtPrice.Text, out decimal _price);
-            Decimal.TryParse(txtQty.Text, out decimal _qty);
-            PricePurchase = _price;
-            Quantity = _qty;
+            
+            if (Decimal.TryParse(txtPrice.Text,
+                                 NumberStyles.AllowDecimalPoint,
+                                 //дробные числа через запятую
+                                 CultureInfo.CurrentCulture, //CultureInfo.CreateSpecificCulture("ru-RU")
+                                 out decimal _price)
+                && Decimal.TryParse(txtQty.Text, out decimal _qty))
+            {
+                PricePurchase = _price;
+                Quantity = _qty;
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show("Вы ввели недопустимый символ. Попробуйте ещё раз.\n" +
+                                "Например дробные числа вводятся через запятую = 42,35",
+                                "Неверный ввод символов!!!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.Cancel;
+            }
+
             this.Close();
         }
     }

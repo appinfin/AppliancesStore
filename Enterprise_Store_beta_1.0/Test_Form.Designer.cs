@@ -52,6 +52,7 @@ namespace Enterprise_Store_beta_1._0
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -193,6 +194,8 @@ namespace Enterprise_Store_beta_1._0
             // 
             // comboBox1
             // 
+            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.comboBox1.DisplayMember = "BrandName";
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(20, 118);
@@ -200,7 +203,10 @@ namespace Enterprise_Store_beta_1._0
             this.comboBox1.Size = new System.Drawing.Size(193, 21);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.Text = "comboBox1";
+            this.comboBox1.ValueMember = "BrandId";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox1.Enter += new System.EventHandler(this.comboBox1_Enter);
+            this.comboBox1.Leave += new System.EventHandler(this.comboBox1_Leave);
             // 
             // lblIndexItem
             // 
@@ -216,7 +222,7 @@ namespace Enterprise_Store_beta_1._0
             // lblBrand
             // 
             this.lblBrand.AutoSize = true;
-            this.lblBrand.Location = new System.Drawing.Point(20, 170);
+            this.lblBrand.Location = new System.Drawing.Point(20, 193);
             this.lblBrand.Margin = new System.Windows.Forms.Padding(5);
             this.lblBrand.Name = "lblBrand";
             this.lblBrand.Size = new System.Drawing.Size(35, 13);
@@ -227,7 +233,7 @@ namespace Enterprise_Store_beta_1._0
             // lblSelectedItem
             // 
             this.lblSelectedItem.AutoSize = true;
-            this.lblSelectedItem.Location = new System.Drawing.Point(20, 193);
+            this.lblSelectedItem.Location = new System.Drawing.Point(20, 170);
             this.lblSelectedItem.Margin = new System.Windows.Forms.Padding(5);
             this.lblSelectedItem.Name = "lblSelectedItem";
             this.lblSelectedItem.Size = new System.Drawing.Size(27, 13);
@@ -279,11 +285,22 @@ namespace Enterprise_Store_beta_1._0
             this.label4.Text = "item";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(234, 118);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label4);
@@ -328,5 +345,6 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button1;
     }
 }
