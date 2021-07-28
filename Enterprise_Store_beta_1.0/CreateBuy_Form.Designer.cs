@@ -86,7 +86,7 @@ namespace Enterprise_Store_beta_1._0
             this.butSelectStorage_CreateBuy.Text = "...";
             this.butSelectStorage_CreateBuy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.butSelectStorage_CreateBuy.UseVisualStyleBackColor = true;
-            this.butSelectStorage_CreateBuy.Click += new System.EventHandler(this.butSelectStorage_CreateBuy_Click);
+            this.butSelectStorage_CreateBuy.Click += new System.EventHandler(this.ButSelectStorage_CreateBuy_Click);
             // 
             // butSelectCounterparty_CreateBuy
             // 
@@ -97,7 +97,7 @@ namespace Enterprise_Store_beta_1._0
             this.butSelectCounterparty_CreateBuy.Text = "...";
             this.butSelectCounterparty_CreateBuy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.butSelectCounterparty_CreateBuy.UseVisualStyleBackColor = true;
-            this.butSelectCounterparty_CreateBuy.Click += new System.EventHandler(this.butSelectCounterparty_CreateBuy_Click);
+            this.butSelectCounterparty_CreateBuy.Click += new System.EventHandler(this.ButSelectCounterparty_CreateBuy_Click);
             // 
             // butOK_CreateBuy
             // 

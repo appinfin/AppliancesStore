@@ -19,18 +19,13 @@ namespace Enterprise_Store_beta_1._0
             InitializeComponent();
         }
 
-        public decimal PricePurchase { get; set; }
-        public decimal Quantity { get; set; }
+        internal decimal PricePurchase { get; set; }
+        internal decimal Quantity { get; set; }
 
         private void SetPriceQtyOK_Click(object sender, EventArgs e)
         {
             
-            if (Decimal.TryParse(txtPrice.Text,
-                                 NumberStyles.AllowDecimalPoint,
-                                 //дробные числа через запятую
-                                 CultureInfo.CurrentCulture, //CultureInfo.CreateSpecificCulture("ru-RU")
-                                 out decimal _price)
-                && Decimal.TryParse(txtQty.Text, out decimal _qty))
+            if (Decimal.TryParse(txtPrice.Text, out decimal _price) && Decimal.TryParse(txtQty.Text, out decimal _qty))
             {
                 PricePurchase = _price;
                 Quantity = _qty;

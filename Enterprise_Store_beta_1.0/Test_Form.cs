@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using ModelLibrary_Estore_1;
+using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ModelLibrary_Estore_1;
 
 namespace Enterprise_Store_beta_1._0
 {
     public partial class Test_Form : Form
     {
+        private Product product;
         public Test_Form()
         {
             InitializeComponent();
+            product = new();
         }
 
-        
-        
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             //var idx = comboBox1.SelectedIndex;
             //lblIndexItem.Text = idx.ToString();
 
@@ -30,10 +27,13 @@ namespace Enterprise_Store_beta_1._0
             //var sI = selItem.GetType().GetProperty("BrandId");
             //lblSelectedItem.Text = selItem.ToString();
 
-            
 
-            if (comboBox1.SelectedIndex >= 0)
+
+            if (comBoxBrand.SelectedIndex >= 0)
             {
+                int brandID = (int)comBoxBrand.SelectedValue;
+                product.BrandsBrandId = brandID;
+                //получаем BrandId
                 //var selectedItem = comboBox1.Items[comboBox1.SelectedIndex];
                 //var pO = selectedItem.GetValue(selectedItem);
                 //var propItem = selectedItem.GetType().GetProperty("BrandName").GetValue(selectedItem);
@@ -43,8 +43,8 @@ namespace Enterprise_Store_beta_1._0
                 //label1.Text = propItem.ToString();
                 //label2.Text = "pO - " + pO;
                 //label4.Text = valueBrandId.ToString();
-                var selVal = comboBox1.SelectedValue;
-                lblBrand.Text = selVal.ToString();
+
+                //lblBrand.Text = selVal.ToString();
             }
         }
 
@@ -55,29 +55,35 @@ namespace Enterprise_Store_beta_1._0
             var allBrands = db.Brands
                 .Select(b => new
                 {
-                    BrandId = b.BrandId,
-                    BrandName = b.BrandName
+                    b.BrandId,
+                    b.BrandName
                 })
                 .ToList();
             bindingSource1.DataSource = allBrands;
-            comboBox1.DataSource = bindingSource1;
+            comBoxBrand.DataSource = bindingSource1;
+            comBoxBrand.SelectedItem = null;
         }
 
-        private void comboBox1_Enter(object sender, EventArgs e)
+        private void ComboBox1_Enter(object sender, EventArgs e)
         {
             //MessageBox.Show("comboBox1_Enter");
         }
 
-        private void comboBox1_Leave(object sender, EventArgs e)
+        private void ComboBox1_Leave(object sender, EventArgs e)
         {
             //MessageBox.Show("comboBox1_Leave");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
-            Form f = new();
-            //f.Controls(
-               // );
+            var s = txtProductName.Text.Trim();
+            //s.Trim();
+            if (s == string.Empty)
+            {
+                MessageBox.Show(@"Поле ""Наименование"" пусто");
+            }
+            //Form f = new();
+            MessageBox.Show(comBoxBrand.Text);
         }
     }
 }

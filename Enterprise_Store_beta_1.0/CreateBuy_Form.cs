@@ -77,7 +77,7 @@ namespace Enterprise_Store_beta_1._0
             //создаём диалоговое окно <Кол-во, цена>
             var f = new SetPriceQty();
             f.Text += " " + ProductName;
-            if (f.ShowDialog() == DialogResult.OK)//f.ShowDialog() == DialogResult.OK
+            if (f.ShowDialog() == DialogResult.OK)
             {
                 //создаём экземпляр новой строки
                 //для таблицы <Покупка товара / Цена / Кол-во>
@@ -261,7 +261,7 @@ namespace Enterprise_Store_beta_1._0
         }
 
         #region// Открываем каталог контрагентов
-        private void butSelectCounterparty_CreateBuy_Click(object sender, EventArgs e)
+        private void ButSelectCounterparty_CreateBuy_Click(object sender, EventArgs e)
         {
             CatalogCounterparty_Form catalogCounterparty = new();
 
@@ -288,7 +288,7 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        private void butSelectStorage_CreateBuy_Click(object sender, EventArgs e)
+        private void ButSelectStorage_CreateBuy_Click(object sender, EventArgs e)
         {
             CatalogStorage_Form catalogStorage = new();
 
