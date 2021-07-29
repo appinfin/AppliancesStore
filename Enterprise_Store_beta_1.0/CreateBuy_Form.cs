@@ -21,8 +21,6 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-
-
         #region //Каталог товаров
         #region // Открытие панели "Каталог товаров" - КНОПКА <подобрать товар>
         private void ButDisplayDGVcatalog_CreateBuy_Click(object sender, EventArgs e)
@@ -207,6 +205,7 @@ namespace Enterprise_Store_beta_1._0
 
         #endregion
 
+        #region // Установка атрибутов док-та "Покупка/комиссия"
         #region //Календарь и кнопка для его отображения
         private void ButSelectDate_CreateBuy_Click(object sender, EventArgs e)
         {
@@ -226,7 +225,7 @@ namespace Enterprise_Store_beta_1._0
                     .FirstOrDefault();
                 var currentDateDoc = currentDoc.Date;//старые значения даты для textBox при ошибке для отката
                 currentDoc.Date = monthCalendar1.SelectionStart;
-                try 
+                try
                 {
                     db.SaveChanges();
                 }
@@ -235,7 +234,7 @@ namespace Enterprise_Store_beta_1._0
                     txtDate_CreateBuy.Text = currentDateDoc.ToString();
                     MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
                 }
-                
+
             }
         }
 
@@ -249,18 +248,7 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        private void ButOK_CreateBuy_Click(object sender, EventArgs e)
-        {
-            buyForm.DGV_BuyForm.DataSource = Manager.GetListDocumentBuy();
-            buyForm.Refresh();
-        }
-
-        private void CreateBuy_Form_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
-        }
-
-        #region// Открываем каталог контрагентов
+        #region// Выбор контрагентов.
         private void ButSelectCounterparty_CreateBuy_Click(object sender, EventArgs e)
         {
             CatalogCounterparty_Form catalogCounterparty = new();
@@ -272,11 +260,12 @@ namespace Enterprise_Store_beta_1._0
                 var currentDoc = db.Supplies
                     .Where(s => s.SupplyId == SupplyID)
                     .FirstOrDefault();
+                //изменяем данные в БД (меняем Id контрагента)
                 currentDoc.CounterpartysCounterpartyId = catalogCounterparty.CounterpartyID;
 
                 try
                 {
-                    db.SaveChanges();
+                    db.SaveChanges(); //сохраняем изменения в БД
                     Manager.SetAttributeDocumentBuy(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
                 }
                 catch
@@ -284,10 +273,11 @@ namespace Enterprise_Store_beta_1._0
                     MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
                 }
             }
-            
+
         }
         #endregion
 
+        #region // Выбор склада
         private void ButSelectStorage_CreateBuy_Click(object sender, EventArgs e)
         {
             CatalogStorage_Form catalogStorage = new();
@@ -312,5 +302,23 @@ namespace Enterprise_Store_beta_1._0
                 }
             }
         }
+        #endregion 
+        #endregion
+
+        #region // Кнопка "Провести". Обновление данных в форме список док-тов "Покупка/комиссия"
+        private void ButOK_CreateBuy_Click(object sender, EventArgs e)
+        {
+            buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
+        } 
+        #endregion
+
+        #region // Кнопка закрытия формы. Обновление данных в форме список док-тов "Покупка/комиссия"
+        private void CreateBuy_Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
+        } 
+        #endregion
+
+
     }
 }
