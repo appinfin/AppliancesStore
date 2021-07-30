@@ -61,7 +61,7 @@ namespace Enterprise_Store_beta_1._0
             this.Summa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.butCatalogProduct_Delete = new System.Windows.Forms.Button();
             this.butCatalogProduct_Edit = new System.Windows.Forms.Button();
-            this.butCatalogProduct_Add = new System.Windows.Forms.Button();
+            this.butAddProduct_CreateBuy = new System.Windows.Forms.Button();
             this.DGVcatalog_CreateBuy = new System.Windows.Forms.DataGridView();
             this.contextMenuStripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bind_DGV_CreateBuy = new System.Windows.Forms.BindingSource(this.components);
@@ -144,7 +144,7 @@ namespace Enterprise_Store_beta_1._0
             this.splitContainer_CreateBuy.Panel2.AutoScroll = true;
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Delete);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Edit);
-            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Add);
+            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butAddProduct_CreateBuy);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.DGVcatalog_CreateBuy);
             this.splitContainer_CreateBuy.Size = new System.Drawing.Size(892, 465);
             this.splitContainer_CreateBuy.SplitterDistance = 500;
@@ -406,16 +406,17 @@ namespace Enterprise_Store_beta_1._0
             this.butCatalogProduct_Edit.TabIndex = 1;
             this.butCatalogProduct_Edit.Text = "Изменить";
             this.butCatalogProduct_Edit.UseVisualStyleBackColor = true;
+            this.butCatalogProduct_Edit.Click += new System.EventHandler(this.butCatalogProduct_Edit_Click);
             // 
-            // butCatalogProduct_Add
+            // butAddProduct_CreateBuy
             // 
-            this.butCatalogProduct_Add.Location = new System.Drawing.Point(16, 99);
-            this.butCatalogProduct_Add.Name = "butCatalogProduct_Add";
-            this.butCatalogProduct_Add.Size = new System.Drawing.Size(75, 28);
-            this.butCatalogProduct_Add.TabIndex = 1;
-            this.butCatalogProduct_Add.Text = "Добавить";
-            this.butCatalogProduct_Add.UseVisualStyleBackColor = true;
-            this.butCatalogProduct_Add.Click += new System.EventHandler(this.butCatalogProduct_Add_Click);
+            this.butAddProduct_CreateBuy.Location = new System.Drawing.Point(16, 99);
+            this.butAddProduct_CreateBuy.Name = "butAddProduct_CreateBuy";
+            this.butAddProduct_CreateBuy.Size = new System.Drawing.Size(75, 28);
+            this.butAddProduct_CreateBuy.TabIndex = 1;
+            this.butAddProduct_CreateBuy.Text = "Добавить";
+            this.butAddProduct_CreateBuy.UseVisualStyleBackColor = true;
+            this.butAddProduct_CreateBuy.Click += new System.EventHandler(this.butAddProduct_CreateBuy_Click);
             // 
             // DGVcatalog_CreateBuy
             // 
@@ -498,6 +499,6 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button butCatalogProduct_Delete;
         private System.Windows.Forms.Button butCatalogProduct_Edit;
-        private System.Windows.Forms.Button butCatalogProduct_Add;
+        private System.Windows.Forms.Button butAddProduct_CreateBuy;
     }
 }

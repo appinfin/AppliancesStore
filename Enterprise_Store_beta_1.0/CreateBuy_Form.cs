@@ -319,11 +319,24 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        private void butCatalogProduct_Add_Click(object sender, EventArgs e)
+
+        #region // Кнопка "Добавить" на панели выбор товара из списка
+        private void butAddProduct_CreateBuy_Click(object sender, EventArgs e)
         {
             AddProduct_Form addProduct_Form = new();
             addProduct_Form.ShowDialog();
             ButDisplayDGVcatalog_CreateBuy_Click(sender, e);
+        }
+        #endregion
+
+        private void butCatalogProduct_Edit_Click(object sender, EventArgs e)
+        {
+            var productID = (int)DGVcatalog_CreateBuy.CurrentRow.Cells["id"].Value;
+            AddProduct_Form addProduct_Form = new();
+            
+            addProduct_Form.ViewAttrbuteProduct(productID);
+            addProduct_Form.ShowDialog();
+
         }
     }
 }

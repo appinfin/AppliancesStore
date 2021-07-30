@@ -40,6 +40,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Test_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="CreateSell_Form.cs">
       <SubType>Form</SubType>
     </Compile>
