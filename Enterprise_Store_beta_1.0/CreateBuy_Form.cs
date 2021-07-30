@@ -21,26 +21,33 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        #region //Каталог товаров
+        #region //Панель "Каталог товаров" подобрать товар
         #region // Открытие панели "Каталог товаров" - КНОПКА <подобрать товар>
         private void ButDisplayDGVcatalog_CreateBuy_Click(object sender, EventArgs e)
         {
+            #region //отобразить правую панель <выбор товара>
+            splitContainer_CreateBuy.Panel2Collapsed = false;
+            int _splitterDistance = 2 * this.splitContainer_CreateBuy.Size.Width / 3; //размер панели
+            this.splitContainer_CreateBuy.SplitterDistance = _splitterDistance;
+            #endregion
+
+            #region //Выборка из БД для каталога товаров
             using Db_Enterprise_Store_Context db = new();
 
-            #region //Выборка для каталога товаров
             //выборка групп товаров
             var productGroupName = db.ProductsGroups
-                .Select(n => new { category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName })
+                .Select(n => new { category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName, brand = "" })
                 .ToList();
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
                 .Where(p => p.ProductsGroupsProductGroupId == null)
-                .Select(n => new { category = "Товар", id = n.ProductId, name = n.ProductName });
+                .Select(n => new { category = "Товар", id = n.ProductId, name = n.ProductName, brand = n.BrandsBrand.BrandName});
 
             //соединяем списки productGroupName и productsWithoutGroupName
             //вставляем список в список с указанного индекса
             productGroupName.InsertRange(productGroupName.Count, productsWithoutGroupName);
-            //привязка списка каталога товаров к DGV
+
+            //привязка списка товаров к DGV
             bind_DGVcatalog_CreateBuy.DataSource = productGroupName;
             DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
             #endregion
@@ -50,21 +57,15 @@ namespace Enterprise_Store_beta_1._0
             //DGVcatalog_CreateBuy.Columns["category"].Visible = false;
             DGVcatalog_CreateBuy.Columns["category"].HeaderText = ""; //заголовок
             DGVcatalog_CreateBuy.Columns["name"].HeaderText = "Номенклатура";
-            #endregion
-
-            #region //отобразить правую панель <выбор товара>
-            splitContainer_CreateBuy.Panel2Collapsed = false;
-            int _splitterDistance = 2 * this.splitContainer_CreateBuy.Size.Width / 3; //размер панели
-            this.splitContainer_CreateBuy.SplitterDistance = _splitterDistance;
-            #endregion
+            DGVcatalog_CreateBuy.Columns["brand"].HeaderText = "Производитель";
+            #endregion 
         }
         #endregion
-        
 
-        #region //Выбор из каталога и добавление строки в список док-та "Покупка/комиссия"
-        // AddProductInListBuy(int SelectedId)
+
         /// <summary>
-        /// Добавляет товар в список док-та "Покупка/комиссия"
+        /// Добавляет товар в список док-та "Покупка/комиссия".
+        /// Где (int SelectedId) - выбранный Id товара
         /// </summary>
         /// <param name="SelectedId"></param>
         internal void AddProductInListBuy(int SelectedId)
@@ -105,7 +106,6 @@ namespace Enterprise_Store_beta_1._0
                 }
             }
         }
-        #endregion
 
         #region //Двойной клик по строке товара или группы товаров
         private void DGVcatalog_CreateBuy_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -117,12 +117,12 @@ namespace Enterprise_Store_beta_1._0
             if ((string)DGVcatalog_CreateBuy.CurrentRow.Cells["category"].Value == "Группа")
             {
                 using Db_Enterprise_Store_Context db = new();
-                var product = db.Products
+                var productsWithGroupName = db.Products
                     .Where(p => p.ProductsGroupsProductGroupId == SelectedId)
-                    .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName })
+                    .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
                     .ToList();
 
-                bind_DGVcatalog_CreateBuy.DataSource = product;
+                bind_DGVcatalog_CreateBuy.DataSource = productsWithGroupName;
                 DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
                 
             }
@@ -316,9 +316,14 @@ namespace Enterprise_Store_beta_1._0
         private void CreateBuy_Form_FormClosed(object sender, FormClosedEventArgs e)
         {
             buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
-        } 
+        }
         #endregion
 
-
+        private void butCatalogProduct_Add_Click(object sender, EventArgs e)
+        {
+            AddProduct_Form addProduct_Form = new();
+            addProduct_Form.ShowDialog();
+            ButDisplayDGVcatalog_CreateBuy_Click(sender, e);
+        }
     }
 }

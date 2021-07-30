@@ -415,6 +415,7 @@ namespace Enterprise_Store_beta_1._0
             this.butCatalogProduct_Add.TabIndex = 1;
             this.butCatalogProduct_Add.Text = "Добавить";
             this.butCatalogProduct_Add.UseVisualStyleBackColor = true;
+            this.butCatalogProduct_Add.Click += new System.EventHandler(this.butCatalogProduct_Add_Click);
             // 
             // DGVcatalog_CreateBuy
             // 
