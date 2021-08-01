@@ -47,11 +47,13 @@ namespace Enterprise_Store_beta_1._0
             this.butSave_AddProduct = new System.Windows.Forms.Button();
             this.bindComBox_ProductGroup = new System.Windows.Forms.BindingSource(this.components);
             this.bindComBox_Unit = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel_AddProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSale_AddProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Brand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_ProductGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Unit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel_AddProduct
@@ -222,11 +224,23 @@ namespace Enterprise_Store_beta_1._0
             this.butSave_AddProduct.UseVisualStyleBackColor = true;
             this.butSave_AddProduct.Click += new System.EventHandler(this.Button1_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 153);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(600, 285);
+            this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 152);
+            this.ClientSize = new System.Drawing.Size(622, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.butSave_AddProduct);
             this.Controls.Add(this.tableLayoutPanel_AddProduct);
             this.Name = "Test_Form";
@@ -239,6 +253,7 @@ namespace Enterprise_Store_beta_1._0
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Brand)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_ProductGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Unit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -266,5 +281,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.BindingSource bindComBox_ProductGroup;
         private System.Windows.Forms.BindingSource bindComBox_Unit;
         private System.Windows.Forms.NumericUpDown numSale_AddProduct;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

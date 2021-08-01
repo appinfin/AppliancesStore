@@ -1,5 +1,6 @@
 ﻿using ModelLibrary_Estore_1;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,34 +8,65 @@ namespace Enterprise_Store_beta_1._0
 {
     public partial class Test_Form : Form
     {
+        string S {get; set;}
         public Test_Form()
         {
             InitializeComponent();
+            //S = "HELLO";
         }
 
         private void Test_Form_Load(object sender, EventArgs e)
         {
-            using Db_Enterprise_Store_Context db = new();
+            //using Db_Enterprise_Store_Context db = new();
 
-            var allBrands = db.Brands.ToList();
-            bindComBox_Brand.DataSource = allBrands;
-            comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
-            comBoxBrand.SelectedItem = null; //ставим пустой эл-т
-            comBoxBrand.Text = "- выбрать из списка -";
-            //comBoxBrand.SelectedValue = null;
+            //var allBrands = db.Brands.ToList();
+            //bindComBox_Brand.DataSource = allBrands;
+            //comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
+            //comBoxBrand.SelectedItem = null; //ставим пустой эл-т
+            //comBoxBrand.Text = "- выбрать из списка -";
+            ////comBoxBrand.SelectedValue = null;
 
-            var allGroups = db.ProductsGroups.ToList();
-            bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
-            comBoxProductGroup.DataSource = bindComBox_ProductGroup;
-            comBoxProductGroup.SelectedItem = null;
-            comBoxProductGroup.Text = "- выбрать из списка -";
+            //var st = db.Storages.ToList();
+            //this.S = "kjgfk";
+            //var s = new List<Test_Form> { this};
+            //s.Add(this);
+            //BindingSource bs = new();
+            //bs.DataSource = s;
 
-            var allUnits = db.Units.ToList();
-            bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
-            comBoxUnit.DataSource = bindComBox_Unit;
-            comBoxUnit.SelectedItem = null;
-            comBoxUnit.Text = "- выбрать из списка -";
-            ViewAttrbuteProduct(1038);
+            //var bs = 5;
+            //dataGridView1.DataSource = s;// this.S;
+
+            //var allGroups = db.ProductsGroups.ToList();
+            //bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
+            //comBoxProductGroup.DataSource = bindComBox_ProductGroup;
+            //comBoxProductGroup.SelectedItem = null;
+            //comBoxProductGroup.Text = "- выбрать из списка -";
+
+            //var allUnits = db.Units.ToList();
+            //bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
+            //comBoxUnit.DataSource = bindComBox_Unit;
+            //comBoxUnit.SelectedItem = null;
+            //comBoxUnit.Text = "- выбрать из списка -";
+            //ViewAttrbuteProduct(1038);
+            dataGridView1.ColumnCount = 4;
+            string[] row1 = new string[] { "Meatloaf", "Main Dish", "ground beef",
+        "**" };
+            string[] row2 = new string[] { "Key Lime Pie", "Dessert",
+        "lime juice, evaporated milk", "****" };
+            string[] row3 = new string[] { "Orange-Salsa Pork Chops", "Main Dish",
+        "pork chops, salsa, orange juice", "****" };
+            string[] row4 = new string[] { "Black Bean and Rice Salad", "Salad",
+        "black beans, brown rice", "****" };
+            string[] row5 = new string[] { "Chocolate Cheesecake", "Dessert",
+        "cream cheese", "***" };
+            string[] row6 = new string[] { "Black Bean Dip", "Appetizer",
+        "black beans, sour cream", "***" };
+            object[] rows = new object[] { row1, row2, row3, row4, row5, row6 };
+
+            foreach (string[] rowArray in rows)
+            {
+                dataGridView1.Rows.Add(rowArray);
+            }
         }
 
         #region //Добавить товар и сохранить в БД кнопка "Сохранить"
@@ -128,6 +160,12 @@ namespace Enterprise_Store_beta_1._0
             {
                 numSale_AddProduct.Value = (decimal)productInfo.ProductSale;
             }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //var et = this.dataGridView1.SelectedCells[0].EditType;
+            //bool b = this.dataGridView1.BeginEdit(true);
         }
     }
 }

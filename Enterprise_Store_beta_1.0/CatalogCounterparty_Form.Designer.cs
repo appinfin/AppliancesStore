@@ -51,7 +51,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_CatalogCounterparty_Delete});
             this.tStrip_CatalogCounterparty.Location = new System.Drawing.Point(0, 0);
             this.tStrip_CatalogCounterparty.Name = "tStrip_CatalogCounterparty";
-            this.tStrip_CatalogCounterparty.Size = new System.Drawing.Size(492, 25);
+            this.tStrip_CatalogCounterparty.Size = new System.Drawing.Size(500, 25);
             this.tStrip_CatalogCounterparty.TabIndex = 0;
             this.tStrip_CatalogCounterparty.Text = "Действие";
             // 
@@ -93,9 +93,12 @@ namespace Enterprise_Store_beta_1._0
             this.CounterpartyId,
             this.CounterpartyName,
             this.InnOgrnKpp});
+            this.DGV_CatalogCounterparty_Form.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.DGV_CatalogCounterparty_Form.Location = new System.Drawing.Point(0, 28);
             this.DGV_CatalogCounterparty_Form.Name = "DGV_CatalogCounterparty_Form";
             this.DGV_CatalogCounterparty_Form.RowTemplate.Height = 23;
+            this.DGV_CatalogCounterparty_Form.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGV_CatalogCounterparty_Form.ShowCellErrors = false;
             this.DGV_CatalogCounterparty_Form.Size = new System.Drawing.Size(492, 332);
             this.DGV_CatalogCounterparty_Form.TabIndex = 1;
             this.DGV_CatalogCounterparty_Form.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CatalogCounterparty_Form_CellDoubleClick);
@@ -107,6 +110,7 @@ namespace Enterprise_Store_beta_1._0
             this.CounterpartyId.HeaderText = "Код";
             this.CounterpartyId.MaxInputLength = 16;
             this.CounterpartyId.Name = "CounterpartyId";
+            this.CounterpartyId.ReadOnly = true;
             this.CounterpartyId.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CounterpartyName

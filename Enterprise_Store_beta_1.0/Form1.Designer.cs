@@ -34,12 +34,13 @@ namespace Enterprise_Store_beta_1._0
             this.create_form = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuBuy = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuSell = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_Form1_CatalogCounterperty = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsForm1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsHorizontal = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsVertical = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsCascade = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuWindowsArrangeIcons = new System.Windows.Forms.ToolStripMenuItem();
-            this.tStrip_Form1_CatalogCounterperty = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_Form1_CatalogStorages = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,8 @@ namespace Enterprise_Store_beta_1._0
             // 
             this.MenuFileForm1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.create_form,
-            this.tStrip_Form1_CatalogCounterperty});
+            this.tStrip_Form1_CatalogCounterperty,
+            this.tStrip_Form1_CatalogStorages});
             this.MenuFileForm1.Name = "MenuFileForm1";
             this.MenuFileForm1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F)));
             this.MenuFileForm1.Size = new System.Drawing.Size(45, 20);
@@ -80,16 +82,23 @@ namespace Enterprise_Store_beta_1._0
             // toolStripMenuBuy
             // 
             this.toolStripMenuBuy.Name = "toolStripMenuBuy";
-            this.toolStripMenuBuy.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuBuy.Size = new System.Drawing.Size(120, 22);
             this.toolStripMenuBuy.Text = "Покупка";
             this.toolStripMenuBuy.Click += new System.EventHandler(this.toolStripMenuBuy_Click);
             // 
             // toolStripMenuSell
             // 
             this.toolStripMenuSell.Name = "toolStripMenuSell";
-            this.toolStripMenuSell.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuSell.Size = new System.Drawing.Size(120, 22);
             this.toolStripMenuSell.Text = "Продажа";
             this.toolStripMenuSell.Click += new System.EventHandler(this.toolStripMenuSell_Click);
+            // 
+            // tStrip_Form1_CatalogCounterperty
+            // 
+            this.tStrip_Form1_CatalogCounterperty.Name = "tStrip_Form1_CatalogCounterperty";
+            this.tStrip_Form1_CatalogCounterperty.Size = new System.Drawing.Size(190, 22);
+            this.tStrip_Form1_CatalogCounterperty.Text = "Каталог контрагентов";
+            this.tStrip_Form1_CatalogCounterperty.Click += new System.EventHandler(this.tStrip_Form1_CatalogCounterperty_Click);
             // 
             // MenuWindowsForm1
             // 
@@ -130,12 +139,12 @@ namespace Enterprise_Store_beta_1._0
             this.MenuWindowsArrangeIcons.Size = new System.Drawing.Size(151, 22);
             this.MenuWindowsArrangeIcons.Text = "Все внутри";
             // 
-            // tStrip_Form1_CatalogCounterperty
+            // tStrip_Form1_CatalogStorages
             // 
-            this.tStrip_Form1_CatalogCounterperty.Name = "tStrip_Form1_CatalogCounterperty";
-            this.tStrip_Form1_CatalogCounterperty.Size = new System.Drawing.Size(190, 22);
-            this.tStrip_Form1_CatalogCounterperty.Text = "Каталог контрагентов";
-            this.tStrip_Form1_CatalogCounterperty.Click += new System.EventHandler(this.tStrip_Form1_CatalogCounterperty_Click);
+            this.tStrip_Form1_CatalogStorages.Name = "tStrip_Form1_CatalogStorages";
+            this.tStrip_Form1_CatalogStorages.Size = new System.Drawing.Size(190, 22);
+            this.tStrip_Form1_CatalogStorages.Text = "Каталог складов";
+            this.tStrip_Form1_CatalogStorages.Click += new System.EventHandler(this.tStrip_Form1_CatalogStorages_Click);
             // 
             // Form1
             // 
@@ -167,6 +176,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsCascade;
         private System.Windows.Forms.ToolStripMenuItem MenuWindowsArrangeIcons;
         private System.Windows.Forms.ToolStripMenuItem tStrip_Form1_CatalogCounterperty;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_Form1_CatalogStorages;
     }
 }
 

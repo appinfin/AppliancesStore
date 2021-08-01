@@ -92,10 +92,12 @@ namespace Enterprise_Store_beta_1._0
                     using Db_Enterprise_Store_Context db = new();
                     db.Add(newRow);
                     db.SaveChanges();
-
+                    
                     //привязка списка товаров к DGV и обновление отображения
                     DGV_CreateBuy.DataSource = Manager.GetListProductBuy(SupplyID);
-                    this.Refresh();
+                    //this.Refresh();
+                    
+                    //получаем итоговую сумму товаров
                     this.lblSumma.Text = "Сумма: "
                                             + Manager.GetSummaDocumentBuy(this.DGV_CreateBuy)
                                             .ToString("C");
@@ -336,7 +338,8 @@ namespace Enterprise_Store_beta_1._0
             
             addProduct_Form.ViewAttrbuteProduct(productID);
             addProduct_Form.ShowDialog();
-
+            DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
+            DGVcatalog_CreateBuy.Refresh();
         }
     }
 }

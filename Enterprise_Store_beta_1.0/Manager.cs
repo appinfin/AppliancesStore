@@ -12,8 +12,8 @@ namespace Enterprise_Store_beta_1._0
         {
             //получение даты, контрагента, склада
             var date = db.Supplies.Where(s => s.SupplyId == createBuy_Form.SupplyID)
-                    .Include(c => c.CounterpartysCounterparty)
-                    .Include(st => st.StoragesStorage)
+                    //.Include(c => c.CounterpartysCounterparty)
+                    //.Include(st => st.StoragesStorage)
                     .Select(r => new
                     {
                         r.Date,
@@ -50,7 +50,7 @@ namespace Enterprise_Store_beta_1._0
             //список товаров соответствующих коду док-та <Поступление товаров>
             //выбранного для редактирования
             var _supPrQty = db.SupplyPriceQtys.Where(s => s.SupplyId == SupplyID)
-                .Include(s => s.Product)
+                //.Include(s => s.Product)
                 .Select(s => new
                 { //формирование представления
                     s.ProductId,
@@ -135,23 +135,12 @@ namespace Enterprise_Store_beta_1._0
             //создание экземпляра контекста данных
             using Db_Enterprise_Store_Context db = new();
 
-            #region Запрос к бд таблица Counterpartys, выборка контрагентов
-            var counterparty = db.Counterpartys
-                .Select(c => new
-                {
-                    c.CounterpartyId,
-                    c.CounterpartyName,
-                    c.InnOgrnKpp
-                })
-                .ToList();
+            //Запрос к бд таблица Counterpartys, выборка контрагентов
+            var counterparty = db.Counterpartys.ToList();
 
-
-            #endregion
-
-            #region //создаём объект источник данных для привязки к DGV
+            //создаём объект источник данных для привязки к DGV
             bind_DGV_Counterparty.DataSource = counterparty;
             return bind_DGV_Counterparty;
-            #endregion
         }
         #endregion
 
@@ -162,22 +151,12 @@ namespace Enterprise_Store_beta_1._0
             //создание экземпляра контекста данных
             using Db_Enterprise_Store_Context db = new();
 
-            #region Запрос к бд Storages, выборка складов
-            var storages = db.Storages
-                .Select(s => new
-                {
-                    s.StorageId,
-                    s.StorageName
-                })
-                .ToList();
+            //Запрос к бд Storages, выборка складов
+            var storages = db.Storages.ToList();
 
-
-            #endregion
-
-            #region //создаём объект источник данных для привязки к DGV
+            //создаём объект источник данных для привязки к DGV
             bind_DGV_Storage.DataSource = storages;
             return bind_DGV_Storage;
-            #endregion
         }
         #endregion
 

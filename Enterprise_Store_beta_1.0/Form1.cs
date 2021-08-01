@@ -83,24 +83,41 @@ namespace Enterprise_Store_beta_1._0
 
         #endregion
 
+
+        #region //Файл >>> Каталог контрагентов (открываем форму)
         private void tStrip_Form1_CatalogCounterperty_Click(object sender, EventArgs e)
         {
-            bool ok = true;
-            foreach (Form f in Application.OpenForms)
-                if (f.Name == "CatalogCounterparty_Form")
-                {
-                    ok = false;
-                }
-            if (ok)
-            {
-                //var t = Task.Run(() => Manager.GetListDocumentBuy());
-                CatalogCounterparty_Form сatalogCounterparty_Form = new();
-                сatalogCounterparty_Form.MdiParent = this;
-                //t.Wait();
-                //buyForm.bind_DGV_BuyForm = t.Result;
+            CatalogCounterparty_Form сatalogCounterparty_Form = new();
+            //сatalogCounterparty_Form.MdiParent = this;
+            сatalogCounterparty_Form.ShowDialog();
+            #region Пока закомментировано
+            //bool ok = true;
+            //foreach (Form f in Application.OpenForms)
+            //    if (f.Name == "CatalogCounterparty_Form")
+            //    {
+            //        ok = false;
+            //    }
+            //if (ok)
+            //{
+            //    //var t = Task.Run(() => Manager.GetListDocumentBuy());
+            //    CatalogCounterparty_Form сatalogCounterparty_Form = new();
+            //    сatalogCounterparty_Form.MdiParent = this;
+            //    //t.Wait();
+            //    //buyForm.bind_DGV_BuyForm = t.Result;
 
-                сatalogCounterparty_Form.Show();
-            }
+            //    сatalogCounterparty_Form.ShowDialog();
+            //} 
+            #endregion
         }
+        #endregion
+
+        #region //Файл >>> Каталог складов (открываем форму)
+        private void tStrip_Form1_CatalogStorages_Click(object sender, EventArgs e)
+        {
+            CatalogStorage_Form catalogStorage_Form = new();
+            //catalogStorage_Form.MdiParent = this;
+            catalogStorage_Form.ShowDialog();
+        } 
+        #endregion
     }
 }

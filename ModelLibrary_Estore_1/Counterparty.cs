@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 #nullable disable
 
 namespace ModelLibrary_Estore_1
 {
-    public partial class Counterparty
+    public partial class Counterparty : IEnumerable
     {
         public Counterparty()
         {
@@ -19,5 +20,10 @@ namespace ModelLibrary_Estore_1
 
         public virtual ICollection<Realization> Realizations { get; set; }
         public virtual ICollection<Supply> Supplies { get; set; }
+
+        public IEnumerator GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
