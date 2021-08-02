@@ -406,7 +406,7 @@ namespace Enterprise_Store_beta_1._0
             this.butCatalogProduct_Edit.TabIndex = 1;
             this.butCatalogProduct_Edit.Text = "Изменить";
             this.butCatalogProduct_Edit.UseVisualStyleBackColor = true;
-            this.butCatalogProduct_Edit.Click += new System.EventHandler(this.butCatalogProduct_Edit_Click);
+            this.butCatalogProduct_Edit.Click += new System.EventHandler(this.ButCatalogProduct_Edit_Click);
             // 
             // butAddProduct_CreateBuy
             // 
@@ -416,7 +416,7 @@ namespace Enterprise_Store_beta_1._0
             this.butAddProduct_CreateBuy.TabIndex = 1;
             this.butAddProduct_CreateBuy.Text = "Добавить";
             this.butAddProduct_CreateBuy.UseVisualStyleBackColor = true;
-            this.butAddProduct_CreateBuy.Click += new System.EventHandler(this.butAddProduct_CreateBuy_Click);
+            this.butAddProduct_CreateBuy.Click += new System.EventHandler(this.ButAddProduct_CreateBuy_Click);
             // 
             // DGVcatalog_CreateBuy
             // 

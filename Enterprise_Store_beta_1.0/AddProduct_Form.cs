@@ -1,6 +1,5 @@
 ﻿using ModelLibrary_Estore_1;
 using System;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -9,13 +8,19 @@ namespace Enterprise_Store_beta_1._0
 {
     public partial class AddProduct_Form : Form
     {
+        Dictionary<string, object> dicBindLists = new();
         public AddProduct_Form()
         {
             InitializeComponent();
             Bind();
         }
+
+        /// <summary>
+        /// Привязка данных к полям формы "Карточка товара"
+        /// </summary>
         void Bind()
         {
+            
             using Db_Enterprise_Store_Context db = new();
 
             var allBrands = db.Brands.ToList();
@@ -29,83 +34,27 @@ namespace Enterprise_Store_beta_1._0
             comBoxProductGroup.DataSource = bindComBox_ProductGroup;
             comBoxProductGroup.SelectedItem = null;
             comBoxProductGroup.Text = "- выбрать из списка -";
-
+            
             var allUnits = db.Units.ToList();
             bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
             comBoxUnit.DataSource = bindComBox_Unit;
             comBoxUnit.SelectedItem = null;
             comBoxUnit.Text = "- выбрать из списка -";
+
+            dicBindLists.Add("brands", allBrands);
+            dicBindLists.Add("groups", allGroups);
+            dicBindLists.Add("units", allUnits);
+
+            //object[] arrLists = { allBrands, allGroups, allUnits };
+            //var v = (IList<object>)arrLists;
+            //var idx = v.IndexOf(allBrands);
+            //var idx2 = v.IndexOf(allGroups);
         }
-        private void Test_Form_Load(object sender, EventArgs e)
-        {
-            //using Db_Enterprise_Store_Context db = new();
-
-            //var allBrands = db.Brands.ToList();
-            //bindComBox_Brand.DataSource = allBrands;
-            //comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
-            //comBoxBrand.SelectedItem = null; //ставим пустой эл-т
-            //comBoxBrand.Text = "- выбрать из списка -";
-
-            //var allGroups = db.ProductsGroups.ToList();
-            //bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
-            //comBoxProductGroup.DataSource = bindComBox_ProductGroup;
-            //comBoxProductGroup.SelectedItem = null;
-            //comBoxProductGroup.Text = "- выбрать из списка -";
-
-            //var allUnits = db.Units.ToList();
-            //bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
-            //comBoxUnit.DataSource = bindComBox_Unit;
-            //comBoxUnit.SelectedItem = null;
-            //comBoxUnit.Text = "- выбрать из списка -";
-        }
-
-        #region // Пока закомментировано
-        //#region //Добавить товар и сохранить в БД кнопка "Сохранить"
-        //private void Button1_Click(object sender, EventArgs e)
-        //{
-        //    var sProductName = txtProductName.Text.Trim();//удаляем пробелы начала и конца строки
-        //    if (sProductName == string.Empty) //если строка пустая то Message
-        //    {
-        //        MessageBox.Show(@"Поле ""Наименование"" пусто");
-        //    }
-        //    else
-        //    {
-        //        Product product = new();
-        //        product.ProductName = sProductName;
-        //        product.BrandsBrandId = (int?)comBoxBrand.SelectedValue;
-        //        product.ProductsGroupsProductGroupId = (int?)comBoxProductGroup.SelectedValue;
-        //        product.UnitsIdUnit = (int?)comBoxUnit.SelectedValue;
-        //        if (numSale_AddProduct.Value == 0) //если скидка 0%
-        //        {
-        //            product.ProductSale = null; //тогда null
-        //        }
-        //        else
-        //        {   
-        //            product.ProductSale = (double)numSale_AddProduct.Value;
-        //        }
-        //        try
-        //        {
-        //            using Db_Enterprise_Store_Context db = new();
-        //            db.Add(product);
-        //            db.SaveChanges();
-        //        }
-        //        catch (Exception)
-        //        {
-        //            MessageBox.Show("Упс!!! Что-то пошло не так. Попробуйте ещё раз");
-        //        }
-        //        txtProductName.Text = "";
-        //        comBoxBrand.Text = "- выбрать из списка -";
-        //        comBoxProductGroup.Text = "- выбрать из списка -";
-        //        comBoxUnit.Text = "- выбрать из списка -";
-        //    }
-        //}
-        //#endregion 
-        #endregion
-
 
         #region //Добавить товар и сохранить в БД кнопка "Сохранить"
         private void Button1_Click(object sender, EventArgs e)
         {
+
             var sProductName = txtProductName.Text.Trim();//удаляем пробелы начала и конца строки
             if (sProductName == string.Empty) //если строка пустая то Message
             {
@@ -114,7 +63,6 @@ namespace Enterprise_Store_beta_1._0
             else
             {
                 Product product = new();
-                //var id = product.ProductId;
                 product.ProductName = sProductName;
                 product.BrandsBrandId = (int?)comBoxBrand.SelectedValue;
                 product.ProductsGroupsProductGroupId = (int?)comBoxProductGroup.SelectedValue;
@@ -130,7 +78,9 @@ namespace Enterprise_Store_beta_1._0
                 try
                 {
                     using Db_Enterprise_Store_Context db = new();
-                    if (product.ProductId == 0)
+
+                    //если поле id не пусто, тогда редактируем товар
+                    if (txtProductId.Text != "")
                     {
                         var b = Int32.TryParse(txtProductId.Text, out int productID);
                         if (b)
@@ -142,7 +92,7 @@ namespace Enterprise_Store_beta_1._0
                         }
                         else
                         {
-                            MessageBox.Show("Упс!!! Что-то пошло не так.\n" +
+                            MessageBox.Show("1 Упс!!! Что-то пошло не так.\n" +
                                             "Попробуйте ещё раз");
                         }
                     }
@@ -155,7 +105,7 @@ namespace Enterprise_Store_beta_1._0
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Упс!!! Что-то пошло не так.\n" +
+                    MessageBox.Show("2 Упс!!! Что-то пошло не так.\n" +
                                             "Попробуйте ещё раз");
                 }
 
@@ -167,37 +117,48 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-
         /// <summary>
-        /// Находит товар по Id  и выводит атрибуты в поля формы
+        /// Находит товар по Id  и выводит атрибуты в поля формы. В режиме изменения товара.
         /// </summary>
         /// <param name="productID"></param>
-        public void ViewAttrbuteProduct(int productID)
+        public void PutAttrbuteProduct(int productID)
         {
+            //List<object> list = new(){ currentSelProd };
+            //BindingSource bS = new(currentSelProd, "brand");
+
+            //comBoxBrand.DataSource = bS;
+            //comBoxProductGroup.DataSource = list;
+            //comBoxUnit.DataSource = list;
+            //comBoxBrand.DisplayMember = "brand";
+            //comBoxProductGroup.DisplayMember = "groups";
+            //comBoxUnit.DisplayMember = "brand";
+            
             using Db_Enterprise_Store_Context db = new();
-            var productInfo = db.Products.Find(productID); // Находим товар по Id
+            var product = db.Products.Find(productID); // Находим товар по Id
             // Заполняем поля формы текущими значениями выбранного товара для редактирования
-            txtProductId.Text = productInfo.ProductId.ToString();
-            txtProductName.Text = productInfo.ProductName;
-            if (productInfo.BrandsBrandId != null)
+            txtProductId.Text = product.ProductId.ToString();
+            txtProductName.Text = product.ProductName;
+
+            if (product.BrandsBrandId != null)
             {
-                comBoxBrand.SelectedValue = productInfo.BrandsBrandId;
+                comBoxBrand.SelectedValue = product.BrandsBrandId;
+
             }
-            if (productInfo.ProductsGroupsProductGroupId != null)
+            if (product.ProductsGroupsProductGroupId != null)
             {
-                comBoxProductGroup.SelectedValue = productInfo.ProductsGroupsProductGroupId;
+                comBoxProductGroup.SelectedValue = product.ProductsGroupsProductGroupId;
             }
-            if (productInfo.UnitsIdUnit != null)
+            if (product.UnitsIdUnit != null)
             {
-                comBoxUnit.SelectedValue = productInfo.UnitsIdUnit;
+                comBoxUnit.SelectedValue = product.UnitsIdUnit;
             }
-            if (productInfo.ProductSale == null)
+            if (product.ProductSale == null)
             {
                 numSale_AddProduct.Value = 0;
             }
             else
             {
-                numSale_AddProduct.Value = (decimal)productInfo.ProductSale;
+                numSale_AddProduct.Value = (decimal)product.ProductSale;
             }
         }
     }

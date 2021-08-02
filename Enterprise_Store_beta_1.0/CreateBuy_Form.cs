@@ -37,11 +37,13 @@ namespace Enterprise_Store_beta_1._0
             //выборка групп товаров
             var productGroupName = db.ProductsGroups
                 .Select(n => new { category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName, brand = "" })
+                .OrderBy(n => n.category)
                 .ToList();
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
                 .Where(p => p.ProductsGroupsProductGroupId == null)
-                .Select(n => new { category = "Товар", id = n.ProductId, name = n.ProductName, brand = n.BrandsBrand.BrandName});
+                .Select(n => new { category = "Товар", id = n.ProductId, name = n.ProductName, brand = n.BrandsBrand.BrandName})
+                .OrderBy(n => n.name);
 
             //соединяем списки productGroupName и productsWithoutGroupName
             //вставляем список в список с указанного индекса
@@ -321,9 +323,8 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-
         #region // Кнопка "Добавить" на панели выбор товара из списка
-        private void butAddProduct_CreateBuy_Click(object sender, EventArgs e)
+        private void ButAddProduct_CreateBuy_Click(object sender, EventArgs e)
         {
             AddProduct_Form addProduct_Form = new();
             addProduct_Form.ShowDialog();
@@ -331,15 +332,20 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        private void butCatalogProduct_Edit_Click(object sender, EventArgs e)
+        #region // Кнопка "Изменить" на панели выбор товара из списка
+        private void ButCatalogProduct_Edit_Click(object sender, EventArgs e)
         {
             var productID = (int)DGVcatalog_CreateBuy.CurrentRow.Cells["id"].Value;
             AddProduct_Form addProduct_Form = new();
-            
-            addProduct_Form.ViewAttrbuteProduct(productID);
+            //var currentSelProd = bind_DGVcatalog_CreateBuy.Current;
+            addProduct_Form.PutAttrbuteProduct(productID);
+
             addProduct_Form.ShowDialog();
+ 
+            bind_DGVcatalog_CreateBuy.ResetCurrentItem();
             DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
             DGVcatalog_CreateBuy.Refresh();
-        }
+        } 
+        #endregion
     }
 }

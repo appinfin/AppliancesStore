@@ -8,7 +8,7 @@ namespace Enterprise_Store_beta_1._0
 {
     public partial class Test_Form : Form
     {
-        string S {get; set;}
+        
         public Test_Form()
         {
             InitializeComponent();
@@ -17,37 +17,28 @@ namespace Enterprise_Store_beta_1._0
 
         private void Test_Form_Load(object sender, EventArgs e)
         {
-            //using Db_Enterprise_Store_Context db = new();
+            using Db_Enterprise_Store_Context db = new();
 
-            //var allBrands = db.Brands.ToList();
-            //bindComBox_Brand.DataSource = allBrands;
-            //comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
-            //comBoxBrand.SelectedItem = null; //ставим пустой эл-т
-            //comBoxBrand.Text = "- выбрать из списка -";
-            ////comBoxBrand.SelectedValue = null;
+            var allBrands = db.Brands.ToList();
+            bindComBox_Brand.DataSource = allBrands;
+            comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
+            comBoxBrand.SelectedItem = null; //ставим пустой эл-т
+            comBoxBrand.Text = "- выбрать из списка -";
 
-            //var st = db.Storages.ToList();
-            //this.S = "kjgfk";
-            //var s = new List<Test_Form> { this};
-            //s.Add(this);
-            //BindingSource bs = new();
-            //bs.DataSource = s;
+            var allGroups = db.ProductsGroups.ToList();
+            bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
+            comBoxProductGroup.DataSource = bindComBox_ProductGroup;
+            comBoxProductGroup.SelectedItem = null;
+            comBoxProductGroup.Text = "- выбрать из списка -";
 
-            //var bs = 5;
-            //dataGridView1.DataSource = s;// this.S;
-
-            //var allGroups = db.ProductsGroups.ToList();
-            //bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
-            //comBoxProductGroup.DataSource = bindComBox_ProductGroup;
-            //comBoxProductGroup.SelectedItem = null;
-            //comBoxProductGroup.Text = "- выбрать из списка -";
-
-            //var allUnits = db.Units.ToList();
-            //bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
-            //comBoxUnit.DataSource = bindComBox_Unit;
-            //comBoxUnit.SelectedItem = null;
-            //comBoxUnit.Text = "- выбрать из списка -";
+            var allUnits = db.Units.ToList();
+            bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
+            comBoxUnit.DataSource = bindComBox_Unit;
+            comBoxUnit.SelectedItem = null;
+            comBoxUnit.Text = "- выбрать из списка -";
             //ViewAttrbuteProduct(1038);
+
+            #region Привязка к ДГВ построчно
             dataGridView1.ColumnCount = 4;
             string[] row1 = new string[] { "Meatloaf", "Main Dish", "ground beef",
         "**" };
@@ -66,7 +57,8 @@ namespace Enterprise_Store_beta_1._0
             foreach (string[] rowArray in rows)
             {
                 dataGridView1.Rows.Add(rowArray);
-            }
+            } 
+            #endregion
         }
 
         #region //Добавить товар и сохранить в БД кнопка "Сохранить"
@@ -98,9 +90,12 @@ namespace Enterprise_Store_beta_1._0
                     using Db_Enterprise_Store_Context db = new();
                     if (product.ProductId == 0)
                     {
+                        db.Add(product);
+                        db.SaveChanges();
                         var b = Int32.TryParse(txtProductId.Text, out int productID);
                         if (b)
                         {
+
                             product.ProductId = productID;
                             db.Update(product);
                             db.SaveChanges();
@@ -166,6 +161,12 @@ namespace Enterprise_Store_beta_1._0
         {
             //var et = this.dataGridView1.SelectedCells[0].EditType;
             //bool b = this.dataGridView1.BeginEdit(true);
+        }
+
+        private void txtProductName_Leave(object sender, EventArgs e)
+        {
+            var idx = comBoxBrand.FindString(txtProductName.Text);
+            comBoxBrand.SelectedIndex = idx;
         }
     }
 }

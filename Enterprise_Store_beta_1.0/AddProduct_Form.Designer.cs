@@ -222,17 +222,16 @@ namespace Enterprise_Store_beta_1._0
             this.butSave_AddProduct.UseVisualStyleBackColor = true;
             this.butSave_AddProduct.Click += new System.EventHandler(this.Button1_Click);
             // 
-            // Test_Form
+            // AddProduct_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 152);
             this.Controls.Add(this.butSave_AddProduct);
             this.Controls.Add(this.tableLayoutPanel_AddProduct);
-            this.Name = "Test_Form";
+            this.Name = "AddProduct_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Карточка товара";
-            this.Load += new System.EventHandler(this.Test_Form_Load);
             this.tableLayoutPanel_AddProduct.ResumeLayout(false);
             this.tableLayoutPanel_AddProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSale_AddProduct)).EndInit();
@@ -256,7 +255,6 @@ namespace Enterprise_Store_beta_1._0
 
         private System.Windows.Forms.TextBox txtProductId;
         private System.Windows.Forms.TextBox txtProductName;
-
 
         private System.Windows.Forms.ComboBox comBoxBrand;
         private System.Windows.Forms.BindingSource bindComBox_Brand;

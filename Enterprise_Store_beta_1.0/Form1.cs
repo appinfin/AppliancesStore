@@ -13,8 +13,10 @@ namespace Enterprise_Store_beta_1._0
         public Form1()
         {
             InitializeComponent();
+            
         }
 
+        
         #region Расположение окон в родительской форме
         private void HorizontallyTileMyWindows(object sender, EventArgs e)
         {
@@ -88,26 +90,7 @@ namespace Enterprise_Store_beta_1._0
         private void tStrip_Form1_CatalogCounterperty_Click(object sender, EventArgs e)
         {
             CatalogCounterparty_Form сatalogCounterparty_Form = new();
-            //сatalogCounterparty_Form.MdiParent = this;
             сatalogCounterparty_Form.ShowDialog();
-            #region Пока закомментировано
-            //bool ok = true;
-            //foreach (Form f in Application.OpenForms)
-            //    if (f.Name == "CatalogCounterparty_Form")
-            //    {
-            //        ok = false;
-            //    }
-            //if (ok)
-            //{
-            //    //var t = Task.Run(() => Manager.GetListDocumentBuy());
-            //    CatalogCounterparty_Form сatalogCounterparty_Form = new();
-            //    сatalogCounterparty_Form.MdiParent = this;
-            //    //t.Wait();
-            //    //buyForm.bind_DGV_BuyForm = t.Result;
-
-            //    сatalogCounterparty_Form.ShowDialog();
-            //} 
-            #endregion
         }
         #endregion
 
@@ -117,7 +100,12 @@ namespace Enterprise_Store_beta_1._0
             CatalogStorage_Form catalogStorage_Form = new();
             //catalogStorage_Form.MdiParent = this;
             catalogStorage_Form.ShowDialog();
-        } 
+        }
         #endregion
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            toolStripMenuBuy_Click(sender, e);
+        }
     }
 }

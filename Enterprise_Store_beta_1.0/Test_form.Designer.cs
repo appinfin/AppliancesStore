@@ -193,6 +193,7 @@ namespace Enterprise_Store_beta_1._0
             this.txtProductName.PlaceholderText = "- наименование товара -";
             this.txtProductName.Size = new System.Drawing.Size(193, 21);
             this.txtProductName.TabIndex = 2;
+            this.txtProductName.Leave += new System.EventHandler(this.txtProductName_Leave);
             // 
             // comBoxProductGroup
             // 
