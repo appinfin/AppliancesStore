@@ -12,8 +12,6 @@ namespace Enterprise_Store_beta_1._0
         {
             //получение даты, контрагента, склада
             var date = db.Supplies.Where(s => s.SupplyId == createBuy_Form.SupplyID)
-                    //.Include(c => c.CounterpartysCounterparty)
-                    //.Include(st => st.StoragesStorage)
                     .Select(r => new
                     {
                         r.Date,
@@ -57,7 +55,8 @@ namespace Enterprise_Store_beta_1._0
                     s.Product.ProductName,
                     s.PricePurchase,
                     s.Quantity,
-                    Summa = s.PricePurchase * (decimal)s.Quantity
+                    Summa = s.PricePurchase * (decimal)s.Quantity,
+                    textButton = ""
                 })
                 .ToList();
 

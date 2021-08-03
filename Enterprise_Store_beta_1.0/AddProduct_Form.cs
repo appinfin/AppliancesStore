@@ -18,7 +18,7 @@ namespace Enterprise_Store_beta_1._0
         /// <summary>
         /// Привязка данных к полям формы "Карточка товара"
         /// </summary>
-        void Bind()
+        internal void Bind()
         {
             
             using Db_Enterprise_Store_Context db = new();
@@ -80,7 +80,7 @@ namespace Enterprise_Store_beta_1._0
                     using Db_Enterprise_Store_Context db = new();
 
                     //если поле id не пусто, тогда редактируем товар
-                    if (txtProductId.Text != "")
+                    if (txtProductId.Text.Length != 0)
                     {
                         var b = Int32.TryParse(txtProductId.Text, out int productID);
                         if (b)

@@ -149,6 +149,12 @@ namespace Enterprise_Store_beta_1._0
             this.Refresh();
         }
         #endregion
+
+        private void tStrip_ctxMenu_BuyForm_Open_Click(object sender, EventArgs e)
+        {
+            DataGridViewCellEventArgs ev = new(0,0);
+            DGV_BuyForm_CellDoubleClick(sender, ev);
+        }
     }
 }
 

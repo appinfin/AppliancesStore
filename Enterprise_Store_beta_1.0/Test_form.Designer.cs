@@ -30,6 +30,9 @@ namespace Enterprise_Store_beta_1._0
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
+            System.Windows.Forms.TreeNode treeNode_folderProducts = new System.Windows.Forms.TreeNode("Товары", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
             this.tableLayoutPanel_AddProduct = new System.Windows.Forms.TableLayoutPanel();
             this.numSale_AddProduct = new System.Windows.Forms.NumericUpDown();
             this.txtProductId = new System.Windows.Forms.TextBox();
@@ -48,6 +51,7 @@ namespace Enterprise_Store_beta_1._0
             this.bindComBox_ProductGroup = new System.Windows.Forms.BindingSource(this.components);
             this.bindComBox_Unit = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.tableLayoutPanel_AddProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSale_AddProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Brand)).BeginInit();
@@ -236,11 +240,29 @@ namespace Enterprise_Store_beta_1._0
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
+            // treeView1
+            // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.treeView1.Location = new System.Drawing.Point(618, 12);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "Node1";
+            treeNode1.Text = "Node1";
+            treeNode_folderProducts.Name = "folderProducts";
+            treeNode_folderProducts.Tag = "AllProducts";
+            treeNode_folderProducts.Text = "Товары";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode_folderProducts});
+            this.treeView1.Size = new System.Drawing.Size(419, 426);
+            this.treeView1.TabIndex = 7;
+            // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 450);
+            this.ClientSize = new System.Drawing.Size(1049, 450);
+            this.Controls.Add(this.treeView1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.butSave_AddProduct);
             this.Controls.Add(this.tableLayoutPanel_AddProduct);
@@ -284,5 +306,6 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.NumericUpDown numSale_AddProduct;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        internal System.Windows.Forms.TreeView treeView1;
     }
 }

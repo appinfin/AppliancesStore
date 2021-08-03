@@ -17,47 +17,47 @@ namespace Enterprise_Store_beta_1._0
 
         private void Test_Form_Load(object sender, EventArgs e)
         {
+            
             using Db_Enterprise_Store_Context db = new();
 
-            var allBrands = db.Brands.ToList();
-            bindComBox_Brand.DataSource = allBrands;
-            comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
-            comBoxBrand.SelectedItem = null; //ставим пустой эл-т
-            comBoxBrand.Text = "- выбрать из списка -";
+            //var allBrands = db.Brands.ToList();
+            //bindComBox_Brand.DataSource = allBrands;
+            //comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
+            //comBoxBrand.SelectedItem = null; //ставим пустой эл-т
+            //comBoxBrand.Text = "- выбрать из списка -";
 
-            var allGroups = db.ProductsGroups.ToList();
-            bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
-            comBoxProductGroup.DataSource = bindComBox_ProductGroup;
-            comBoxProductGroup.SelectedItem = null;
-            comBoxProductGroup.Text = "- выбрать из списка -";
+            //var allGroups = db.ProductsGroups.ToList();
+            //bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
+            //comBoxProductGroup.DataSource = bindComBox_ProductGroup;
+            //comBoxProductGroup.SelectedItem = null;
+            //comBoxProductGroup.Text = "- выбрать из списка -";
 
-            var allUnits = db.Units.ToList();
-            bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
-            comBoxUnit.DataSource = bindComBox_Unit;
-            comBoxUnit.SelectedItem = null;
-            comBoxUnit.Text = "- выбрать из списка -";
-            //ViewAttrbuteProduct(1038);
+            //var allUnits = db.Units.ToList();
+            //bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
+            //comBoxUnit.DataSource = bindComBox_Unit;
+            //comBoxUnit.SelectedItem = null;
+            //comBoxUnit.Text = "- выбрать из списка -";
 
             #region Привязка к ДГВ построчно
-            dataGridView1.ColumnCount = 4;
-            string[] row1 = new string[] { "Meatloaf", "Main Dish", "ground beef",
-        "**" };
-            string[] row2 = new string[] { "Key Lime Pie", "Dessert",
-        "lime juice, evaporated milk", "****" };
-            string[] row3 = new string[] { "Orange-Salsa Pork Chops", "Main Dish",
-        "pork chops, salsa, orange juice", "****" };
-            string[] row4 = new string[] { "Black Bean and Rice Salad", "Salad",
-        "black beans, brown rice", "****" };
-            string[] row5 = new string[] { "Chocolate Cheesecake", "Dessert",
-        "cream cheese", "***" };
-            string[] row6 = new string[] { "Black Bean Dip", "Appetizer",
-        "black beans, sour cream", "***" };
-            object[] rows = new object[] { row1, row2, row3, row4, row5, row6 };
+        //    dataGridView1.ColumnCount = 4;
+        //    string[] row1 = new string[] { "Meatloaf", "Main Dish", "ground beef",
+        //"**" };
+        //    string[] row2 = new string[] { "Key Lime Pie", "Dessert",
+        //"lime juice, evaporated milk", "****" };
+        //    string[] row3 = new string[] { "Orange-Salsa Pork Chops", "Main Dish",
+        //"pork chops, salsa, orange juice", "****" };
+        //    string[] row4 = new string[] { "Black Bean and Rice Salad", "Salad",
+        //"black beans, brown rice", "****" };
+        //    string[] row5 = new string[] { "Chocolate Cheesecake", "Dessert",
+        //"cream cheese", "***" };
+        //    string[] row6 = new string[] { "Black Bean Dip", "Appetizer",
+        //"black beans, sour cream", "***" };
+        //    object[] rows = new object[] { row1, row2, row3, row4, row5, row6 };
 
-            foreach (string[] rowArray in rows)
-            {
-                dataGridView1.Rows.Add(rowArray);
-            } 
+        //    foreach (string[] rowArray in rows)
+        //    {
+        //        dataGridView1.Rows.Add(rowArray);
+        //    } 
             #endregion
         }
 

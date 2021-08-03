@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ModelLibrary_Estore_1;
+﻿using ModelLibrary_Estore_1;
 using System;
 using System.Data;
 using System.Linq;
@@ -18,6 +17,7 @@ namespace Enterprise_Store_beta_1._0
             InitializeComponent();
             this.buyForm = buyForm;
             splitContainer_CreateBuy.Panel2Collapsed = true;
+
         }
         #endregion
 
@@ -42,7 +42,7 @@ namespace Enterprise_Store_beta_1._0
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
                 .Where(p => p.ProductsGroupsProductGroupId == null)
-                .Select(n => new { category = "Товар", id = n.ProductId, name = n.ProductName, brand = n.BrandsBrand.BrandName})
+                .Select(n => new { category = "Товар", id = n.ProductId, name = n.ProductName, brand = n.BrandsBrand.BrandName })
                 .OrderBy(n => n.name);
 
             //соединяем списки productGroupName и productsWithoutGroupName
@@ -58,12 +58,14 @@ namespace Enterprise_Store_beta_1._0
             DGVcatalog_CreateBuy.Columns["id"].Visible = false;
             //DGVcatalog_CreateBuy.Columns["category"].Visible = false;
             DGVcatalog_CreateBuy.Columns["category"].HeaderText = ""; //заголовок
+            DGVcatalog_CreateBuy.Columns["category"].FillWeight = 20;
             DGVcatalog_CreateBuy.Columns["name"].HeaderText = "Номенклатура";
+            DGVcatalog_CreateBuy.Columns["name"].FillWeight = 60;
             DGVcatalog_CreateBuy.Columns["brand"].HeaderText = "Производитель";
+            DGVcatalog_CreateBuy.Columns["brand"].FillWeight = 20;
             #endregion 
         }
         #endregion
-
 
         /// <summary>
         /// Добавляет товар в список док-та "Покупка/комиссия".
@@ -94,11 +96,11 @@ namespace Enterprise_Store_beta_1._0
                     using Db_Enterprise_Store_Context db = new();
                     db.Add(newRow);
                     db.SaveChanges();
-                    
+
                     //привязка списка товаров к DGV и обновление отображения
                     DGV_CreateBuy.DataSource = Manager.GetListProductBuy(SupplyID);
                     //this.Refresh();
-                    
+
                     //получаем итоговую сумму товаров
                     this.lblSumma.Text = "Сумма: "
                                             + Manager.GetSummaDocumentBuy(this.DGV_CreateBuy)
@@ -128,7 +130,7 @@ namespace Enterprise_Store_beta_1._0
 
                 bind_DGVcatalog_CreateBuy.DataSource = productsWithGroupName;
                 DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
-                
+
             }
             #endregion
 
@@ -136,7 +138,7 @@ namespace Enterprise_Store_beta_1._0
             //при условии, что список не пустой
             else
             {
-                if (DGV_CreateBuy.Rows.Count > 0) //&& DGV_CreateBuy.Rows[0].DataBoundItem != null
+                if (DGV_CreateBuy.Rows.Count > 0)
                 {
                     var rowsCollection = DGV_CreateBuy.Rows; //получаем коллекцию строк DGV
                     //поиск товара в списке <Поступление товара>
@@ -313,7 +315,7 @@ namespace Enterprise_Store_beta_1._0
         private void ButOK_CreateBuy_Click(object sender, EventArgs e)
         {
             buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
-        } 
+        }
         #endregion
 
         #region // Кнопка закрытия формы. Обновление данных в форме список док-тов "Покупка/комиссия"
@@ -327,6 +329,7 @@ namespace Enterprise_Store_beta_1._0
         private void ButAddProduct_CreateBuy_Click(object sender, EventArgs e)
         {
             AddProduct_Form addProduct_Form = new();
+            //addProduct_Form.Bind();
             addProduct_Form.ShowDialog();
             ButDisplayDGVcatalog_CreateBuy_Click(sender, e);
         }
@@ -337,15 +340,88 @@ namespace Enterprise_Store_beta_1._0
         {
             var productID = (int)DGVcatalog_CreateBuy.CurrentRow.Cells["id"].Value;
             AddProduct_Form addProduct_Form = new();
-            //var currentSelProd = bind_DGVcatalog_CreateBuy.Current;
             addProduct_Form.PutAttrbuteProduct(productID);
 
             addProduct_Form.ShowDialog();
- 
-            bind_DGVcatalog_CreateBuy.ResetCurrentItem();
-            DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
-            DGVcatalog_CreateBuy.Refresh();
-        } 
+
+            ButDisplayDGVcatalog_CreateBuy_Click(sender, e);
+        }
         #endregion
+
+
+        #region //Кнопка "Удалить" товар.
+        private void butCatalogProduct_Delete_Click(object sender, EventArgs e)
+        {
+
+            if (DialogResult.OK == MessageBox.Show("Вы уверены, что нужно удалить товар?\n" +
+                                                   "Товар будет удалён безвозвратно!!!",
+                                                   "Удалить товар?",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question))
+            {
+                var productID = (int)DGVcatalog_CreateBuy.CurrentRow.Cells["id"].Value;
+                using Db_Enterprise_Store_Context db = new();
+                //кол-во ссылок на док-ты "Покупка/комиссия" где есть выбранный удаляемый товар
+                var countRefOnDoc = db.SupplyPriceQtys.Where(s => s.ProductId == productID).Count();
+                if (countRefOnDoc == 0)
+                {
+                    try
+                    {
+                        var selectedProduct = db.Products.First(p => p.ProductId == productID);
+                        var rem = db.Remove(selectedProduct);
+                        var countSave = db.SaveChanges();
+                        ButDisplayDGVcatalog_CreateBuy_Click(sender, e);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно удалить.\n" +
+                                    "Товар ссылается на док-ты Покупка/комиссия",
+                                    "Удаление товара"
+                                    , MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+            }
+        }
+        #endregion
+
+        private void DGV_CreateBuy_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //var c = bind_DGV_CreateBuy.Current;//.RemoveCurrent();
+
+
+            if (e.RowIndex < 0 || e.ColumnIndex !=
+            DGV_CreateBuy.Columns["Delete_row"].Index) return;
+
+            if (DialogResult.OK == MessageBox.Show("Вы уверены, что нужно удалить товар из списка?",
+                                                   "Удалить товар из списка?",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question))
+            {
+                int selectedProductID = (int)DGV_CreateBuy.CurrentRow.Cells["ProductId"].Value;
+                using Db_Enterprise_Store_Context db = new();
+                var currentProductForRemove = db.SupplyPriceQtys.Where(s => s.SupplyId == SupplyID)
+                                  .First(p => p.ProductId == selectedProductID);
+                try
+                {
+                    db.Remove(currentProductForRemove);
+                    db.SaveChanges();
+                    DGV_CreateBuy.Rows.RemoveAt(e.RowIndex);
+                    //получаем итоговую сумму товаров
+                    this.lblSumma.Text = "Сумма: "
+                                            + Manager.GetSummaDocumentBuy(this.DGV_CreateBuy)
+                                            .ToString("C");
+                    MessageBox.Show("Cell Click!!!");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+        }
     }
 }
