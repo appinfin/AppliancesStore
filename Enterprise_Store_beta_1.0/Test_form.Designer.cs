@@ -31,7 +31,7 @@ namespace Enterprise_Store_beta_1._0
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
-            System.Windows.Forms.TreeNode treeNode_folderProducts = new System.Windows.Forms.TreeNode("Товары", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Товары", new System.Windows.Forms.TreeNode[] {
             treeNode1});
             this.tableLayoutPanel_AddProduct = new System.Windows.Forms.TableLayoutPanel();
             this.numSale_AddProduct = new System.Windows.Forms.NumericUpDown();
@@ -52,12 +52,14 @@ namespace Enterprise_Store_beta_1._0
             this.bindComBox_Unit = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.bindDGV = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel_AddProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSale_AddProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Brand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_ProductGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Unit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel_AddProduct
@@ -197,6 +199,7 @@ namespace Enterprise_Store_beta_1._0
             this.txtProductName.PlaceholderText = "- наименование товара -";
             this.txtProductName.Size = new System.Drawing.Size(193, 21);
             this.txtProductName.TabIndex = 2;
+            this.txtProductName.TextChanged += new System.EventHandler(this.txtProductName_TextChanged);
             this.txtProductName.Leave += new System.EventHandler(this.txtProductName_Leave);
             // 
             // comBoxProductGroup
@@ -249,11 +252,11 @@ namespace Enterprise_Store_beta_1._0
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node1";
             treeNode1.Text = "Node1";
-            treeNode_folderProducts.Name = "folderProducts";
-            treeNode_folderProducts.Tag = "AllProducts";
-            treeNode_folderProducts.Text = "Товары";
+            treeNode2.Name = "folderProducts";
+            treeNode2.Tag = "AllProducts";
+            treeNode2.Text = "Товары";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode_folderProducts});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(419, 426);
             this.treeView1.TabIndex = 7;
             // 
@@ -277,6 +280,7 @@ namespace Enterprise_Store_beta_1._0
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_ProductGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Unit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindDGV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -307,5 +311,6 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         internal System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.BindingSource bindDGV;
     }
 }

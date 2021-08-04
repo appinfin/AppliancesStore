@@ -168,5 +168,33 @@ namespace Enterprise_Store_beta_1._0
             var idx = comBoxBrand.FindString(txtProductName.Text);
             comBoxBrand.SelectedIndex = idx;
         }
+
+        private void txtProductName_TextChanged(object sender, EventArgs e)
+        {
+            while (txtProductName.Text.Length < 3)
+            {
+                return;
+            }
+            MessageBox.Show("Text change", "ПОИСК",MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            Db_Enterprise_Store_Context db = new();
+            var s = db.Products.Where(p => p.ProductName.StartsWith(txtProductName.Text))
+                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
+                .ToList();
+            
+            bindDGV.DataSource = s;
+            dataGridView1.DataSource = bindDGV;
+
+            #region //Представление выборки в dataGridView1
+            dataGridView1.Columns["id"].Visible = false;
+            //dataGridView1.Columns["category"].Visible = false;
+            dataGridView1.Columns["category"].HeaderText = ""; //заголовок
+            dataGridView1.Columns["category"].FillWeight = 20;
+            dataGridView1.Columns["name"].HeaderText = "Номенклатура";
+            dataGridView1.Columns["name"].FillWeight = 60;
+            dataGridView1.Columns["brand"].HeaderText = "Производитель";
+            dataGridView1.Columns["brand"].FillWeight = 20;
+            #endregion
+
+        }
     }
 }

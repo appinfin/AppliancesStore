@@ -8,9 +8,6 @@ namespace Enterprise_Store_beta_1._0
 {
     public partial class CreateBuy_Form : Form
     {
-        public int SupplyID { get; set; } //id док-та "Покупка/комиссия"
-        readonly BuyForm buyForm;
-
         #region //Форма док-та "Покупка/комиссия"
         public CreateBuy_Form(BuyForm buyForm)
         {
@@ -20,6 +17,9 @@ namespace Enterprise_Store_beta_1._0
 
         }
         #endregion
+
+        public int SupplyID { get; set; } //id док-та "Покупка/комиссия"
+        readonly BuyForm buyForm;
 
         #region //Панель "Каталог товаров" подобрать товар
         #region // Открытие панели "Каталог товаров" - КНОПКА <подобрать товар>
@@ -42,7 +42,7 @@ namespace Enterprise_Store_beta_1._0
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
                 .Where(p => p.ProductsGroupsProductGroupId == null)
-                .Select(n => new { category = "Товар", id = n.ProductId, name = n.ProductName, brand = n.BrandsBrand.BrandName })
+                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
                 .OrderBy(n => n.name);
 
             //соединяем списки productGroupName и productsWithoutGroupName
@@ -54,7 +54,13 @@ namespace Enterprise_Store_beta_1._0
             DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
             #endregion
 
-            #region //Представление выборки в DGVcatalog_CreateBuy
+            ViewDGVcatalogCreateBuy();
+        }
+        #endregion
+
+        #region //Представление выборки в DGVcatalog_CreateBuy
+        void ViewDGVcatalogCreateBuy()
+        {
             DGVcatalog_CreateBuy.Columns["id"].Visible = false;
             //DGVcatalog_CreateBuy.Columns["category"].Visible = false;
             DGVcatalog_CreateBuy.Columns["category"].HeaderText = ""; //заголовок
@@ -63,7 +69,6 @@ namespace Enterprise_Store_beta_1._0
             DGVcatalog_CreateBuy.Columns["name"].FillWeight = 60;
             DGVcatalog_CreateBuy.Columns["brand"].HeaderText = "Производитель";
             DGVcatalog_CreateBuy.Columns["brand"].FillWeight = 20;
-            #endregion 
         }
         #endregion
 
@@ -75,11 +80,11 @@ namespace Enterprise_Store_beta_1._0
         internal void AddProductInListBuy(int SelectedId)
         {
             //получаем наименование выбранного товара для отображения в заголовке окна <Кол-во, цена>
-            var ProductName = DGVcatalog_CreateBuy.CurrentRow.Cells["name"].Value.ToString();
+            var productName = DGVcatalog_CreateBuy.CurrentRow.Cells["name"].Value.ToString();
 
             //создаём диалоговое окно <Кол-во, цена>
             var f = new SetPriceQty();
-            f.Text += " " + ProductName;
+            f.Text += " " + productName;
             if (f.ShowDialog() == DialogResult.OK)
             {
                 //создаём экземпляр новой строки
@@ -348,9 +353,8 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-
         #region //Кнопка "Удалить" товар.
-        private void butCatalogProduct_Delete_Click(object sender, EventArgs e)
+        private void ButCatalogProduct_Delete_Click(object sender, EventArgs e)
         {
 
             if (DialogResult.OK == MessageBox.Show("Вы уверены, что нужно удалить товар?\n" +
@@ -389,11 +393,14 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
+        #region // Удаление товара из списка товаров в док-те "Покупка/комиссия"
+        /// <summary>
+        /// Нажатие кнопки "Х" в строке списка товаров док-та "Покупка/комиссия"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DGV_CreateBuy_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //var c = bind_DGV_CreateBuy.Current;//.RemoveCurrent();
-
-
             if (e.RowIndex < 0 || e.ColumnIndex !=
             DGV_CreateBuy.Columns["Delete_row"].Index) return;
 
@@ -422,6 +429,32 @@ namespace Enterprise_Store_beta_1._0
                     MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
                 }
             }
-        }
+        } 
+        #endregion
+
+        #region //Поиск по названию после набора не менее 3-х символов в txtSearch_CreateBuy
+        /// <summary>
+        /// Поиск товара по названию в каталоге товаров.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtSearch_CreateBuy_TextChanged(object sender, EventArgs e)
+        {
+            while (txtSearch_CreateBuy.Text.Length < 3)
+            {
+                return;
+            }
+            MessageBox.Show("Text change", "ПОИСК", MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            Db_Enterprise_Store_Context db = new();
+            var s = db.Products.Where(p => p.ProductName.StartsWith(txtSearch_CreateBuy.Text))
+                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
+                .ToList();
+
+            bind_DGVcatalog_CreateBuy.DataSource = s;
+            DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
+
+            ViewDGVcatalogCreateBuy();
+        } 
+        #endregion
     }
 }

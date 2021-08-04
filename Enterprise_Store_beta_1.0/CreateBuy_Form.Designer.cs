@@ -61,6 +61,7 @@ namespace Enterprise_Store_beta_1._0
             this.PricePurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Summa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete_row = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.txtSearch_CreateBuy = new System.Windows.Forms.TextBox();
             this.butCatalogProduct_Delete = new System.Windows.Forms.Button();
             this.butCatalogProduct_Edit = new System.Windows.Forms.Button();
             this.butAddProduct_CreateBuy = new System.Windows.Forms.Button();
@@ -145,6 +146,7 @@ namespace Enterprise_Store_beta_1._0
             // splitContainer_CreateBuy.Panel2
             // 
             this.splitContainer_CreateBuy.Panel2.AutoScroll = true;
+            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.txtSearch_CreateBuy);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Delete);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Edit);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butAddProduct_CreateBuy);
@@ -417,6 +419,16 @@ namespace Enterprise_Store_beta_1._0
             this.Delete_row.UseColumnTextForButtonValue = true;
             this.Delete_row.Width = 25;
             // 
+            // txtSearch_CreateBuy
+            // 
+            this.txtSearch_CreateBuy.Location = new System.Drawing.Point(16, 72);
+            this.txtSearch_CreateBuy.Name = "txtSearch_CreateBuy";
+            this.txtSearch_CreateBuy.PlaceholderText = "- наименование товара для поиска -";
+            this.txtSearch_CreateBuy.Size = new System.Drawing.Size(237, 21);
+            this.txtSearch_CreateBuy.TabIndex = 2;
+            this.toolTip_selectProduct_CreateBuy_Form.SetToolTip(this.txtSearch_CreateBuy, "Введите не менее 3-х символов.\r\nПробелы тоже учитываются.");
+            this.txtSearch_CreateBuy.TextChanged += new System.EventHandler(this.txtSearch_CreateBuy_TextChanged);
+            // 
             // butCatalogProduct_Delete
             // 
             this.butCatalogProduct_Delete.Location = new System.Drawing.Point(178, 99);
@@ -425,7 +437,7 @@ namespace Enterprise_Store_beta_1._0
             this.butCatalogProduct_Delete.TabIndex = 1;
             this.butCatalogProduct_Delete.Text = "Удалить";
             this.butCatalogProduct_Delete.UseVisualStyleBackColor = true;
-            this.butCatalogProduct_Delete.Click += new System.EventHandler(this.butCatalogProduct_Delete_Click);
+            this.butCatalogProduct_Delete.Click += new System.EventHandler(this.ButCatalogProduct_Delete_Click);
             // 
             // butCatalogProduct_Edit
             // 
@@ -476,10 +488,6 @@ namespace Enterprise_Store_beta_1._0
             this.contextMenuStripDataGridViewTextBoxColumn.HeaderText = "ContextMenuStrip";
             this.contextMenuStripDataGridViewTextBoxColumn.Name = "contextMenuStripDataGridViewTextBoxColumn";
             // 
-            // toolTip_selectProduct_CreateBuy_Form
-            // 
-            this.toolTip_selectProduct_CreateBuy_Form.ToolTipTitle = "Выбрать";
-            // 
             // CreateBuy_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,6 +499,7 @@ namespace Enterprise_Store_beta_1._0
             this.splitContainer_CreateBuy.Panel1.ResumeLayout(false);
             this.splitContainer_CreateBuy.Panel1.PerformLayout();
             this.splitContainer_CreateBuy.Panel2.ResumeLayout(false);
+            this.splitContainer_CreateBuy.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_CreateBuy)).EndInit();
             this.splitContainer_CreateBuy.ResumeLayout(false);
             this.tabLayoutPanel_CreateBuy.ResumeLayout(false);
@@ -536,5 +545,6 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.DataGridViewTextBoxColumn PricePurchase;
         private System.Windows.Forms.DataGridViewTextBoxColumn Summa;
         private System.Windows.Forms.DataGridViewButtonColumn Delete_row;
+        private System.Windows.Forms.TextBox txtSearch_CreateBuy;
     }
 }
