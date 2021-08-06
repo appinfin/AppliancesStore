@@ -8,7 +8,8 @@ namespace Enterprise_Store_beta_1._0
     internal class Manager
     {
         #region //установка атрибутов док-та "Покупка/комиссия" по Id док-та
-        public static void SetAttributeDocumentBuy(Db_Enterprise_Store_Context db, CreateBuy_Form createBuy_Form)
+        public static void SetAttributeDocumentBuy(Db_Enterprise_Store_Context db,
+                                                   CreateBuy_Form createBuy_Form)
         {
             //получение даты, контрагента, склада
             var date = db.Supplies.Where(s => s.SupplyId == createBuy_Form.SupplyID)
@@ -30,8 +31,6 @@ namespace Enterprise_Store_beta_1._0
             createBuy_Form.Text = "";
             createBuy_Form.Text = $"Поступление товаров: Покупка/Комиссия № {createBuy_Form.SupplyID}";
             #endregion
-
-            //return createBuy_Form;
         }
         #endregion
 
@@ -136,6 +135,7 @@ namespace Enterprise_Store_beta_1._0
 
             //Запрос к бд таблица Counterpartys, выборка контрагентов
             var counterparty = db.Counterpartys.ToList();
+            //.Include(c=> c.Supplies).Include(c=> c.Realizations)
 
             //создаём объект источник данных для привязки к DGV
             bind_DGV_Counterparty.DataSource = counterparty;
