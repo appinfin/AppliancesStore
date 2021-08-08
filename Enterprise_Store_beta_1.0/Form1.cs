@@ -85,12 +85,11 @@ namespace Enterprise_Store_beta_1._0
 
         #endregion
 
-
         #region //Файл >>> Каталог контрагентов (открываем форму)
         private void tStrip_Form1_CatalogCounterperty_Click(object sender, EventArgs e)
         {
             CatalogCounterparty_Form сatalogCounterparty_Form = new();
-            сatalogCounterparty_Form.ShowDialog();
+            сatalogCounterparty_Form.Show();
         }
         #endregion
 

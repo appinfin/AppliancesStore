@@ -268,23 +268,28 @@ namespace Enterprise_Store_beta_1._0
             {
                 using Db_Enterprise_Store_Context db = new();
                 //получаем строку из БД по id текущего открытого док-та "Покупка/комиссия"
-                var currentDoc = db.Supplies
+                Supply currentDocSupply = db.Supplies
                     .Where(s => s.SupplyId == SupplyID)
                     .FirstOrDefault();
                 //изменяем данные в БД (меняем Id контрагента)
-                currentDoc.CounterpartysCounterpartyId = catalogCounterparty.CounterpartyID;
+                currentDocSupply.CounterpartysCounterpartyId = catalogCounterparty.CurrentCounterparty.CounterpartyId;
 
                 try
                 {
                     db.SaveChanges(); //сохраняем изменения в БД
-                    Manager.SetAttributeDocumentBuy(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
+                    this.txtCounterparty_CreateBuy.Text = catalogCounterparty.CurrentCounterparty.CounterpartyName;
+                    //Manager.SetAttributeDocumentBuy(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
                 }
                 catch
                 {
                     MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
                 }
+                finally
+                {
+                    catalogCounterparty.Dispose();
+                }
             }
-
+            
         }
         #endregion
 
