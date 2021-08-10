@@ -143,8 +143,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_CatalogCounterparty_Form.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_CatalogCounterparty_Form.Size = new System.Drawing.Size(492, 332);
             this.DGV_CatalogCounterparty_Form.TabIndex = 1;
-            this.DGV_CatalogCounterparty_Form.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CatalogCounterparty_Form_CellDoubleClick);
-            this.DGV_CatalogCounterparty_Form.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CatalogCounterparty_Form_CellEndEdit);
+            this.DGV_CatalogCounterparty_Form.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CatalogCounterparty_Form_CellDoubleClick);            
             this.DGV_CatalogCounterparty_Form.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGV_CatalogCounterparty_Form_CellValidating);
             this.DGV_CatalogCounterparty_Form.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DGV_CatalogCounterparty_Form_DataError);
             // 

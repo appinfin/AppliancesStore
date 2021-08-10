@@ -33,7 +33,6 @@ namespace Enterprise_Store_beta_1._0
         {
             if (this.Modal) //окно в модальном режиме для выбора контрагента
             {
-
                 CurrentCounterparty = (Counterparty)bind_DGV_CatalogCounterparty_Form.Current;
                 this.DialogResult = DialogResult.OK;
             }
@@ -50,80 +49,115 @@ namespace Enterprise_Store_beta_1._0
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void DGV_CatalogCounterparty_Form_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-       {
-            if (DGV_CatalogCounterparty_Form.Rows[e.RowIndex].IsNewRow ||
-                DGV_CatalogCounterparty_Form.IsCurrentCellDirty == false ||
-                string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+        {
+            var dirty = DGV_CatalogCounterparty_Form.IsCurrentCellDirty;
+
+            if (DGV_CatalogCounterparty_Form.Rows[e.RowIndex].IsNewRow) // если новая строка
             {
+                return;
+            }
+
+            var fv = DGV_CatalogCounterparty_Form.CurrentCell.FormattedValue.ToString(); //до форматирования
+            var efv = DGV_CatalogCounterparty_Form.CurrentCell.EditedFormattedValue.ToString().Trim(); //форматируемое значение (текущее введённое)
+            // если равны то return или null или одни пробелы
+            if (fv.Equals(efv) || string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
+                //текcт ошибки при IsNullOrWhiteSpace
                 DGV_CatalogCounterparty_Form.Rows[e.RowIndex].Cells["InnOgrnKpp"]
                     .ErrorText = "Значение состоит из одних пробелов\n" +
                     "Введите последовательность целых чисел или\n" +
                     "оставьте поле пустым.";
                 return;
             }
-
+            
             #region // проверка ввода в колонку "InnOgrnKpp"
             if (DGV_CatalogCounterparty_Form.Columns["InnOgrnKpp"].Index == e.ColumnIndex &&
-                e.FormattedValue.ToString().Trim().Length != 0 &&
+                //e.FormattedValue.ToString().Trim().Length != 0 &&
                 (!long.TryParse(e.FormattedValue.ToString(), out long innOgrnKpp) || innOgrnKpp < 0))
             {
                 DGV_CatalogCounterparty_Form.Rows[e.RowIndex].Cells["InnOgrnKpp"]
                     .ErrorText = "Неверный ввод значения!!!\n" +
                     "Введите последовательность целых чисел или\n" +
                     "оставьте поле пустым.";
+                return;
             }
             #endregion
-        }
 
-        private void DGV_CatalogCounterparty_Form_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            //bind_DGV_CatalogCounterparty_Form = (BindingSource)DGV_CatalogCounterparty_Form.DataSource;
-            Counterparty currentItem = (Counterparty)bind_DGV_CatalogCounterparty_Form.Current;
-
-            #region // UpdateEntyti()
-            try
+            #region // Сохранить запись или отменить изменения
+            if (DialogResult.Cancel == MessageBox.Show(
+                    "Сохранить запись?",
+                    "Сохранить контрагента?",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Question))
             {
-                if (currentItem.CounterpartyId <= 0)
+                DGV_CatalogCounterparty_Form.CancelEdit();
+                DGV_CatalogCounterparty_Form.EndEdit();
+                //e.Cancel = true;
+            }
+            else
+            {
+                DGV_CatalogCounterparty_Form.EndEdit();
+                Counterparty currentItem = (Counterparty)bind_DGV_CatalogCounterparty_Form.Current;
+                //если имя не пустое
+                if (!string.IsNullOrWhiteSpace(currentItem.CounterpartyName))
                 {
-                    using Db_Enterprise_Store_Context db = new();
-                    db.Add(currentItem);
-                    db.SaveChanges();
+                    #region // Получаем текущий эл-т списка и добавляем или обновляем в бд
+                    try
+                    {
+                        if (currentItem.CounterpartyId <= 0) //если новая запись добавляем в бд
+                        {
+                            using Db_Enterprise_Store_Context db = new();
+                            db.Add(currentItem);
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            using Db_Enterprise_Store_Context db = new(); //иначе обновляем имеющуюся запись в бд
+                            db.Update(currentItem);
+                            db.SaveChanges();
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                        DGV_CatalogCounterparty_Form.CancelEdit();
+                        DGV_CatalogCounterparty_Form.EndEdit();
+                    }
+                    #endregion
                 }
                 else
                 {
-                    using Db_Enterprise_Store_Context db = new();
-                    db.Update(currentItem);
-                    db.SaveChanges();
+                    #region // Отмена
+                    DGV_CatalogCounterparty_Form.CancelEdit();
+                    DGV_CatalogCounterparty_Form.EndEdit(); 
+                    #endregion
                 }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
-            }
+            } 
             #endregion
         }
 
         #region // Обработка ошибки ввода
         private void DGV_CatalogCounterparty_Form_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
-            // Сообщение об ошибке в текущей ячейке
+            // Получаем строку сообщения об ошибке из текущей ячейки
             var currentCellErrorText = DGV_CatalogCounterparty_Form.CurrentRow.Cells[e.ColumnIndex].ErrorText;
-            var enumContext = e.Context.ToString();
+
+            #region // Сообщение об ошибке в текущей ячейке
             if (MessageBox.Show(currentCellErrorText + "\n\n" +
-                "Повтор - продолжить ввод значения,\n" +
-                "Отмена - отменить ввод.\n" +
-                enumContext,
-                "Ошибка ввода!!!",
-                MessageBoxButtons.RetryCancel,
-                MessageBoxIcon.Error) == DialogResult.Cancel)
+                    "Повтор - продолжить ввод значения,\n" +
+                    "Отмена - отменить ввод.\n",
+                    "Ошибка ввода!!!",
+                    MessageBoxButtons.RetryCancel,
+                    MessageBoxIcon.Error) == DialogResult.Cancel)
             {
                 DGV_CatalogCounterparty_Form.CancelEdit();
-                //DGV_CatalogCounterparty_Form.EndEdit();
+                DGV_CatalogCounterparty_Form.EndEdit();
             }
             else
             {
                 e.Cancel = true;
             }
+            #endregion
         }
         #endregion
     }
