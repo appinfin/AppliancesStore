@@ -29,6 +29,7 @@ namespace Enterprise_Store_beta_1._0
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CatalogCounterparty_Form));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -43,8 +44,11 @@ namespace Enterprise_Store_beta_1._0
             this.CounterpartyId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CounterpartyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InnOgrnKpp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctxMenuStrip_CataloCounterparty = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tStripMenu_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.tStrip_CatalogCounterparty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_CatalogCounterparty_Form)).BeginInit();
+            this.ctxMenuStrip_CataloCounterparty.SuspendLayout();
             this.SuspendLayout();
             // 
             // tStrip_CatalogCounterparty
@@ -86,6 +90,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_CatalogCounterparty_Delete.Name = "tStrip_CatalogCounterparty_Delete";
             this.tStrip_CatalogCounterparty_Delete.Size = new System.Drawing.Size(55, 22);
             this.tStrip_CatalogCounterparty_Delete.Text = "Удалить";
+            this.tStrip_CatalogCounterparty_Delete.Click += new System.EventHandler(this.TStrip_CatalogCounterparty_Delete_Click);
             // 
             // DGV_CatalogCounterparty_Form
             // 
@@ -113,6 +118,7 @@ namespace Enterprise_Store_beta_1._0
             this.CounterpartyId,
             this.CounterpartyName,
             this.InnOgrnKpp});
+            this.DGV_CatalogCounterparty_Form.ContextMenuStrip = this.ctxMenuStrip_CataloCounterparty;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -143,7 +149,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_CatalogCounterparty_Form.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_CatalogCounterparty_Form.Size = new System.Drawing.Size(492, 332);
             this.DGV_CatalogCounterparty_Form.TabIndex = 1;
-            this.DGV_CatalogCounterparty_Form.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CatalogCounterparty_Form_CellDoubleClick);            
+            this.DGV_CatalogCounterparty_Form.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CatalogCounterparty_Form_CellDoubleClick);
             this.DGV_CatalogCounterparty_Form.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGV_CatalogCounterparty_Form_CellValidating);
             this.DGV_CatalogCounterparty_Form.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.DGV_CatalogCounterparty_Form_DataError);
             // 
@@ -173,6 +179,21 @@ namespace Enterprise_Store_beta_1._0
             this.InnOgrnKpp.Name = "InnOgrnKpp";
             this.InnOgrnKpp.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // ctxMenuStrip_CataloCounterparty
+            // 
+            this.ctxMenuStrip_CataloCounterparty.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tStripMenu_Delete});
+            this.ctxMenuStrip_CataloCounterparty.Name = "ctxMenuStrip_CataloCounterparty";
+            this.ctxMenuStrip_CataloCounterparty.Size = new System.Drawing.Size(162, 26);
+            // 
+            // tStripMenu_Delete
+            // 
+            this.tStripMenu_Delete.Name = "tStripMenu_Delete";
+            this.tStripMenu_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.tStripMenu_Delete.Size = new System.Drawing.Size(161, 22);
+            this.tStripMenu_Delete.Text = "Удалить";
+            this.tStripMenu_Delete.Click += new System.EventHandler(this.TStripMenu_Delete_Click);
+            // 
             // CatalogCounterparty_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,6 +207,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_CatalogCounterparty.ResumeLayout(false);
             this.tStrip_CatalogCounterparty.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_CatalogCounterparty_Form)).EndInit();
+            this.ctxMenuStrip_CataloCounterparty.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,5 +223,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.DataGridViewTextBoxColumn CounterpartyId;
         private System.Windows.Forms.DataGridViewTextBoxColumn CounterpartyName;
         private System.Windows.Forms.DataGridViewTextBoxColumn InnOgrnKpp;
+        private System.Windows.Forms.ContextMenuStrip ctxMenuStrip_CataloCounterparty;
+        private System.Windows.Forms.ToolStripMenuItem tStripMenu_Delete;
     }
 }

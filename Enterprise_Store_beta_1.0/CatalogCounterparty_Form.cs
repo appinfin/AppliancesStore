@@ -56,12 +56,20 @@ namespace Enterprise_Store_beta_1._0
             {
                 return;
             }
+            //var currentColumnName = DGV_CatalogCounterparty_Form.Columns[e.ColumnIndex].Name;
 
             var fv = DGV_CatalogCounterparty_Form.CurrentCell.FormattedValue.ToString(); //до форматирования
             var efv = DGV_CatalogCounterparty_Form.CurrentCell.EditedFormattedValue.ToString().Trim(); //форматируемое значение (текущее введённое)
-            // если равны то return или null или одни пробелы
+            // если равны или null или одни пробелы
             if (fv.Equals(efv) || string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
             {
+                // Если колонка CounterpartyName неизменна или пустая
+                if (DGV_CatalogCounterparty_Form.Columns["CounterpartyName"].Index == e.ColumnIndex)
+                {
+                    DGV_CatalogCounterparty_Form.CancelEdit();
+                    DGV_CatalogCounterparty_Form.EndEdit();
+                    return;
+                }
                 //текcт ошибки при IsNullOrWhiteSpace
                 DGV_CatalogCounterparty_Form.Rows[e.RowIndex].Cells["InnOgrnKpp"]
                     .ErrorText = "Значение состоит из одних пробелов\n" +
@@ -160,5 +168,21 @@ namespace Enterprise_Store_beta_1._0
             #endregion
         }
         #endregion
+
+        private void TStrip_CatalogCounterparty_Delete_Click(object sender, EventArgs e)
+        {
+            //var idC = (int)DGV_CatalogCounterparty_Form.CurrentRow.Cells["CounterpartyId"].Value;
+            Counterparty currentItem = (Counterparty)bind_DGV_CatalogCounterparty_Form.Current;
+
+            using Db_Enterprise_Store_Context db = new();
+            db.Remove(currentItem);
+            db.SaveChanges();
+            bind_DGV_CatalogCounterparty_Form.RemoveCurrent();
+        }
+
+        private void TStripMenu_Delete_Click(object sender, EventArgs e)
+        {
+            TStrip_CatalogCounterparty_Delete_Click(sender, e);
+        }
     }
 }
