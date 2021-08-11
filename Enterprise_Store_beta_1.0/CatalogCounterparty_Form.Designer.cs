@@ -31,11 +31,11 @@ namespace Enterprise_Store_beta_1._0
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CatalogCounterparty_Form));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tStrip_CatalogCounterparty = new System.Windows.Forms.ToolStrip();
             this.tStrip_CatalogCounterparty_Add = new System.Windows.Forms.ToolStripButton();
             this.tStrip_CatalogCounterparty_Edit = new System.Windows.Forms.ToolStripButton();
@@ -45,7 +45,7 @@ namespace Enterprise_Store_beta_1._0
             this.CounterpartyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InnOgrnKpp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctxMenuStrip_CataloCounterparty = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tStripMenu_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_ctxMenu_CataloCounterparty_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip_CatalogCounterparty = new System.Windows.Forms.ToolTip(this.components);
             this.tStrip_CatalogCounterparty.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_CatalogCounterparty_Form)).BeginInit();
@@ -95,57 +95,57 @@ namespace Enterprise_Store_beta_1._0
             // 
             // DGV_CatalogCounterparty_Form
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Lavender;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            this.DGV_CatalogCounterparty_Form.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            this.DGV_CatalogCounterparty_Form.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGV_CatalogCounterparty_Form.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGV_CatalogCounterparty_Form.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_CatalogCounterparty_Form.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_CatalogCounterparty_Form.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGV_CatalogCounterparty_Form.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGV_CatalogCounterparty_Form.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CounterpartyId,
             this.CounterpartyName,
             this.InnOgrnKpp});
             this.DGV_CatalogCounterparty_Form.ContextMenuStrip = this.ctxMenuStrip_CataloCounterparty;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGV_CatalogCounterparty_Form.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGV_CatalogCounterparty_Form.DefaultCellStyle = dataGridViewCellStyle8;
             this.DGV_CatalogCounterparty_Form.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.DGV_CatalogCounterparty_Form.Location = new System.Drawing.Point(0, 28);
             this.DGV_CatalogCounterparty_Form.Name = "DGV_CatalogCounterparty_Form";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_CatalogCounterparty_Form.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            this.DGV_CatalogCounterparty_Form.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_CatalogCounterparty_Form.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            this.DGV_CatalogCounterparty_Form.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.DGV_CatalogCounterparty_Form.RowTemplate.Height = 23;
             this.DGV_CatalogCounterparty_Form.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_CatalogCounterparty_Form.Size = new System.Drawing.Size(492, 332);
@@ -184,17 +184,17 @@ namespace Enterprise_Store_beta_1._0
             // ctxMenuStrip_CataloCounterparty
             // 
             this.ctxMenuStrip_CataloCounterparty.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tStripMenu_Delete});
+            this.tStrip_ctxMenu_CataloCounterparty_Delete});
             this.ctxMenuStrip_CataloCounterparty.Name = "ctxMenuStrip_CataloCounterparty";
-            this.ctxMenuStrip_CataloCounterparty.Size = new System.Drawing.Size(162, 26);
+            this.ctxMenuStrip_CataloCounterparty.Size = new System.Drawing.Size(181, 48);
             // 
-            // tStripMenu_Delete
+            // tStrip_ctxMenu_CataloCounterparty_Delete
             // 
-            this.tStripMenu_Delete.Name = "tStripMenu_Delete";
-            this.tStripMenu_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.tStripMenu_Delete.Size = new System.Drawing.Size(161, 22);
-            this.tStripMenu_Delete.Text = "Удалить";
-            this.tStripMenu_Delete.Click += new System.EventHandler(this.TStripMenu_Delete_Click);
+            this.tStrip_ctxMenu_CataloCounterparty_Delete.Name = "tStrip_ctxMenu_CataloCounterparty_Delete";
+            this.tStrip_ctxMenu_CataloCounterparty_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.tStrip_ctxMenu_CataloCounterparty_Delete.Size = new System.Drawing.Size(180, 22);
+            this.tStrip_ctxMenu_CataloCounterparty_Delete.Text = "Удалить";
+            this.tStrip_ctxMenu_CataloCounterparty_Delete.Click += new System.EventHandler(this.tStrip_ctxMenu_CataloCounterparty_Delete_Click);
             // 
             // toolTip_CatalogCounterparty
             // 
@@ -227,7 +227,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStripButton tStrip_CatalogCounterparty_Delete;
         private System.Windows.Forms.DataGridView DGV_CatalogCounterparty_Form;
         private System.Windows.Forms.ContextMenuStrip ctxMenuStrip_CataloCounterparty;
-        private System.Windows.Forms.ToolStripMenuItem tStripMenu_Delete;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_CataloCounterparty_Delete;
         private System.Windows.Forms.ToolTip toolTip_CatalogCounterparty;
         private System.Windows.Forms.DataGridViewTextBoxColumn CounterpartyId;
         private System.Windows.Forms.DataGridViewTextBoxColumn CounterpartyName;

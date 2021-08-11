@@ -1,6 +1,9 @@
-﻿using ModelLibrary_Estore_1;
+﻿using Microsoft.EntityFrameworkCore;
+using ModelLibrary_Estore_1;
 using System;
 using System.Windows.Forms;
+using System.Linq;
+
 
 namespace Enterprise_Store_beta_1._0
 {
@@ -23,25 +26,35 @@ namespace Enterprise_Store_beta_1._0
             DGV_CatalogCounterparty_Form.Columns["Supplies"].Visible = false;
         }
 
-        #region // Двойной клик по строке для выбора и установки контрагента
+        #region // Двойной клик по строке для выбора и установки контрагента или редактирования
         private void DGV_CatalogCounterparty_Form_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.Modal) //окно в модальном режиме для выбора контрагента
+            #region //если окно в модальном режиме для выбора контрагента
+            if (this.Modal)
             {
                 CurrentCounterparty = (Counterparty)bind_DGV_CatalogCounterparty_Form.Current;
                 this.DialogResult = DialogResult.OK;
             }
-            else //окно в независимом режиме для редактирования ячеек
+            #endregion
+
+            #region //иначе окно в независимом режиме для редактирования ячеек
+            else
             {
                 DGV_CatalogCounterparty_Form.BeginEdit(false);
             }
+            #endregion
         }
         #endregion
 
-        #region // Проверка правильности введённого в поле (ячейку dgv) значения
+        #region // Проверка правильности введённого в поле значения
+        /// <summary>
+        /// Проверяет правильность ввода значений в поля dgv "CounterpartyName", "InnOgrnKpp"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DGV_CatalogCounterparty_Form_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            #region // если новая строка или колонка CounterpartyId то return
+            #region // если новая строка или колонка CounterpartyId пустая то return
             if (DGV_CatalogCounterparty_Form.Rows[e.RowIndex].IsNewRow ||
                 DGV_CatalogCounterparty_Form.IsCurrentCellDirty == false ||
                 DGV_CatalogCounterparty_Form["CounterpartyName", e.RowIndex]
@@ -165,16 +178,28 @@ namespace Enterprise_Store_beta_1._0
 
         private void TStrip_CatalogCounterparty_Delete_Click(object sender, EventArgs e)
         {
-            //var idC = (int)DGV_CatalogCounterparty_Form.CurrentRow.Cells["CounterpartyId"].Value;
-            Counterparty currentItem = (Counterparty)bind_DGV_CatalogCounterparty_Form.Current;
+            if (DialogResult.OK == MessageBox.Show("Данные будут удалены безвозвратно.",
+                                                   "Удалить контрагента?",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Exclamation))
+            {
+                Counterparty currentItem = (Counterparty)bind_DGV_CatalogCounterparty_Form.Current;
 
-            using Db_Enterprise_Store_Context db = new();
-            db.Remove(currentItem);
-            db.SaveChanges();
-            bind_DGV_CatalogCounterparty_Form.RemoveCurrent();
+                try
+                {
+                    using Db_Enterprise_Store_Context db = new();
+                    db.Remove(currentItem);
+                    db.SaveChanges();
+                    bind_DGV_CatalogCounterparty_Form.RemoveCurrent();
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка обновления базы данных!!!");
+                }
+            }
         }
 
-        private void TStripMenu_Delete_Click(object sender, EventArgs e)
+        private void tStrip_ctxMenu_CataloCounterparty_Delete_Click(object sender, EventArgs e)
         {
             TStrip_CatalogCounterparty_Delete_Click(sender, e);
         }
