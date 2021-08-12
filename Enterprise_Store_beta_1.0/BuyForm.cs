@@ -15,23 +15,24 @@ namespace Enterprise_Store_beta_1._0
     public partial class BuyForm : Form
     {
         //объект с привязываемыми данными из БД
-        public BindingSource bind_DGV_BuyForm { get; set; }
+        //public BindingSource bind_DGV_BuyForm { get; set; }
 
         public BuyForm()
         {
             InitializeComponent();
+            //привязываем данные к эл-ту управления DGV_BuyForm
+            bind_DGV_BuyForm = Manager.GetListDocumentBuy();
+            DGV_BuyForm.DataSource = bind_DGV_BuyForm;
         }
 
         #region //Отображение док-тов "Покупка/комиссия"
         private void BuyForm_Load(object sender, EventArgs e)
         {
-            #region //привязываем данные к эл-ту управления DGV_BuyForm
-            DGV_BuyForm.DataSource = bind_DGV_BuyForm;
+            #region 
             //формат вывода даты год/мес./день час/мин./сек.
             DGV_BuyForm.Columns["Date"].DefaultCellStyle.Format = "G";
             //формат в валюте
             DGV_BuyForm.Columns["TotalPriceSupply"].DefaultCellStyle.Format = "C";
-
             //изменяем заголовок колонок представления
             DGV_BuyForm.Columns["SupplyId"].HeaderText = "Код";
             DGV_BuyForm.Columns["SupplyId"].Visible = true;
@@ -64,28 +65,13 @@ namespace Enterprise_Store_beta_1._0
             createBuy_Form.SupplyID = tracking.Entity.SupplyId;
             Manager.SetAttributeDocumentBuy(db, createBuy_Form); //устанавливаем атрибуты док-та
             createBuy_Form.lblSumma.Text = "Сумма: "
-                                            + Manager.GetSummaDocumentBuy(createBuy_Form.DGV_CreateBuy)
+                                            + Manager.GetSummaDocument(createBuy_Form.DGV_CreateBuy)
                                             .ToString("C");
 
             createBuy_Form.Show(); //отображаем форму
 
             #endregion
         }
-        #endregion
-
-        #region //Изменение размеров формы -!!! ДОРАБОТАТЬ !!!-
-        //private void BuyForm_Resize(object sender, EventArgs e)
-        //{
-        //    //Отображение дочерней формы в рамках родительской формы
-        //    if (this.WindowState == FormWindowState.Maximized)
-        //    {
-        //        this.WindowState = FormWindowState.Normal;
-        //        this.Dock = DockStyle.Fill;
-        //        var _desktopBounds = this.DesktopBounds;
-        //        this.Dock = DockStyle.None;
-        //        this.DesktopBounds = _desktopBounds;
-        //    }
-        //}
         #endregion
 
         #region //Редактирование док-та <Поступление товаров> - двойной клик по строке док-та
@@ -107,7 +93,7 @@ namespace Enterprise_Store_beta_1._0
             Manager.SetAttributeDocumentBuy(db, createBuy_Form); //устанавливаем атрибуты док-та
             createBuy_Form.DGV_CreateBuy.DataSource = Manager.GetListProductBuy(createBuy_Form.SupplyID);
             createBuy_Form.lblSumma.Text = "Сумма: "
-                                            + Manager.GetSummaDocumentBuy(createBuy_Form.DGV_CreateBuy)
+                                            + Manager.GetSummaDocument(createBuy_Form.DGV_CreateBuy)
                                             .ToString("C");
             createBuy_Form.Show(); //отображаем форму
         }

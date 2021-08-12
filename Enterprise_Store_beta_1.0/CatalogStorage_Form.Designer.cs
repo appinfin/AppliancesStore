@@ -29,62 +29,68 @@ namespace Enterprise_Store_beta_1._0
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CatalogStorage_Form));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.tStripMenu_CatalogStorage = new System.Windows.Forms.ToolStrip();
+            this.tStripMenu_CatalogStorage_Add = new System.Windows.Forms.ToolStripButton();
+            this.tStripMenu_CatalogStorage_Edit = new System.Windows.Forms.ToolStripButton();
+            this.tStripMenu_CatalogStorage_Delete = new System.Windows.Forms.ToolStripButton();
             this.DGV_CatalogStorage_Form = new System.Windows.Forms.DataGridView();
             this.StorageId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StorageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.toolStrip1.SuspendLayout();
+            this.ctxMenu_CatalogStorage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ctxMenu_CatalogStorage_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tStripMenu_CatalogStorage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_CatalogStorage_Form)).BeginInit();
+            this.ctxMenu_CatalogStorage.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // tStripMenu_CatalogStorage
             // 
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(492, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.tStripMenu_CatalogStorage.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.tStripMenu_CatalogStorage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tStripMenu_CatalogStorage_Add,
+            this.tStripMenu_CatalogStorage_Edit,
+            this.tStripMenu_CatalogStorage_Delete});
+            this.tStripMenu_CatalogStorage.Location = new System.Drawing.Point(0, 0);
+            this.tStripMenu_CatalogStorage.Name = "tStripMenu_CatalogStorage";
+            this.tStripMenu_CatalogStorage.Size = new System.Drawing.Size(492, 25);
+            this.tStripMenu_CatalogStorage.TabIndex = 0;
+            this.tStripMenu_CatalogStorage.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // tStripMenu_CatalogStorage_Add
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(61, 22);
-            this.toolStripButton1.Text = "Добавить";
+            this.tStripMenu_CatalogStorage_Add.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tStripMenu_CatalogStorage_Add.Image = ((System.Drawing.Image)(resources.GetObject("tStripMenu_CatalogStorage_Add.Image")));
+            this.tStripMenu_CatalogStorage_Add.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tStripMenu_CatalogStorage_Add.Name = "tStripMenu_CatalogStorage_Add";
+            this.tStripMenu_CatalogStorage_Add.Size = new System.Drawing.Size(61, 22);
+            this.tStripMenu_CatalogStorage_Add.Text = "Добавить";
             // 
-            // toolStripButton2
+            // tStripMenu_CatalogStorage_Edit
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(59, 22);
-            this.toolStripButton2.Text = "Изменить";
+            this.tStripMenu_CatalogStorage_Edit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tStripMenu_CatalogStorage_Edit.Image = ((System.Drawing.Image)(resources.GetObject("tStripMenu_CatalogStorage_Edit.Image")));
+            this.tStripMenu_CatalogStorage_Edit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tStripMenu_CatalogStorage_Edit.Name = "tStripMenu_CatalogStorage_Edit";
+            this.tStripMenu_CatalogStorage_Edit.Size = new System.Drawing.Size(59, 22);
+            this.tStripMenu_CatalogStorage_Edit.Text = "Изменить";
             // 
-            // toolStripButton3
+            // tStripMenu_CatalogStorage_Delete
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(55, 22);
-            this.toolStripButton3.Text = "Удалить";
+            this.tStripMenu_CatalogStorage_Delete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tStripMenu_CatalogStorage_Delete.Image = ((System.Drawing.Image)(resources.GetObject("tStripMenu_CatalogStorage_Delete.Image")));
+            this.tStripMenu_CatalogStorage_Delete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tStripMenu_CatalogStorage_Delete.Name = "tStripMenu_CatalogStorage_Delete";
+            this.tStripMenu_CatalogStorage_Delete.Size = new System.Drawing.Size(55, 22);
+            this.tStripMenu_CatalogStorage_Delete.Text = "Удалить";
+            this.tStripMenu_CatalogStorage_Delete.Click += new System.EventHandler(this.TStripMenu_CatalogStorage_Delete_Click);
             // 
             // DGV_CatalogStorage_Form
             // 
@@ -99,7 +105,6 @@ namespace Enterprise_Store_beta_1._0
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGV_CatalogStorage_Form.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGV_CatalogStorage_Form.BackgroundColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -113,6 +118,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_CatalogStorage_Form.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StorageId,
             this.StorageName});
+            this.DGV_CatalogStorage_Form.ContextMenuStrip = this.ctxMenu_CatalogStorage;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -122,7 +128,7 @@ namespace Enterprise_Store_beta_1._0
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.DGV_CatalogStorage_Form.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_CatalogStorage_Form.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            this.DGV_CatalogStorage_Form.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.DGV_CatalogStorage_Form.Location = new System.Drawing.Point(0, 28);
             this.DGV_CatalogStorage_Form.Name = "DGV_CatalogStorage_Form";
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -143,7 +149,9 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_CatalogStorage_Form.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.DGV_CatalogStorage_Form.Size = new System.Drawing.Size(492, 332);
             this.DGV_CatalogStorage_Form.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.DGV_CatalogStorage_Form, "\r\nнажмите F2\r\nили\r\nдвойной клик ЛКМ");
             this.DGV_CatalogStorage_Form.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CatalogStorage_Form_CellDoubleClick);
+            this.DGV_CatalogStorage_Form.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGV_CatalogStorage_Form_CellValidating);
             // 
             // StorageId
             // 
@@ -162,19 +170,39 @@ namespace Enterprise_Store_beta_1._0
             this.StorageName.MaxInputLength = 128;
             this.StorageName.Name = "StorageName";
             // 
+            // ctxMenu_CatalogStorage
+            // 
+            this.ctxMenu_CatalogStorage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ctxMenu_CatalogStorage_Delete});
+            this.ctxMenu_CatalogStorage.Name = "ctxMenu_CatalogStorage";
+            this.ctxMenu_CatalogStorage.Size = new System.Drawing.Size(162, 26);
+            // 
+            // ctxMenu_CatalogStorage_Delete
+            // 
+            this.ctxMenu_CatalogStorage_Delete.Name = "ctxMenu_CatalogStorage_Delete";
+            this.ctxMenu_CatalogStorage_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.ctxMenu_CatalogStorage_Delete.Size = new System.Drawing.Size(161, 22);
+            this.ctxMenu_CatalogStorage_Delete.Text = "Удалить";
+            this.ctxMenu_CatalogStorage_Delete.Click += new System.EventHandler(this.CtxMenu_CatalogStorage_Delete_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipTitle = "Редактирование";
+            // 
             // CatalogStorage_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(492, 372);
             this.Controls.Add(this.DGV_CatalogStorage_Form);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.tStripMenu_CatalogStorage);
             this.Name = "CatalogStorage_Form";
             this.Text = "CatalogStorage_Form";
             this.Load += new System.EventHandler(this.CatalogStorage_Form_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.tStripMenu_CatalogStorage.ResumeLayout(false);
+            this.tStripMenu_CatalogStorage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_CatalogStorage_Form)).EndInit();
+            this.ctxMenu_CatalogStorage.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,12 +210,15 @@ namespace Enterprise_Store_beta_1._0
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStrip tStripMenu_CatalogStorage;
+        private System.Windows.Forms.ToolStripButton tStripMenu_CatalogStorage_Add;
+        private System.Windows.Forms.ToolStripButton tStripMenu_CatalogStorage_Edit;
+        private System.Windows.Forms.ToolStripButton tStripMenu_CatalogStorage_Delete;
         private System.Windows.Forms.DataGridView DGV_CatalogStorage_Form;
         private System.Windows.Forms.DataGridViewTextBoxColumn StorageId;
         private System.Windows.Forms.DataGridViewTextBoxColumn StorageName;
+        private System.Windows.Forms.ContextMenuStrip ctxMenu_CatalogStorage;
+        private System.Windows.Forms.ToolStripMenuItem ctxMenu_CatalogStorage_Delete;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

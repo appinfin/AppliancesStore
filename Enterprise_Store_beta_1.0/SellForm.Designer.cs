@@ -34,11 +34,11 @@ namespace Enterprise_Store_beta_1._0
             this.toolStrip_SellForm = new System.Windows.Forms.ToolStrip();
             this.tStrip_SellForm_Actions = new System.Windows.Forms.ToolStripDropDownButton();
             this.tStrip_SellForm_Action_CreateSell = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.bind_DGV_SellForm = new System.Windows.Forms.BindingSource(this.components);
+            this.DGV_SellForm = new System.Windows.Forms.DataGridView();
             this.toolStrip_SellForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_SellForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SellForm)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip_SellForm
@@ -70,16 +70,15 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_SellForm_Action_CreateSell.Text = "Создать продажа";
             this.tStrip_SellForm_Action_CreateSell.Click += new System.EventHandler(this.ToolStrip_SellForm_Action_CreateSell_Click);
             // 
-            // dataGridView1
+            // DGV_SellForm
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.bindingSource1;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 25);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(392, 347);
-            this.dataGridView1.TabIndex = 2;
+            this.DGV_SellForm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_SellForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DGV_SellForm.Location = new System.Drawing.Point(0, 25);
+            this.DGV_SellForm.Name = "DGV_SellForm";
+            this.DGV_SellForm.RowTemplate.Height = 23;
+            this.DGV_SellForm.Size = new System.Drawing.Size(392, 347);
+            this.DGV_SellForm.TabIndex = 2;
             // 
             // SellForm
             // 
@@ -87,7 +86,7 @@ namespace Enterprise_Store_beta_1._0
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(392, 372);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DGV_SellForm);
             this.Controls.Add(this.toolStrip_SellForm);
             this.Name = "SellForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
@@ -95,8 +94,8 @@ namespace Enterprise_Store_beta_1._0
             this.Load += new System.EventHandler(this.SellForm_Load);
             this.toolStrip_SellForm.ResumeLayout(false);
             this.toolStrip_SellForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_SellForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_SellForm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,7 +105,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStrip toolStrip_SellForm;
         private System.Windows.Forms.ToolStripDropDownButton tStrip_SellForm_Actions;
         private System.Windows.Forms.ToolStripMenuItem tStrip_SellForm_Action_CreateSell;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource bindingSource1;
+        internal System.Windows.Forms.BindingSource bind_DGV_SellForm;
+        private System.Windows.Forms.DataGridView DGV_SellForm;
     }
 }

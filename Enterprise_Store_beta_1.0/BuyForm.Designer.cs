@@ -203,7 +203,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStrip toolStrip_BuyForm;
         private System.Windows.Forms.ToolStripDropDownButton tStrip_BuyForm_Actions;
         private System.Windows.Forms.ToolStripMenuItem tStrip_BuyForm_Action_CreateBuy;
-        //private System.Windows.Forms.BindingSource bind_DGV_BuyForm;
+        internal System.Windows.Forms.BindingSource bind_DGV_BuyForm;
         internal System.Windows.Forms.DataGridView DGV_BuyForm;
         private System.Windows.Forms.ContextMenuStrip ctxtMenu_BuyForm;
         private System.Windows.Forms.ToolStripMenuItem tStrip_ctxtMenu_BuyForm_Delete;

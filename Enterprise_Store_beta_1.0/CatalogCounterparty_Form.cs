@@ -25,7 +25,7 @@ namespace Enterprise_Store_beta_1._0
             DGV_CatalogCounterparty_Form.Columns["Realizations"].Visible = false;
             DGV_CatalogCounterparty_Form.Columns["Supplies"].Visible = false;
         }
-
+        
         #region // Двойной клик по строке для выбора и установки контрагента или редактирования
         private void DGV_CatalogCounterparty_Form_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -114,7 +114,6 @@ namespace Enterprise_Store_beta_1._0
             {
                 DGV_CatalogCounterparty_Form.CancelEdit();
                 DGV_CatalogCounterparty_Form.EndEdit();
-                //e.Cancel = true;
             }
             else
             {
@@ -176,6 +175,7 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
+        #region // Удаление строки
         private void TStrip_CatalogCounterparty_Delete_Click(object sender, EventArgs e)
         {
             if (DialogResult.OK == MessageBox.Show("Данные будут удалены безвозвратно.",
@@ -202,6 +202,7 @@ namespace Enterprise_Store_beta_1._0
         private void tStrip_ctxMenu_CataloCounterparty_Delete_Click(object sender, EventArgs e)
         {
             TStrip_CatalogCounterparty_Delete_Click(sender, e);
-        }
+        } 
+        #endregion
     }
 }

@@ -38,6 +38,7 @@ namespace Enterprise_Store_beta_1._0
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.butSelectStorage_CreateBuy = new System.Windows.Forms.Button();
             this.butSelectCounterparty_CreateBuy = new System.Windows.Forms.Button();
             this.butOK_CreateBuy = new System.Windows.Forms.Button();
@@ -55,6 +56,12 @@ namespace Enterprise_Store_beta_1._0
             this.txtCounterparty_CreateBuy = new System.Windows.Forms.TextBox();
             this.txtStorage_CreateBuy = new System.Windows.Forms.TextBox();
             this.DGV_CreateBuy = new System.Windows.Forms.DataGridView();
+            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PricePurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Summa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Delete_row = new System.Windows.Forms.DataGridViewButtonColumn();
             this.txtSearch_CreateBuy = new System.Windows.Forms.TextBox();
             this.butCatalogProduct_Delete = new System.Windows.Forms.Button();
             this.butCatalogProduct_Edit = new System.Windows.Forms.Button();
@@ -64,12 +71,6 @@ namespace Enterprise_Store_beta_1._0
             this.bind_DGV_CreateBuy = new System.Windows.Forms.BindingSource(this.components);
             this.bind_DGVcatalog_CreateBuy = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip_selectProduct_CreateBuy_Form = new System.Windows.Forms.ToolTip(this.components);
-            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Product_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PricePurchase = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Summa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Delete_row = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_CreateBuy)).BeginInit();
             this.splitContainer_CreateBuy.Panel1.SuspendLayout();
             this.splitContainer_CreateBuy.Panel2.SuspendLayout();
@@ -321,7 +322,7 @@ namespace Enterprise_Store_beta_1._0
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -344,75 +345,6 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_CreateBuy.Size = new System.Drawing.Size(485, 270);
             this.DGV_CreateBuy.TabIndex = 6;
             this.DGV_CreateBuy.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CreateBuy_CellClick);
-            // 
-            // txtSearch_CreateBuy
-            // 
-            this.txtSearch_CreateBuy.Location = new System.Drawing.Point(16, 72);
-            this.txtSearch_CreateBuy.Name = "txtSearch_CreateBuy";
-            this.txtSearch_CreateBuy.PlaceholderText = "- наименование товара для поиска -";
-            this.txtSearch_CreateBuy.Size = new System.Drawing.Size(237, 21);
-            this.txtSearch_CreateBuy.TabIndex = 2;
-            this.toolTip_selectProduct_CreateBuy_Form.SetToolTip(this.txtSearch_CreateBuy, "Введите не менее 3-х символов.\r\nПробелы тоже учитываются.");
-            this.txtSearch_CreateBuy.TextChanged += new System.EventHandler(this.txtSearch_CreateBuy_TextChanged);
-            // 
-            // butCatalogProduct_Delete
-            // 
-            this.butCatalogProduct_Delete.Location = new System.Drawing.Point(178, 99);
-            this.butCatalogProduct_Delete.Name = "butCatalogProduct_Delete";
-            this.butCatalogProduct_Delete.Size = new System.Drawing.Size(75, 28);
-            this.butCatalogProduct_Delete.TabIndex = 1;
-            this.butCatalogProduct_Delete.Text = "Удалить";
-            this.butCatalogProduct_Delete.UseVisualStyleBackColor = true;
-            this.butCatalogProduct_Delete.Click += new System.EventHandler(this.ButCatalogProduct_Delete_Click);
-            // 
-            // butCatalogProduct_Edit
-            // 
-            this.butCatalogProduct_Edit.Location = new System.Drawing.Point(97, 99);
-            this.butCatalogProduct_Edit.Name = "butCatalogProduct_Edit";
-            this.butCatalogProduct_Edit.Size = new System.Drawing.Size(75, 28);
-            this.butCatalogProduct_Edit.TabIndex = 1;
-            this.butCatalogProduct_Edit.Text = "Изменить";
-            this.butCatalogProduct_Edit.UseVisualStyleBackColor = true;
-            this.butCatalogProduct_Edit.Click += new System.EventHandler(this.ButCatalogProduct_Edit_Click);
-            // 
-            // butAddProduct_CreateBuy
-            // 
-            this.butAddProduct_CreateBuy.Location = new System.Drawing.Point(16, 99);
-            this.butAddProduct_CreateBuy.Name = "butAddProduct_CreateBuy";
-            this.butAddProduct_CreateBuy.Size = new System.Drawing.Size(75, 28);
-            this.butAddProduct_CreateBuy.TabIndex = 1;
-            this.butAddProduct_CreateBuy.Text = "Добавить";
-            this.butAddProduct_CreateBuy.UseVisualStyleBackColor = true;
-            this.butAddProduct_CreateBuy.Click += new System.EventHandler(this.ButAddProduct_CreateBuy_Click);
-            // 
-            // DGVcatalog_CreateBuy
-            // 
-            this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DGVcatalog_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGVcatalog_CreateBuy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVcatalog_CreateBuy.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            this.DGVcatalog_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle6;
-            this.DGVcatalog_CreateBuy.Location = new System.Drawing.Point(3, 133);
-            this.DGVcatalog_CreateBuy.MultiSelect = false;
-            this.DGVcatalog_CreateBuy.Name = "DGVcatalog_CreateBuy";
-            this.DGVcatalog_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.DGVcatalog_CreateBuy.RowHeadersVisible = false;
-            this.DGVcatalog_CreateBuy.RowTemplate.Height = 23;
-            this.DGVcatalog_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVcatalog_CreateBuy.Size = new System.Drawing.Size(382, 271);
-            this.DGVcatalog_CreateBuy.TabIndex = 0;
-            this.toolTip_selectProduct_CreateBuy_Form.SetToolTip(this.DGVcatalog_CreateBuy, "ДВОЙНОЙ КЛИК для\r\nДОБАВЛЕНИЯ в список товаров");
-            this.DGVcatalog_CreateBuy.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVcatalog_CreateBuy_CellDoubleClick);
-            // 
-            // contextMenuStripDataGridViewTextBoxColumn
-            // 
-            this.contextMenuStripDataGridViewTextBoxColumn.DataPropertyName = "ContextMenuStrip";
-            this.contextMenuStripDataGridViewTextBoxColumn.HeaderText = "ContextMenuStrip";
-            this.contextMenuStripDataGridViewTextBoxColumn.Name = "contextMenuStripDataGridViewTextBoxColumn";
             // 
             // ProductId
             // 
@@ -488,6 +420,83 @@ namespace Enterprise_Store_beta_1._0
             this.Delete_row.UseColumnTextForButtonValue = true;
             this.Delete_row.Width = 25;
             // 
+            // txtSearch_CreateBuy
+            // 
+            this.txtSearch_CreateBuy.Location = new System.Drawing.Point(16, 72);
+            this.txtSearch_CreateBuy.Name = "txtSearch_CreateBuy";
+            this.txtSearch_CreateBuy.PlaceholderText = "- наименование товара для поиска -";
+            this.txtSearch_CreateBuy.Size = new System.Drawing.Size(237, 21);
+            this.txtSearch_CreateBuy.TabIndex = 2;
+            this.toolTip_selectProduct_CreateBuy_Form.SetToolTip(this.txtSearch_CreateBuy, "Введите не менее 3-х символов.\r\nПробелы тоже учитываются.");
+            this.txtSearch_CreateBuy.TextChanged += new System.EventHandler(this.txtSearch_CreateBuy_TextChanged);
+            // 
+            // butCatalogProduct_Delete
+            // 
+            this.butCatalogProduct_Delete.Location = new System.Drawing.Point(178, 99);
+            this.butCatalogProduct_Delete.Name = "butCatalogProduct_Delete";
+            this.butCatalogProduct_Delete.Size = new System.Drawing.Size(75, 28);
+            this.butCatalogProduct_Delete.TabIndex = 1;
+            this.butCatalogProduct_Delete.Text = "Удалить";
+            this.butCatalogProduct_Delete.UseVisualStyleBackColor = true;
+            this.butCatalogProduct_Delete.Click += new System.EventHandler(this.ButCatalogProduct_Delete_Click);
+            // 
+            // butCatalogProduct_Edit
+            // 
+            this.butCatalogProduct_Edit.Location = new System.Drawing.Point(97, 99);
+            this.butCatalogProduct_Edit.Name = "butCatalogProduct_Edit";
+            this.butCatalogProduct_Edit.Size = new System.Drawing.Size(75, 28);
+            this.butCatalogProduct_Edit.TabIndex = 1;
+            this.butCatalogProduct_Edit.Text = "Изменить";
+            this.butCatalogProduct_Edit.UseVisualStyleBackColor = true;
+            this.butCatalogProduct_Edit.Click += new System.EventHandler(this.ButCatalogProduct_Edit_Click);
+            // 
+            // butAddProduct_CreateBuy
+            // 
+            this.butAddProduct_CreateBuy.Location = new System.Drawing.Point(16, 99);
+            this.butAddProduct_CreateBuy.Name = "butAddProduct_CreateBuy";
+            this.butAddProduct_CreateBuy.Size = new System.Drawing.Size(75, 28);
+            this.butAddProduct_CreateBuy.TabIndex = 1;
+            this.butAddProduct_CreateBuy.Text = "Добавить";
+            this.butAddProduct_CreateBuy.UseVisualStyleBackColor = true;
+            this.butAddProduct_CreateBuy.Click += new System.EventHandler(this.ButAddProduct_CreateBuy_Click);
+            // 
+            // DGVcatalog_CreateBuy
+            // 
+            this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGVcatalog_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGVcatalog_CreateBuy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVcatalog_CreateBuy.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.DGVcatalog_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVcatalog_CreateBuy.Cursor = System.Windows.Forms.Cursors.Default;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle8;
+            this.DGVcatalog_CreateBuy.Location = new System.Drawing.Point(3, 133);
+            this.DGVcatalog_CreateBuy.MultiSelect = false;
+            this.DGVcatalog_CreateBuy.Name = "DGVcatalog_CreateBuy";
+            this.DGVcatalog_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.DGVcatalog_CreateBuy.RowHeadersVisible = false;
+            this.DGVcatalog_CreateBuy.RowTemplate.Height = 23;
+            this.DGVcatalog_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVcatalog_CreateBuy.Size = new System.Drawing.Size(382, 271);
+            this.DGVcatalog_CreateBuy.TabIndex = 0;
+            this.toolTip_selectProduct_CreateBuy_Form.SetToolTip(this.DGVcatalog_CreateBuy, "ДВОЙНОЙ КЛИК для\r\nДОБАВЛЕНИЯ в список товаров");
+            this.DGVcatalog_CreateBuy.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVcatalog_CreateBuy_CellDoubleClick);
+            // 
+            // contextMenuStripDataGridViewTextBoxColumn
+            // 
+            this.contextMenuStripDataGridViewTextBoxColumn.DataPropertyName = "ContextMenuStrip";
+            this.contextMenuStripDataGridViewTextBoxColumn.HeaderText = "ContextMenuStrip";
+            this.contextMenuStripDataGridViewTextBoxColumn.Name = "contextMenuStripDataGridViewTextBoxColumn";
+            // 
             // CreateBuy_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -532,7 +541,6 @@ namespace Enterprise_Store_beta_1._0
         internal System.Windows.Forms.DataGridView DGV_CreateBuy;
         private System.Windows.Forms.BindingSource bind_DGVcatalog_CreateBuy;
         internal System.Windows.Forms.Label lblSumma;
-        
         private System.Windows.Forms.Button butClearList_CreateBuy;
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button butCatalogProduct_Delete;

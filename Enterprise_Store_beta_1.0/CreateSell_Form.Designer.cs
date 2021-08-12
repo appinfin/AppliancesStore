@@ -30,22 +30,44 @@ namespace Enterprise_Store_beta_1._0
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.toolTip_BuyForm = new System.Windows.Forms.ToolTip(this.components);
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.butSelect_Storage_CreateSell_Form = new System.Windows.Forms.Button();
+            this.butSelect_Date_CreateSell_Form = new System.Windows.Forms.Button();
+            this.lblDate_CreateSell_Form = new System.Windows.Forms.Label();
+            this.lblStorage_CreateSell_Form = new System.Windows.Forms.Label();
+            this.lblCounterparty_CreateSell_Form = new System.Windows.Forms.Label();
+            this.txtDate_CreateSell = new System.Windows.Forms.TextBox();
+            this.txtCounterparty_CreateSell = new System.Windows.Forms.TextBox();
+            this.txtStorage_CreateSell = new System.Windows.Forms.TextBox();
+            this.butSelect_Counterparty_CreateSell_Form = new System.Windows.Forms.Button();
+            this.lblPersonnel_CreateSell_Form = new System.Windows.Forms.Label();
+            this.txtPersonnel_CreateSell = new System.Windows.Forms.TextBox();
+            this.butSelect_Personnel_CreateSell_Form = new System.Windows.Forms.Button();
+            this.toolTip_selectProduct_CreateSell_Form = new System.Windows.Forms.ToolTip(this.components);
+            this.DGV_CreateSell = new System.Windows.Forms.DataGridView();
+            this.splitContainer_CreateSell = new System.Windows.Forms.SplitContainer();
+            this.butOK_CreateBuy = new System.Windows.Forms.Button();
+            this.lblSumma = new System.Windows.Forms.Label();
+            this.butClearList_CreateBuy = new System.Windows.Forms.Button();
+            this.butDisplayDGVcatalog_CreateBuy = new System.Windows.Forms.Button();
+            this.DGVcatalog_CreateBuy = new System.Windows.Forms.DataGridView();
+            this.bind_DGV_CreateSell = new System.Windows.Forms.BindingSource(this.components);
+            this.bind_DGVcatalog_CreateSell = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_CreateSell)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer_CreateSell)).BeginInit();
+            this.splitContainer_CreateSell.Panel1.SuspendLayout();
+            this.splitContainer_CreateSell.Panel2.SuspendLayout();
+            this.splitContainer_CreateSell.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVcatalog_CreateBuy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_CreateSell)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind_DGVcatalog_CreateSell)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -75,138 +97,286 @@ namespace Enterprise_Store_beta_1._0
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
-            this.tableLayoutPanel2.Controls.Add(this.button3, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.button1, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.textBox3, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.button2, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.butSelect_Storage_CreateSell_Form, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.butSelect_Date_CreateSell_Form, 2, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblDate_CreateSell_Form, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblStorage_CreateSell_Form, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.lblCounterparty_CreateSell_Form, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtDate_CreateSell, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtCounterparty_CreateSell, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtStorage_CreateSell, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.butSelect_Counterparty_CreateSell_Form, 2, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblPersonnel_CreateSell_Form, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.txtPersonnel_CreateSell, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.butSelect_Personnel_CreateSell_Form, 2, 3);
             this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 12);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(376, 81);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(376, 111);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // label2
+            // butSelect_Storage_CreateSell_Form
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 5);
-            this.label2.Margin = new System.Windows.Forms.Padding(5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Дата: ";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.butSelect_Storage_CreateSell_Form.Location = new System.Drawing.Point(341, 57);
+            this.butSelect_Storage_CreateSell_Form.Name = "butSelect_Storage_CreateSell_Form";
+            this.butSelect_Storage_CreateSell_Form.Size = new System.Drawing.Size(32, 21);
+            this.butSelect_Storage_CreateSell_Form.TabIndex = 2;
+            this.butSelect_Storage_CreateSell_Form.Text = "...";
+            this.butSelect_Storage_CreateSell_Form.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip_selectProduct_CreateSell_Form.SetToolTip(this.butSelect_Storage_CreateSell_Form, "выбрать/изменить");
+            this.butSelect_Storage_CreateSell_Form.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // butSelect_Date_CreateSell_Form
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 32);
-            this.label3.Margin = new System.Windows.Forms.Padding(5);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Поставщик: ";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.butSelect_Date_CreateSell_Form.Location = new System.Drawing.Point(341, 3);
+            this.butSelect_Date_CreateSell_Form.Name = "butSelect_Date_CreateSell_Form";
+            this.butSelect_Date_CreateSell_Form.Size = new System.Drawing.Size(32, 21);
+            this.butSelect_Date_CreateSell_Form.TabIndex = 1;
+            this.butSelect_Date_CreateSell_Form.Text = "...";
+            this.butSelect_Date_CreateSell_Form.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip_selectProduct_CreateSell_Form.SetToolTip(this.butSelect_Date_CreateSell_Form, "выбрать/изменить");
+            this.butSelect_Date_CreateSell_Form.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // lblDate_CreateSell_Form
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 59);
-            this.label4.Margin = new System.Windows.Forms.Padding(5);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Склад: ";
+            this.lblDate_CreateSell_Form.AutoSize = true;
+            this.lblDate_CreateSell_Form.Location = new System.Drawing.Point(5, 5);
+            this.lblDate_CreateSell_Form.Margin = new System.Windows.Forms.Padding(5);
+            this.lblDate_CreateSell_Form.Name = "lblDate_CreateSell_Form";
+            this.lblDate_CreateSell_Form.Size = new System.Drawing.Size(40, 13);
+            this.lblDate_CreateSell_Form.TabIndex = 0;
+            this.lblDate_CreateSell_Form.Text = "Дата: ";
+            this.lblDate_CreateSell_Form.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // lblStorage_CreateSell_Form
             // 
-            this.textBox1.Location = new System.Drawing.Point(84, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(251, 21);
-            this.textBox1.TabIndex = 3;
+            this.lblStorage_CreateSell_Form.AutoSize = true;
+            this.lblStorage_CreateSell_Form.Location = new System.Drawing.Point(5, 59);
+            this.lblStorage_CreateSell_Form.Margin = new System.Windows.Forms.Padding(5);
+            this.lblStorage_CreateSell_Form.Name = "lblStorage_CreateSell_Form";
+            this.lblStorage_CreateSell_Form.Size = new System.Drawing.Size(46, 13);
+            this.lblStorage_CreateSell_Form.TabIndex = 2;
+            this.lblStorage_CreateSell_Form.Text = "Склад: ";
             // 
-            // textBox2
+            // lblCounterparty_CreateSell_Form
             // 
-            this.textBox2.Location = new System.Drawing.Point(84, 30);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(251, 21);
-            this.textBox2.TabIndex = 4;
+            this.lblCounterparty_CreateSell_Form.AutoSize = true;
+            this.lblCounterparty_CreateSell_Form.Location = new System.Drawing.Point(5, 32);
+            this.lblCounterparty_CreateSell_Form.Margin = new System.Windows.Forms.Padding(5);
+            this.lblCounterparty_CreateSell_Form.Name = "lblCounterparty_CreateSell_Form";
+            this.lblCounterparty_CreateSell_Form.Size = new System.Drawing.Size(75, 13);
+            this.lblCounterparty_CreateSell_Form.TabIndex = 1;
+            this.lblCounterparty_CreateSell_Form.Text = "Покупатель: ";
+            this.lblCounterparty_CreateSell_Form.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox3
+            // txtDate_CreateSell
             // 
-            this.textBox3.Location = new System.Drawing.Point(84, 57);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(251, 21);
-            this.textBox3.TabIndex = 5;
+            this.txtDate_CreateSell.Location = new System.Drawing.Point(88, 3);
+            this.txtDate_CreateSell.Name = "txtDate_CreateSell";
+            this.txtDate_CreateSell.Size = new System.Drawing.Size(247, 21);
+            this.txtDate_CreateSell.TabIndex = 3;
             // 
-            // button1
+            // txtCounterparty_CreateSell
             // 
-            this.button1.Location = new System.Drawing.Point(341, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 21);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "...";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip_BuyForm.SetToolTip(this.button1, "выбрать/изменить");
-            this.button1.UseVisualStyleBackColor = true;
+            this.txtCounterparty_CreateSell.Location = new System.Drawing.Point(88, 30);
+            this.txtCounterparty_CreateSell.Name = "txtCounterparty_CreateSell";
+            this.txtCounterparty_CreateSell.Size = new System.Drawing.Size(247, 21);
+            this.txtCounterparty_CreateSell.TabIndex = 4;
             // 
-            // toolTip_BuyForm
+            // txtStorage_CreateSell
             // 
-            this.toolTip_BuyForm.ToolTipTitle = "выбрать/изменить";
+            this.txtStorage_CreateSell.Location = new System.Drawing.Point(88, 57);
+            this.txtStorage_CreateSell.Name = "txtStorage_CreateSell";
+            this.txtStorage_CreateSell.Size = new System.Drawing.Size(247, 21);
+            this.txtStorage_CreateSell.TabIndex = 5;
             // 
-            // button2
+            // butSelect_Counterparty_CreateSell_Form
             // 
-            this.button2.Location = new System.Drawing.Point(341, 30);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 21);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "...";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip_BuyForm.SetToolTip(this.button2, "выбрать/изменить");
-            this.button2.UseVisualStyleBackColor = true;
+            this.butSelect_Counterparty_CreateSell_Form.Location = new System.Drawing.Point(341, 30);
+            this.butSelect_Counterparty_CreateSell_Form.Name = "butSelect_Counterparty_CreateSell_Form";
+            this.butSelect_Counterparty_CreateSell_Form.Size = new System.Drawing.Size(32, 21);
+            this.butSelect_Counterparty_CreateSell_Form.TabIndex = 2;
+            this.butSelect_Counterparty_CreateSell_Form.Text = "...";
+            this.butSelect_Counterparty_CreateSell_Form.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip_selectProduct_CreateSell_Form.SetToolTip(this.butSelect_Counterparty_CreateSell_Form, "выбрать/изменить");
+            this.butSelect_Counterparty_CreateSell_Form.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // lblPersonnel_CreateSell_Form
             // 
-            this.button3.Location = new System.Drawing.Point(341, 57);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 21);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "...";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip_BuyForm.SetToolTip(this.button3, "выбрать/изменить");
-            this.button3.UseVisualStyleBackColor = true;
+            this.lblPersonnel_CreateSell_Form.AutoSize = true;
+            this.lblPersonnel_CreateSell_Form.Location = new System.Drawing.Point(5, 86);
+            this.lblPersonnel_CreateSell_Form.Margin = new System.Windows.Forms.Padding(5);
+            this.lblPersonnel_CreateSell_Form.Name = "lblPersonnel_CreateSell_Form";
+            this.lblPersonnel_CreateSell_Form.Size = new System.Drawing.Size(67, 13);
+            this.lblPersonnel_CreateSell_Form.TabIndex = 1;
+            this.lblPersonnel_CreateSell_Form.Text = "Менеджер: ";
+            this.lblPersonnel_CreateSell_Form.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // dataGridView1
+            // txtPersonnel_CreateSell_Form
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtPersonnel_CreateSell.Location = new System.Drawing.Point(88, 84);
+            this.txtPersonnel_CreateSell.Name = "txtPersonnel_CreateSell_Form";
+            this.txtPersonnel_CreateSell.Size = new System.Drawing.Size(247, 21);
+            this.txtPersonnel_CreateSell.TabIndex = 5;
+            // 
+            // butSelect_Personnel_CreateSell_Form
+            // 
+            this.butSelect_Personnel_CreateSell_Form.Location = new System.Drawing.Point(341, 84);
+            this.butSelect_Personnel_CreateSell_Form.Name = "butSelect_Personnel_CreateSell_Form";
+            this.butSelect_Personnel_CreateSell_Form.Size = new System.Drawing.Size(32, 21);
+            this.butSelect_Personnel_CreateSell_Form.TabIndex = 2;
+            this.butSelect_Personnel_CreateSell_Form.Text = "...";
+            this.butSelect_Personnel_CreateSell_Form.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.butSelect_Personnel_CreateSell_Form.UseVisualStyleBackColor = true;
+            // 
+            // toolTip_selectProduct_CreateSell_Form
+            // 
+            this.toolTip_selectProduct_CreateSell_Form.ToolTipTitle = "выбрать/изменить";
+            // 
+            // DGV_CreateSell
+            // 
+            this.DGV_CreateSell.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 155);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(776, 283);
-            this.dataGridView1.TabIndex = 1;
+            this.DGV_CreateSell.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGV_CreateSell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_CreateSell.Location = new System.Drawing.Point(12, 163);
+            this.DGV_CreateSell.Name = "DGV_CreateSell";
+            this.DGV_CreateSell.RowTemplate.Height = 23;
+            this.DGV_CreateSell.Size = new System.Drawing.Size(485, 270);
+            this.DGV_CreateSell.TabIndex = 1;
             // 
-            // CreateBuy_Form
+            // splitContainer_CreateSell
+            // 
+            this.splitContainer_CreateSell.Cursor = System.Windows.Forms.Cursors.VSplit;
+            this.splitContainer_CreateSell.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer_CreateSell.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer_CreateSell.Name = "splitContainer_CreateSell";
+            // 
+            // splitContainer_CreateSell.Panel1
+            // 
+            this.splitContainer_CreateSell.Panel1.Controls.Add(this.butOK_CreateBuy);
+            this.splitContainer_CreateSell.Panel1.Controls.Add(this.lblSumma);
+            this.splitContainer_CreateSell.Panel1.Controls.Add(this.DGV_CreateSell);
+            this.splitContainer_CreateSell.Panel1.Controls.Add(this.butClearList_CreateBuy);
+            this.splitContainer_CreateSell.Panel1.Controls.Add(this.butDisplayDGVcatalog_CreateBuy);
+            this.splitContainer_CreateSell.Panel1.Controls.Add(this.tableLayoutPanel2);
+            // 
+            // splitContainer_CreateSell.Panel2
+            // 
+            this.splitContainer_CreateSell.Panel2.Controls.Add(this.DGVcatalog_CreateBuy);
+            this.splitContainer_CreateSell.Size = new System.Drawing.Size(892, 486);
+            this.splitContainer_CreateSell.SplitterDistance = 500;
+            this.splitContainer_CreateSell.SplitterIncrement = 10;
+            this.splitContainer_CreateSell.TabIndex = 2;
+            // 
+            // butOK_CreateBuy
+            // 
+            this.butOK_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.butOK_CreateBuy.Location = new System.Drawing.Point(353, 440);
+            this.butOK_CreateBuy.Name = "butOK_CreateBuy";
+            this.butOK_CreateBuy.Size = new System.Drawing.Size(111, 28);
+            this.butOK_CreateBuy.TabIndex = 12;
+            this.butOK_CreateBuy.Text = "Провести";
+            this.butOK_CreateBuy.UseVisualStyleBackColor = true;
+            // 
+            // lblSumma
+            // 
+            this.lblSumma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSumma.AutoSize = true;
+            this.lblSumma.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSumma.Location = new System.Drawing.Point(17, 440);
+            this.lblSumma.Name = "lblSumma";
+            this.lblSumma.Size = new System.Drawing.Size(126, 21);
+            this.lblSumma.TabIndex = 11;
+            this.lblSumma.Text = "Сумма 0,00 ₽";
+            // 
+            // butClearList_CreateBuy
+            // 
+            this.butClearList_CreateBuy.Location = new System.Drawing.Point(129, 129);
+            this.butClearList_CreateBuy.Name = "butClearList_CreateBuy";
+            this.butClearList_CreateBuy.Size = new System.Drawing.Size(111, 28);
+            this.butClearList_CreateBuy.TabIndex = 10;
+            this.butClearList_CreateBuy.Text = "Очистить список";
+            this.butClearList_CreateBuy.UseVisualStyleBackColor = true;
+            // 
+            // butDisplayDGVcatalog_CreateBuy
+            // 
+            this.butDisplayDGVcatalog_CreateBuy.Location = new System.Drawing.Point(12, 129);
+            this.butDisplayDGVcatalog_CreateBuy.Name = "butDisplayDGVcatalog_CreateBuy";
+            this.butDisplayDGVcatalog_CreateBuy.Size = new System.Drawing.Size(111, 28);
+            this.butDisplayDGVcatalog_CreateBuy.TabIndex = 9;
+            this.butDisplayDGVcatalog_CreateBuy.Text = "Подобрать товар";
+            this.butDisplayDGVcatalog_CreateBuy.UseVisualStyleBackColor = true;
+            this.butDisplayDGVcatalog_CreateBuy.Click += new System.EventHandler(this.ButDisplayDGVcatalog_CreateBuy_Click);
+            // 
+            // DGVcatalog_CreateBuy
+            // 
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            this.DGVcatalog_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGVcatalog_CreateBuy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVcatalog_CreateBuy.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVcatalog_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle11;
+            this.DGVcatalog_CreateBuy.Location = new System.Drawing.Point(3, 163);
+            this.DGVcatalog_CreateBuy.MultiSelect = false;
+            this.DGVcatalog_CreateBuy.Name = "DGVcatalog_CreateBuy";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVcatalog_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            this.DGVcatalog_CreateBuy.RowHeadersVisible = false;
+            this.DGVcatalog_CreateBuy.RowTemplate.Height = 23;
+            this.DGVcatalog_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVcatalog_CreateBuy.Size = new System.Drawing.Size(382, 271);
+            this.DGVcatalog_CreateBuy.TabIndex = 1;
+            // 
+            // CreateSell_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.tableLayoutPanel2);
-            this.Name = "CreateBuy_Form";
-            this.Text = "Продажа товаров: Реализация/Заказ";
+            this.ClientSize = new System.Drawing.Size(892, 486);
+            this.Controls.Add(this.splitContainer_CreateSell);
+            this.Name = "CreateSell_Form";
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_CreateSell)).EndInit();
+            this.splitContainer_CreateSell.Panel1.ResumeLayout(false);
+            this.splitContainer_CreateSell.Panel1.PerformLayout();
+            this.splitContainer_CreateSell.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer_CreateSell)).EndInit();
+            this.splitContainer_CreateSell.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DGVcatalog_CreateBuy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_CreateSell)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bind_DGVcatalog_CreateSell)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,16 +386,27 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ToolTip toolTip_BuyForm;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label lblDate_CreateSell_Form;
+        private System.Windows.Forms.Label lblCounterparty_CreateSell_Form;
+        private System.Windows.Forms.Label lblStorage_CreateSell_Form;
+        private System.Windows.Forms.Button butSelect_Date_CreateSell_Form;
+        private System.Windows.Forms.ToolTip toolTip_selectProduct_CreateSell_Form;
+        private System.Windows.Forms.Button butSelect_Storage_CreateSell_Form;
+        private System.Windows.Forms.Button butSelect_Counterparty_CreateSell_Form;
+        internal System.Windows.Forms.DataGridView DGV_CreateSell;
+        private System.Windows.Forms.Label lblPersonnel_CreateSell_Form;
+        private System.Windows.Forms.Button butSelect_Personnel_CreateSell_Form;
+        private System.Windows.Forms.SplitContainer splitContainer_CreateSell;
+        private System.Windows.Forms.Button butClearList_CreateBuy;
+        private System.Windows.Forms.Button butDisplayDGVcatalog_CreateBuy;
+        internal System.Windows.Forms.Label lblSumma;
+        private System.Windows.Forms.Button butOK_CreateBuy;
+        private System.Windows.Forms.DataGridView DGVcatalog_CreateBuy;
+        private System.Windows.Forms.BindingSource bind_DGV_CreateSell;
+        private System.Windows.Forms.BindingSource bind_DGVcatalog_CreateSell;
+        internal System.Windows.Forms.TextBox txtDate_CreateSell;
+        internal System.Windows.Forms.TextBox txtCounterparty_CreateSell;
+        internal System.Windows.Forms.TextBox txtStorage_CreateSell;
+        internal System.Windows.Forms.TextBox txtPersonnel_CreateSell;
     }
 }

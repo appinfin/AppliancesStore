@@ -14,7 +14,6 @@ namespace Enterprise_Store_beta_1._0
             InitializeComponent();
             this.buyForm = buyForm;
             splitContainer_CreateBuy.Panel2Collapsed = true;
-
         }
         #endregion
 
@@ -45,6 +44,7 @@ namespace Enterprise_Store_beta_1._0
                 .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
                 .OrderBy(n => n.name);
 
+            
             //соединяем списки productGroupName и productsWithoutGroupName
             //вставляем список в список с указанного индекса
             productGroupName.InsertRange(productGroupName.Count, productsWithoutGroupName);
@@ -108,7 +108,7 @@ namespace Enterprise_Store_beta_1._0
 
                     //получаем итоговую сумму товаров
                     this.lblSumma.Text = "Сумма: "
-                                            + Manager.GetSummaDocumentBuy(this.DGV_CreateBuy)
+                                            + Manager.GetSummaDocument(this.DGV_CreateBuy)
                                             .ToString("C");
                 }
                 catch (Exception)
@@ -305,7 +305,7 @@ namespace Enterprise_Store_beta_1._0
                 var currentDoc = db.Supplies
                     .Where(s => s.SupplyId == SupplyID)
                     .FirstOrDefault();
-                currentDoc.StoragesStorageId = catalogStorage.StorageID;
+                currentDoc.StoragesStorageId = catalogStorage.CurrentStorage.StorageId;
 
                 try
                 {
@@ -425,7 +425,7 @@ namespace Enterprise_Store_beta_1._0
                     DGV_CreateBuy.Rows.RemoveAt(e.RowIndex);
                     //получаем итоговую сумму товаров
                     this.lblSumma.Text = "Сумма: "
-                                            + Manager.GetSummaDocumentBuy(this.DGV_CreateBuy)
+                                            + Manager.GetSummaDocument(this.DGV_CreateBuy)
                                             .ToString("C");
                     MessageBox.Show("Cell Click!!!");
                 }

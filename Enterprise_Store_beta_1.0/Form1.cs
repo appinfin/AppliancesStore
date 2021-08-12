@@ -72,12 +72,9 @@ namespace Enterprise_Store_beta_1._0
                 }
             if (ok)
             {
-                //var t = Task.Run(() => Manager.GetListDocumentBuy());
                 var buyForm = new BuyForm();
                 buyForm.MdiParent = this;
-                //t.Wait();
-                //buyForm.bind_DGV_BuyForm = t.Result;
-                buyForm.bind_DGV_BuyForm = Manager.GetListDocumentBuy();
+                //buyForm.bind_DGV_BuyForm = Manager.GetListDocumentBuy();
                 buyForm.Show();
             }
         }
@@ -105,6 +102,7 @@ namespace Enterprise_Store_beta_1._0
         private void Form1_Load(object sender, EventArgs e)
         {
             toolStripMenuBuy_Click(sender, e);
+            //toolStripMenuSell_Click(sender, e);
         }
     }
 }
