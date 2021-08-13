@@ -31,6 +31,10 @@ namespace Enterprise_Store_beta_1._0
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SellForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip_SellForm = new System.Windows.Forms.ToolStrip();
             this.tStrip_SellForm_Actions = new System.Windows.Forms.ToolStripDropDownButton();
             this.tStrip_SellForm_Action_CreateSell = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +53,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_SellForm_Actions});
             this.toolStrip_SellForm.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_SellForm.Name = "toolStrip_SellForm";
-            this.toolStrip_SellForm.Size = new System.Drawing.Size(392, 25);
+            this.toolStrip_SellForm.Size = new System.Drawing.Size(792, 25);
             this.toolStrip_SellForm.TabIndex = 1;
             this.toolStrip_SellForm.Text = "toolStrip_SellForm";
             // 
@@ -72,12 +76,44 @@ namespace Enterprise_Store_beta_1._0
             // 
             // DGV_SellForm
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SellForm.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_SellForm.BackgroundColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SellForm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SellForm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SellForm.DefaultCellStyle = dataGridViewCellStyle3;
             this.DGV_SellForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGV_SellForm.Location = new System.Drawing.Point(0, 25);
             this.DGV_SellForm.Name = "DGV_SellForm";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_SellForm.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_SellForm.RowTemplate.Height = 23;
-            this.DGV_SellForm.Size = new System.Drawing.Size(392, 347);
+            this.DGV_SellForm.Size = new System.Drawing.Size(792, 547);
             this.DGV_SellForm.TabIndex = 2;
             // 
             // SellForm
@@ -85,12 +121,12 @@ namespace Enterprise_Store_beta_1._0
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(392, 372);
+            this.ClientSize = new System.Drawing.Size(792, 572);
             this.Controls.Add(this.DGV_SellForm);
             this.Controls.Add(this.toolStrip_SellForm);
             this.Name = "SellForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "SellForm";
+            this.Text = "Реализация/заказы";
             this.Load += new System.EventHandler(this.SellForm_Load);
             this.toolStrip_SellForm.ResumeLayout(false);
             this.toolStrip_SellForm.PerformLayout();

@@ -1,6 +1,6 @@
-﻿using ModelLibrary_Estore_1;
+﻿using Microsoft.EntityFrameworkCore;
+using ModelLibrary_Estore_1;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -8,18 +8,43 @@ namespace Enterprise_Store_beta_1._0
 {
     public partial class Test_Form : Form
     {
-        
+
         public Test_Form()
         {
             InitializeComponent();
-            //S = "HELLO";
         }
 
         private void Test_Form_Load(object sender, EventArgs e)
         {
-            
+
             using Db_Enterprise_Store_Context db = new();
 
+
+            var sq = db.Products
+                .Include(s => s.SupplyPriceQties)
+                .ToQueryString();
+
+            var sqq = db.Products
+                .Include(s => s.SupplyPriceQties)
+                .ThenInclude(s => s.Supply.StoragesStorage)
+                .Select(ss => new
+                {
+                    ss.ProductId,
+                    ss.ProductName,
+                    supplyCount = ss.SupplyPriceQties.Count,
+                    //supplyID = ss.SupplyPriceQties.Select(s => s.su),
+                    qty = ss.SupplyPriceQties.Select(s => new {s.Quantity}).Select(s => s.Quantity).Sum()
+                })
+                .ToList();
+
+            bindComBox_Brand.DataSource = sqq;
+            dataGridView1.DataSource = bindComBox_Brand;
+            textBox1.Text = sq;
+
+
+
+
+            #region // Запрос атрибутов док-та  к БД
             //var allBrands = db.Brands.ToList();
             //bindComBox_Brand.DataSource = allBrands;
             //comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
@@ -36,28 +61,29 @@ namespace Enterprise_Store_beta_1._0
             //bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
             //comBoxUnit.DataSource = bindComBox_Unit;
             //comBoxUnit.SelectedItem = null;
-            //comBoxUnit.Text = "- выбрать из списка -";
+            //comBoxUnit.Text = "- выбрать из списка -"; 
+            #endregion
 
             #region Привязка к ДГВ построчно
-        //    dataGridView1.ColumnCount = 4;
-        //    string[] row1 = new string[] { "Meatloaf", "Main Dish", "ground beef",
-        //"**" };
-        //    string[] row2 = new string[] { "Key Lime Pie", "Dessert",
-        //"lime juice, evaporated milk", "****" };
-        //    string[] row3 = new string[] { "Orange-Salsa Pork Chops", "Main Dish",
-        //"pork chops, salsa, orange juice", "****" };
-        //    string[] row4 = new string[] { "Black Bean and Rice Salad", "Salad",
-        //"black beans, brown rice", "****" };
-        //    string[] row5 = new string[] { "Chocolate Cheesecake", "Dessert",
-        //"cream cheese", "***" };
-        //    string[] row6 = new string[] { "Black Bean Dip", "Appetizer",
-        //"black beans, sour cream", "***" };
-        //    object[] rows = new object[] { row1, row2, row3, row4, row5, row6 };
+            //    dataGridView1.ColumnCount = 4;
+            //    string[] row1 = new string[] { "Meatloaf", "Main Dish", "ground beef",
+            //"**" };
+            //    string[] row2 = new string[] { "Key Lime Pie", "Dessert",
+            //"lime juice, evaporated milk", "****" };
+            //    string[] row3 = new string[] { "Orange-Salsa Pork Chops", "Main Dish",
+            //"pork chops, salsa, orange juice", "****" };
+            //    string[] row4 = new string[] { "Black Bean and Rice Salad", "Salad",
+            //"black beans, brown rice", "****" };
+            //    string[] row5 = new string[] { "Chocolate Cheesecake", "Dessert",
+            //"cream cheese", "***" };
+            //    string[] row6 = new string[] { "Black Bean Dip", "Appetizer",
+            //"black beans, sour cream", "***" };
+            //    object[] rows = new object[] { row1, row2, row3, row4, row5, row6 };
 
-        //    foreach (string[] rowArray in rows)
-        //    {
-        //        dataGridView1.Rows.Add(rowArray);
-        //    } 
+            //    foreach (string[] rowArray in rows)
+            //    {
+            //        dataGridView1.Rows.Add(rowArray);
+            //    } 
             #endregion
         }
 
@@ -119,7 +145,7 @@ namespace Enterprise_Store_beta_1._0
                     MessageBox.Show("Упс!!! Что-то пошло не так.\n" +
                                             "Попробуйте ещё раз");
                 }
-                
+
                 txtProductName.Text = "";
                 comBoxBrand.Text = "- выбрать из списка -";
                 comBoxProductGroup.Text = "- выбрать из списка -";
@@ -169,18 +195,19 @@ namespace Enterprise_Store_beta_1._0
             comBoxBrand.SelectedIndex = idx;
         }
 
+        #region // ПОИСК
         private void txtProductName_TextChanged(object sender, EventArgs e)
         {
             while (txtProductName.Text.Length < 3)
             {
                 return;
             }
-            MessageBox.Show("Text change", "ПОИСК",MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            MessageBox.Show("Text change", "ПОИСК", MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
             Db_Enterprise_Store_Context db = new();
             var s = db.Products.Where(p => p.ProductName.StartsWith(txtProductName.Text))
                 .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
                 .ToList();
-            
+
             bindDGV.DataSource = s;
             dataGridView1.DataSource = bindDGV;
 
@@ -196,5 +223,6 @@ namespace Enterprise_Store_beta_1._0
             #endregion
 
         }
+        #endregion
     }
 }

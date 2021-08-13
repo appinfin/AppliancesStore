@@ -504,6 +504,7 @@ namespace Enterprise_Store_beta_1._0
             this.ClientSize = new System.Drawing.Size(892, 465);
             this.Controls.Add(this.splitContainer_CreateBuy);
             this.Name = "CreateBuy_Form";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateBuy_Form_FormClosed);
             this.splitContainer_CreateBuy.Panel1.ResumeLayout(false);
             this.splitContainer_CreateBuy.Panel1.PerformLayout();

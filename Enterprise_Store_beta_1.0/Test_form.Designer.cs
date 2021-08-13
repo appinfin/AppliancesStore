@@ -53,6 +53,7 @@ namespace Enterprise_Store_beta_1._0
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.bindDGV = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_AddProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSale_AddProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Brand)).BeginInit();
@@ -234,12 +235,17 @@ namespace Enterprise_Store_beta_1._0
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 153);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
+            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(600, 285);
+            this.dataGridView1.Size = new System.Drawing.Size(600, 225);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
@@ -257,14 +263,25 @@ namespace Enterprise_Store_beta_1._0
             treeNode2.Text = "Товары";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode2});
-            this.treeView1.Size = new System.Drawing.Size(419, 426);
+            this.treeView1.Size = new System.Drawing.Size(419, 523);
             this.treeView1.TabIndex = 7;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(12, 384);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(600, 151);
+            this.textBox1.TabIndex = 8;
             // 
             // Test_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 450);
+            this.ClientSize = new System.Drawing.Size(1049, 547);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.treeView1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.butSave_AddProduct);
@@ -272,6 +289,7 @@ namespace Enterprise_Store_beta_1._0
             this.Name = "Test_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Карточка товара";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Test_Form_Load);
             this.tableLayoutPanel_AddProduct.ResumeLayout(false);
             this.tableLayoutPanel_AddProduct.PerformLayout();
@@ -282,6 +300,7 @@ namespace Enterprise_Store_beta_1._0
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindDGV)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -312,5 +331,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         internal System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.BindingSource bindDGV;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }

@@ -58,7 +58,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_BuyForm_Refresh});
             this.toolStrip_BuyForm.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_BuyForm.Name = "toolStrip_BuyForm";
-            this.toolStrip_BuyForm.Size = new System.Drawing.Size(663, 25);
+            this.toolStrip_BuyForm.Size = new System.Drawing.Size(792, 25);
             this.toolStrip_BuyForm.TabIndex = 1;
             this.toolStrip_BuyForm.Text = "toolStrip_BuyForm";
             // 
@@ -128,7 +128,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_BuyForm.MultiSelect = false;
             this.DGV_BuyForm.Name = "DGV_BuyForm";
             this.DGV_BuyForm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGV_BuyForm.Size = new System.Drawing.Size(663, 532);
+            this.DGV_BuyForm.Size = new System.Drawing.Size(792, 547);
             this.DGV_BuyForm.TabIndex = 2;
             this.toolTip1.SetToolTip(this.DGV_BuyForm, "ДВОЙНОЙ КЛИК левой кнопкой мыши\r\nОТКРЫТЬ документ");
             this.DGV_BuyForm.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_BuyForm_CellDoubleClick);
@@ -141,13 +141,13 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_ctxMenu_BuyForm_Edit});
             this.ctxtMenu_BuyForm.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.ctxtMenu_BuyForm.Name = "contextMenuStrip1";
-            this.ctxtMenu_BuyForm.Size = new System.Drawing.Size(181, 92);
+            this.ctxtMenu_BuyForm.Size = new System.Drawing.Size(162, 70);
             // 
             // tStrip_ctxMenu_BuyForm_Open
             // 
             this.tStrip_ctxMenu_BuyForm_Open.Name = "tStrip_ctxMenu_BuyForm_Open";
             this.tStrip_ctxMenu_BuyForm_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tStrip_ctxMenu_BuyForm_Open.Size = new System.Drawing.Size(180, 22);
+            this.tStrip_ctxMenu_BuyForm_Open.Size = new System.Drawing.Size(161, 22);
             this.tStrip_ctxMenu_BuyForm_Open.Text = "Открыть";
             this.tStrip_ctxMenu_BuyForm_Open.Click += new System.EventHandler(this.tStrip_ctxMenu_BuyForm_Open_Click);
             // 
@@ -155,7 +155,7 @@ namespace Enterprise_Store_beta_1._0
             // 
             this.tStrip_ctxtMenu_BuyForm_Delete.Name = "tStrip_ctxtMenu_BuyForm_Delete";
             this.tStrip_ctxtMenu_BuyForm_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.tStrip_ctxtMenu_BuyForm_Delete.Size = new System.Drawing.Size(180, 22);
+            this.tStrip_ctxtMenu_BuyForm_Delete.Size = new System.Drawing.Size(161, 22);
             this.tStrip_ctxtMenu_BuyForm_Delete.Text = "Удалить";
             this.tStrip_ctxtMenu_BuyForm_Delete.Click += new System.EventHandler(this.ToolStrip_ctxtMenu_BuyForm_Delete_Click);
             // 
@@ -163,7 +163,7 @@ namespace Enterprise_Store_beta_1._0
             // 
             this.tStrip_ctxMenu_BuyForm_Edit.Name = "tStrip_ctxMenu_BuyForm_Edit";
             this.tStrip_ctxMenu_BuyForm_Edit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.tStrip_ctxMenu_BuyForm_Edit.Size = new System.Drawing.Size(180, 22);
+            this.tStrip_ctxMenu_BuyForm_Edit.Size = new System.Drawing.Size(161, 22);
             this.tStrip_ctxMenu_BuyForm_Edit.Text = "Изменить";
             this.tStrip_ctxMenu_BuyForm_Edit.Click += new System.EventHandler(this.tStrip_ctxMenu_BuyForm_Open_Click);
             // 
@@ -180,13 +180,12 @@ namespace Enterprise_Store_beta_1._0
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(663, 557);
+            this.ClientSize = new System.Drawing.Size(792, 572);
             this.Controls.Add(this.DGV_BuyForm);
             this.Controls.Add(this.toolStrip_BuyForm);
             this.Location = new System.Drawing.Point(10, 10);
             this.Name = "BuyForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultBounds;
             this.Text = "Покупка/Комиссия";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.BuyForm_Load);

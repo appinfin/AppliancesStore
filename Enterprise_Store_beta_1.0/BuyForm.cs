@@ -14,8 +14,6 @@ namespace Enterprise_Store_beta_1._0
     /// </summary>
     public partial class BuyForm : Form
     {
-        //объект с привязываемыми данными из БД
-        //public BindingSource bind_DGV_BuyForm { get; set; }
 
         public BuyForm()
         {

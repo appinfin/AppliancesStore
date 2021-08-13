@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
-using System.Threading.Tasks;
-using ModelLibrary_Estore_1;
 
 namespace Enterprise_Store_beta_1._0
 {
-    
+
     public partial class Form1 : Form
     {
 
         public Form1()
         {
             InitializeComponent();
-            
+
         }
 
-        
+
         #region Расположение окон в родительской форме
         private void HorizontallyTileMyWindows(object sender, EventArgs e)
         {
             // Tile all child forms horizontally.
             this.LayoutMdi(MdiLayout.TileHorizontal);
-            
+
         }
 
         private void VerticallyTileMyWindows(object sender, EventArgs e)
@@ -38,8 +35,9 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        #region Создание дочерних окон (форм) "Покупка", "Продажа"
-        #region Форма док-тов "Реализация товаров" Файл > Создать > Продажа
+        #region // Создание дочерних окон (форм) "Покупка", "Продажа"
+
+        #region //Форма док-тов "Реализация товаров" Файл > Создать > Продажа
         private void toolStripMenuSell_Click(object sender, EventArgs e)
         {
             bool ok = true;
@@ -74,7 +72,6 @@ namespace Enterprise_Store_beta_1._0
             {
                 var buyForm = new BuyForm();
                 buyForm.MdiParent = this;
-                //buyForm.bind_DGV_BuyForm = Manager.GetListDocumentBuy();
                 buyForm.Show();
             }
         }
@@ -101,7 +98,7 @@ namespace Enterprise_Store_beta_1._0
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            toolStripMenuBuy_Click(sender, e);
+            //toolStripMenuBuy_Click(sender, e);
             //toolStripMenuSell_Click(sender, e);
         }
     }

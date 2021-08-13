@@ -1,4 +1,5 @@
 ﻿using ModelLibrary_Estore_1;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Data;
 using System.Linq;
@@ -35,13 +36,16 @@ namespace Enterprise_Store_beta_1._0
 
             //выборка групп товаров
             var productGroupName = db.ProductsGroups
-                .Select(n => new { category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName, brand = "" })
+                .Select(n => new { category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName, brand = "", qty = "" })
                 .OrderBy(n => n.category)
                 .ToList();
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
+                .Include(s => s.SupplyPriceQties)
                 .Where(p => p.ProductsGroupsProductGroupId == null)
-                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
+                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName,
+                    qty = p.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum().ToString()
+                })
                 .OrderBy(n => n.name);
 
             
@@ -69,6 +73,8 @@ namespace Enterprise_Store_beta_1._0
             DGVcatalog_CreateBuy.Columns["name"].FillWeight = 60;
             DGVcatalog_CreateBuy.Columns["brand"].HeaderText = "Производитель";
             DGVcatalog_CreateBuy.Columns["brand"].FillWeight = 20;
+            DGVcatalog_CreateBuy.Columns["qty"].HeaderText = "Производитель";
+            DGVcatalog_CreateBuy.Columns["qty"].FillWeight = 10;
         }
         #endregion
 
@@ -449,7 +455,7 @@ namespace Enterprise_Store_beta_1._0
             {
                 return;
             }
-            MessageBox.Show("Text change", "ПОИСК", MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+            
             Db_Enterprise_Store_Context db = new();
             var s = db.Products.Where(p => p.ProductName.StartsWith(txtSearch_CreateBuy.Text))
                 .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
