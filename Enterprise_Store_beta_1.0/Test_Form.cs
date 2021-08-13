@@ -26,14 +26,27 @@ namespace Enterprise_Store_beta_1._0
 
             var sqq = db.Products
                 .Include(s => s.SupplyPriceQties)
-                .ThenInclude(s => s.Supply.StoragesStorage)
+                .ThenInclude(s => s.Supply)
+                .ThenInclude(s => s.StoragesStorage)
                 .Select(ss => new
                 {
                     ss.ProductId,
                     ss.ProductName,
                     supplyCount = ss.SupplyPriceQties.Count,
-                    //supplyID = ss.SupplyPriceQties.Select(s => s.su),
-                    qty = ss.SupplyPriceQties.Select(s => new {s.Quantity}).Select(s => s.Quantity).Sum()
+                    
+                    storageName = ss.SupplyPriceQties
+                                    .Where(s => s.Supply.StoragesStorage.StorageId==2)
+                                    .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum()
+
+                                    //.Select(s => new { s.Supply.StoragesStorageId} )
+                                    //.Where(s => s.StoragesStorageId == 2)
+                                    //.Select(s => s.StoragesStorage.StorageName)
+                                    //.Select(s => new { s[]})
+
+                                    //.Where(s => s.StorageId == 2)
+                                    ,
+
+                    qty = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum()
                 })
                 .ToList();
 
