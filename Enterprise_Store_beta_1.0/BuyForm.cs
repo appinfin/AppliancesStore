@@ -45,7 +45,7 @@ namespace Enterprise_Store_beta_1._0
         #region //Создание док-та "Покупка/комиссия" - КНОПКА Действия → создать покупка/комиссия
         private void ToolStrip_BuyForm_Action_CreateBuy_Click(object sender, EventArgs e)
         {
-            CreateBuy_Form createBuy_Form = new(this)
+            CreateBuy_Form createBuy_Form = new()
             {
                 //присваиваем родителя для формы
                 //родитель Form1 (MdiContainer)
@@ -61,6 +61,7 @@ namespace Enterprise_Store_beta_1._0
 
             //получаем ID созданного док-та и передаём его в форму док-та
             createBuy_Form.SupplyID = tracking.Entity.SupplyId;
+            createBuy_Form.Supply = tracking.Entity;
             Manager.SetAttributeDocumentBuy(db, createBuy_Form); //устанавливаем атрибуты док-та
             createBuy_Form.lblSumma.Text = "Сумма: "
                                             + Manager.GetSummaDocument(createBuy_Form.DGV_CreateBuy)
@@ -76,10 +77,11 @@ namespace Enterprise_Store_beta_1._0
         private void DGV_BuyForm_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //создаём экземпляр формы <Поступление товара>
-            CreateBuy_Form createBuy_Form = new(this)
+            CreateBuy_Form createBuy_Form = new()
             {
                 //получаем значение Id документа
                 //из ячейки DGV, выбранной строки, в колонке "SupplyId"
+                
                 SupplyID = (int)DGV_BuyForm.CurrentRow.Cells["SupplyId"].Value,
 
                 //присваиваем родителя для формы
@@ -87,12 +89,14 @@ namespace Enterprise_Store_beta_1._0
                 MdiParent = this.MdiParent
             };
 
+            //устанавливаем атрибуты док-та
             using Db_Enterprise_Store_Context db = new();
             Manager.SetAttributeDocumentBuy(db, createBuy_Form); //устанавливаем атрибуты док-та
             createBuy_Form.DGV_CreateBuy.DataSource = Manager.GetListProductBuy(createBuy_Form.SupplyID);
             createBuy_Form.lblSumma.Text = "Сумма: "
                                             + Manager.GetSummaDocument(createBuy_Form.DGV_CreateBuy)
                                             .ToString("C");
+
             createBuy_Form.Show(); //отображаем форму
         }
         #endregion

@@ -11,13 +11,15 @@ namespace Enterprise_Store_beta_1._0
         public static void SetAttributeDocumentBuy(Db_Enterprise_Store_Context db,
                                                    CreateBuy_Form createBuy_Form)
         {
+            createBuy_Form.Supply = db.Supplies.Where(s => s.SupplyId == createBuy_Form.SupplyID).First();
             //получение даты, контрагента, склада
             var attributeDoc = db.Supplies.Where(s => s.SupplyId == createBuy_Form.SupplyID)
                     .Select(r => new
                     {
                         r.Date,
                         r.CounterpartysCounterparty.CounterpartyName,
-                        r.StoragesStorage.StorageName
+                        r.StoragesStorage.StorageName,
+                        StoragesStorageId = r.StoragesStorageId
                     })
                     .ToList();
 

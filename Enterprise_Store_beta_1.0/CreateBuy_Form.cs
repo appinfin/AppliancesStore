@@ -10,17 +10,16 @@ namespace Enterprise_Store_beta_1._0
     public partial class CreateBuy_Form : Form
     {
         #region //Форма док-та "Покупка/комиссия"
-        public CreateBuy_Form(BuyForm buyForm)
+        public CreateBuy_Form()
         {
             InitializeComponent();
-            this.buyForm = buyForm;
             splitContainer_CreateBuy.Panel2Collapsed = true;
         }
         #endregion
-
+        public Supply Supply { get; set; }
         public int SupplyID { get; set; } //id док-та "Покупка/комиссия"
-        readonly BuyForm buyForm;
-
+       
+        //public int SupplyID { get; set; }
         #region //Панель "Каталог товаров" подобрать товар
         #region // Открытие панели "Каталог товаров" - КНОПКА <подобрать товар>
         private void ButDisplayDGVcatalog_CreateBuy_Click(object sender, EventArgs e)
@@ -36,15 +35,26 @@ namespace Enterprise_Store_beta_1._0
 
             //выборка групп товаров
             var productGroupName = db.ProductsGroups
-                .Select(n => new { category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName, brand = "", qty = "" })
+                .Select(n => new
+                {
+                    category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName, brand = "",
+                    availableInStock = "", allAvailableInStock = ""
+                })
                 .OrderBy(n => n.category)
                 .ToList();
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
                 .Include(s => s.SupplyPriceQties)
                 .Where(p => p.ProductsGroupsProductGroupId == null)
-                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName,
-                    qty = p.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum().ToString()
+                .Select(p => new
+                {
+                    category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName,
+                    
+                    availableInStock = p.SupplyPriceQties
+                                    .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
+                                    .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+
+                    allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
                 })
                 .OrderBy(n => n.name);
 
@@ -73,8 +83,12 @@ namespace Enterprise_Store_beta_1._0
             DGVcatalog_CreateBuy.Columns["name"].FillWeight = 60;
             DGVcatalog_CreateBuy.Columns["brand"].HeaderText = "Производитель";
             DGVcatalog_CreateBuy.Columns["brand"].FillWeight = 20;
-            DGVcatalog_CreateBuy.Columns["qty"].HeaderText = "Производитель";
-            DGVcatalog_CreateBuy.Columns["qty"].FillWeight = 10;
+            DGVcatalog_CreateBuy.Columns["availableInStock"].Visible = true;
+            DGVcatalog_CreateBuy.Columns["availableInStock"].HeaderText = "На складе";
+            DGVcatalog_CreateBuy.Columns["availableInStock"].FillWeight = 10;
+            DGVcatalog_CreateBuy.Columns["allAvailableInStock"].Visible = true;
+            DGVcatalog_CreateBuy.Columns["allAvailableInStock"].HeaderText = "На всех складах";
+            DGVcatalog_CreateBuy.Columns["allAvailableInStock"].FillWeight = 10;
         }
         #endregion
 
@@ -134,14 +148,34 @@ namespace Enterprise_Store_beta_1._0
             if ((string)DGVcatalog_CreateBuy.CurrentRow.Cells["category"].Value == "Группа")
             {
                 using Db_Enterprise_Store_Context db = new();
+                //var productsWithGroupName = db.Products
+                //    .Where(p => p.ProductsGroupsProductGroupId == SelectedId)
+                //    .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
+                //    .ToList();
+
+                //выборка товаров в группе
                 var productsWithGroupName = db.Products
                     .Where(p => p.ProductsGroupsProductGroupId == SelectedId)
-                    .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
-                    .ToList();
+                    .Include(s => s.SupplyPriceQties)
+                    .Select(p => new
+                    {
+                        category = "Товар",
+                        id = p.ProductId,
+                        name = p.ProductName,
+                        brand = p.BrandsBrand.BrandName,
+
+                        availableInStock = p.SupplyPriceQties
+                                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
+                                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+
+                        allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                    })
+                    .OrderBy(n => n.name).ToList();
+
 
                 bind_DGVcatalog_CreateBuy.DataSource = productsWithGroupName;
                 DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
-
+                ViewDGVcatalogCreateBuy();
             }
             #endregion
 
@@ -260,9 +294,7 @@ namespace Enterprise_Store_beta_1._0
         {
             this.txtDate_CreateBuy.Text = "" + monthCalendar1.SelectionStart;
         }
-        private void MonthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
-        {
-        }
+
         #endregion
 
         #region// Выбор контрагентов.
@@ -312,11 +344,14 @@ namespace Enterprise_Store_beta_1._0
                     .Where(s => s.SupplyId == SupplyID)
                     .FirstOrDefault();
                 currentDoc.StoragesStorageId = catalogStorage.CurrentStorage.StorageId;
+                this.Supply.StoragesStorageId = catalogStorage.CurrentStorage.StorageId;
 
                 try
                 {
                     db.SaveChanges();
                     Manager.SetAttributeDocumentBuy(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
+                    ButDisplayDGVcatalog_CreateBuy_Click(sender, e);
+
                 }
                 catch
                 {
@@ -324,28 +359,30 @@ namespace Enterprise_Store_beta_1._0
                 }
             }
         }
-        #endregion 
+        #endregion
         #endregion
 
-        #region // Кнопка "Провести". Обновление данных в форме список док-тов "Покупка/комиссия"
+        #region // Кнопка "Провести", Кнопка закрытия формы - Обновление формы Buy_Form
+        // Кнопка "Провести". Обновление данных в форме список док-тов "Покупка/комиссия"
         private void ButOK_CreateBuy_Click(object sender, EventArgs e)
         {
+            var openForms = Application.OpenForms;
+            BuyForm buyForm = (BuyForm)openForms["BuyForm"];
             buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
         }
-        #endregion
 
-        #region // Кнопка закрытия формы. Обновление данных в форме список док-тов "Покупка/комиссия"
+        // Кнопка закрытия формы. Обновление данных в форме список док-тов "Покупка/комиссия"
         private void CreateBuy_Form_FormClosed(object sender, FormClosedEventArgs e)
         {
-            buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
-        }
+            ButOK_CreateBuy_Click( sender,  e);
+            //buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
+        } 
         #endregion
 
         #region // Кнопка "Добавить" на панели выбор товара из списка
         private void ButAddProduct_CreateBuy_Click(object sender, EventArgs e)
         {
             AddProduct_Form addProduct_Form = new();
-            //addProduct_Form.Bind();
             addProduct_Form.ShowDialog();
             ButDisplayDGVcatalog_CreateBuy_Click(sender, e);
         }
@@ -433,7 +470,6 @@ namespace Enterprise_Store_beta_1._0
                     this.lblSumma.Text = "Сумма: "
                                             + Manager.GetSummaDocument(this.DGV_CreateBuy)
                                             .ToString("C");
-                    MessageBox.Show("Cell Click!!!");
                 }
                 catch (Exception)
                 {
@@ -457,11 +493,30 @@ namespace Enterprise_Store_beta_1._0
             }
             
             Db_Enterprise_Store_Context db = new();
-            var s = db.Products.Where(p => p.ProductName.StartsWith(txtSearch_CreateBuy.Text))
-                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
-                .ToList();
+            //var s = db.Products.Where(p => p.ProductName.StartsWith(txtSearch_CreateBuy.Text))
+            //    .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
+            //    .ToList();
 
-            bind_DGVcatalog_CreateBuy.DataSource = s;
+            var foundProduct = db.Products
+                    .Where(p => p.ProductName.StartsWith(txtSearch_CreateBuy.Text))
+                    .Include(s => s.SupplyPriceQties)
+                    .Select(p => new
+                    {
+                        category = "Товар",
+                        id = p.ProductId,
+                        name = p.ProductName,
+                        brand = p.BrandsBrand.BrandName,
+
+                        availableInStock = p.SupplyPriceQties
+                                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
+                                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+
+                        allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                    })
+                    .OrderBy(n => n.name).ToList();
+
+
+            bind_DGVcatalog_CreateBuy.DataSource = foundProduct;
             DGVcatalog_CreateBuy.DataSource = bind_DGVcatalog_CreateBuy;
 
             ViewDGVcatalogCreateBuy();

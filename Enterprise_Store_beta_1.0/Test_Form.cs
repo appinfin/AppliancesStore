@@ -22,6 +22,20 @@ namespace Enterprise_Store_beta_1._0
 
             var sq = db.Products
                 .Include(s => s.SupplyPriceQties)
+                .ThenInclude(s => s.Supply)
+                .ThenInclude(s => s.StoragesStorage)
+                .Select(ss => new
+                {
+                    ss.ProductId,
+                    ss.ProductName,
+                    supplyCount = ss.SupplyPriceQties,//.Count,
+
+                    availableInStock = ss.SupplyPriceQties
+                                    .Where(s => s.Supply.StoragesStorage.StorageId == 2)
+                                    .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum(),
+
+                    allAvailableInStock = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).AsQueryable()
+                })
                 .ToQueryString();
 
             var sqq = db.Products
@@ -32,21 +46,13 @@ namespace Enterprise_Store_beta_1._0
                 {
                     ss.ProductId,
                     ss.ProductName,
-                    supplyCount = ss.SupplyPriceQties.Count,
-                    
-                    storageName = ss.SupplyPriceQties
-                                    .Where(s => s.Supply.StoragesStorage.StorageId==2)
-                                    .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum()
+                    supplyCount = ss.SupplyPriceQties,//.Count,
 
-                                    //.Select(s => new { s.Supply.StoragesStorageId} )
-                                    //.Where(s => s.StoragesStorageId == 2)
-                                    //.Select(s => s.StoragesStorage.StorageName)
-                                    //.Select(s => new { s[]})
+                    availableInStock = ss.SupplyPriceQties
+                                    .Where(s => s.Supply.StoragesStorage.StorageId == 2)
+                                    .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum(),
 
-                                    //.Where(s => s.StorageId == 2)
-                                    ,
-
-                    qty = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum()
+                    allAvailableInStock = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum()
                 })
                 .ToList();
 

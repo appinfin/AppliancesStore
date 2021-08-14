@@ -107,7 +107,7 @@ namespace Enterprise_Store_beta_1._0
             // butOK_CreateBuy
             // 
             this.butOK_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.butOK_CreateBuy.Location = new System.Drawing.Point(353, 411);
+            this.butOK_CreateBuy.Location = new System.Drawing.Point(353, 518);
             this.butOK_CreateBuy.Name = "butOK_CreateBuy";
             this.butOK_CreateBuy.Size = new System.Drawing.Size(111, 28);
             this.butOK_CreateBuy.TabIndex = 3;
@@ -152,7 +152,7 @@ namespace Enterprise_Store_beta_1._0
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Edit);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butAddProduct_CreateBuy);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.DGVcatalog_CreateBuy);
-            this.splitContainer_CreateBuy.Size = new System.Drawing.Size(892, 465);
+            this.splitContainer_CreateBuy.Size = new System.Drawing.Size(892, 572);
             this.splitContainer_CreateBuy.SplitterDistance = 500;
             this.splitContainer_CreateBuy.SplitterIncrement = 10;
             this.splitContainer_CreateBuy.TabIndex = 5;
@@ -169,7 +169,6 @@ namespace Enterprise_Store_beta_1._0
             this.monthCalendar1.TabIndex = 1;
             this.monthCalendar1.Visible = false;
             this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar1_DateChanged);
-            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar1_DateSelected);
             // 
             // butClearList_CreateBuy
             // 
@@ -186,7 +185,7 @@ namespace Enterprise_Store_beta_1._0
             this.lblSumma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSumma.AutoSize = true;
             this.lblSumma.Font = new System.Drawing.Font("Tahoma", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblSumma.Location = new System.Drawing.Point(17, 411);
+            this.lblSumma.Location = new System.Drawing.Point(17, 518);
             this.lblSumma.Name = "lblSumma";
             this.lblSumma.Size = new System.Drawing.Size(126, 21);
             this.lblSumma.TabIndex = 7;
@@ -342,7 +341,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_CreateBuy.RowTemplate.Height = 23;
             this.DGV_CreateBuy.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.DGV_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DGV_CreateBuy.Size = new System.Drawing.Size(485, 270);
+            this.DGV_CreateBuy.Size = new System.Drawing.Size(485, 377);
             this.DGV_CreateBuy.TabIndex = 6;
             this.DGV_CreateBuy.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_CreateBuy_CellClick);
             // 
@@ -486,7 +485,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGVcatalog_CreateBuy.RowHeadersVisible = false;
             this.DGVcatalog_CreateBuy.RowTemplate.Height = 23;
             this.DGVcatalog_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVcatalog_CreateBuy.Size = new System.Drawing.Size(382, 271);
+            this.DGVcatalog_CreateBuy.Size = new System.Drawing.Size(382, 378);
             this.DGVcatalog_CreateBuy.TabIndex = 0;
             this.toolTip_selectProduct_CreateBuy_Form.SetToolTip(this.DGVcatalog_CreateBuy, "ДВОЙНОЙ КЛИК для\r\nДОБАВЛЕНИЯ в список товаров");
             this.DGVcatalog_CreateBuy.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVcatalog_CreateBuy_CellDoubleClick);
@@ -501,10 +500,9 @@ namespace Enterprise_Store_beta_1._0
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 465);
+            this.ClientSize = new System.Drawing.Size(892, 572);
             this.Controls.Add(this.splitContainer_CreateBuy);
             this.Name = "CreateBuy_Form";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CreateBuy_Form_FormClosed);
             this.splitContainer_CreateBuy.Panel1.ResumeLayout(false);
             this.splitContainer_CreateBuy.Panel1.PerformLayout();
