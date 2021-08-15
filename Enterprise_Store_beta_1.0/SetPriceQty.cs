@@ -20,11 +20,12 @@ namespace Enterprise_Store_beta_1._0
         }
 
         internal decimal PricePurchase { get; set; }
+        internal decimal PriceSelling { get; set; }
         internal decimal Quantity { get; set; }
 
         private void SetPriceQtyOK_Click(object sender, EventArgs e)
         {
-            
+            var pp = this.PricePurchase;
             if (Decimal.TryParse(txtPrice.Text, out decimal _price) && Decimal.TryParse(txtQty.Text, out decimal _qty))
             {
                 PricePurchase = _price;
@@ -42,6 +43,17 @@ namespace Enterprise_Store_beta_1._0
             }
 
             this.Close();
+        }
+
+        private void SetPriceQty_Load(object sender, EventArgs e)
+        {
+            if (this.PriceSelling != 0)
+            {
+                this.txtPrice.Text = Math.Round(this.PriceSelling, 2, MidpointRounding.ToEven).ToString();
+                this.txtQty.TabIndex = 0;
+                this.setPriceQtyOK.TabIndex = 1;
+                this.txtPrice.TabIndex = 2;
+            }
         }
     }
 }

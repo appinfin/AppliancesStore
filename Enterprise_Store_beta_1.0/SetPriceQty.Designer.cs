@@ -39,20 +39,22 @@ namespace Enterprise_Store_beta_1._0
             // txtPrice
             // 
             this.txtPrice.Location = new System.Drawing.Point(80, 19);
+            this.txtPrice.MaxLength = 16;
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(100, 21);
             this.txtPrice.TabIndex = 0;
-            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPrice.Text = "0,00";
+            this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtQty
             // 
             this.txtQty.Location = new System.Drawing.Point(80, 53);
+            this.txtQty.MaxLength = 8;
             this.txtQty.Name = "txtQty";
             this.txtQty.Size = new System.Drawing.Size(100, 21);
             this.txtQty.TabIndex = 1;
-            this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtQty.Text = "0";
+            this.txtQty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // setPriceQtyOK
             // 
@@ -63,7 +65,6 @@ namespace Enterprise_Store_beta_1._0
             this.setPriceQtyOK.Text = "добавить";
             this.setPriceQtyOK.UseVisualStyleBackColor = true;
             this.setPriceQtyOK.Click += new System.EventHandler(this.SetPriceQtyOK_Click);
-
             // 
             // lblPrice
             // 
@@ -97,6 +98,7 @@ namespace Enterprise_Store_beta_1._0
             this.Name = "SetPriceQty";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "цена/кол-во";
+            this.Load += new System.EventHandler(this.SetPriceQty_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

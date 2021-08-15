@@ -37,7 +37,7 @@ namespace Enterprise_Store_beta_1._0
         #region //Создание док-та "Реализация/заказ" - КНОПКА Действия → создать продажа/заказ
         private void ToolStrip_SellForm_Action_CreateSell_Click(object sender, EventArgs e)
         {
-            CreateSell_Form createSell_Form = new(this)
+            CreateSell_Form createSell_Form = new()
             {
                 //присваиваем родителя для формы
                 //родитель Form1 (MdiContainer)
@@ -53,6 +53,7 @@ namespace Enterprise_Store_beta_1._0
 
             //получаем ID созданного док-та и передаём его в форму док-та
             createSell_Form.RealizationID = tracking.Entity.RealizationId;
+            createSell_Form.Realization = tracking.Entity;
             Manager.SetAttributeDocumentSell(db, createSell_Form); //устанавливаем атрибуты док-та
             createSell_Form.lblSumma.Text = "Сумма: "
                                             + Manager.GetSummaDocument(createSell_Form.DGV_CreateSell)

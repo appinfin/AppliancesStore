@@ -30,14 +30,14 @@ namespace Enterprise_Store_beta_1._0
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -60,7 +60,7 @@ namespace Enterprise_Store_beta_1._0
             this.lblSumma = new System.Windows.Forms.Label();
             this.butClearList_CreateBuy = new System.Windows.Forms.Button();
             this.butDisplayDGVcatalog_CreateBuy = new System.Windows.Forms.Button();
-            this.DGVcatalog_CreateBuy = new System.Windows.Forms.DataGridView();
+            this.DGVcatalog_CreateSell = new System.Windows.Forms.DataGridView();
             this.bind_DGV_CreateSell = new System.Windows.Forms.BindingSource(this.components);
             this.bind_DGVcatalog_CreateSell = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel2.SuspendLayout();
@@ -69,7 +69,7 @@ namespace Enterprise_Store_beta_1._0
             this.splitContainer_CreateSell.Panel1.SuspendLayout();
             this.splitContainer_CreateSell.Panel2.SuspendLayout();
             this.splitContainer_CreateSell.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVcatalog_CreateBuy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVcatalog_CreateSell)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_CreateSell)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGVcatalog_CreateSell)).BeginInit();
             this.SuspendLayout();
@@ -243,43 +243,43 @@ namespace Enterprise_Store_beta_1._0
             // 
             // DGV_CreateSell
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Lavender;
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            this.DGV_CreateSell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            this.DGV_CreateSell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DGV_CreateSell.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGV_CreateSell.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_CreateSell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_CreateSell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.DGV_CreateSell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_CreateSell.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_CreateSell.DefaultCellStyle = dataGridViewCellStyle11;
             this.DGV_CreateSell.Location = new System.Drawing.Point(12, 163);
             this.DGV_CreateSell.Name = "DGV_CreateSell";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV_CreateSell.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV_CreateSell.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.DGV_CreateSell.RowTemplate.Height = 23;
             this.DGV_CreateSell.Size = new System.Drawing.Size(485, 356);
             this.DGV_CreateSell.TabIndex = 1;
@@ -302,7 +302,7 @@ namespace Enterprise_Store_beta_1._0
             // 
             // splitContainer_CreateSell.Panel2
             // 
-            this.splitContainer_CreateSell.Panel2.Controls.Add(this.DGVcatalog_CreateBuy);
+            this.splitContainer_CreateSell.Panel2.Controls.Add(this.DGVcatalog_CreateSell);
             this.splitContainer_CreateSell.Size = new System.Drawing.Size(892, 572);
             this.splitContainer_CreateSell.SplitterDistance = 500;
             this.splitContainer_CreateSell.SplitterIncrement = 10;
@@ -346,52 +346,52 @@ namespace Enterprise_Store_beta_1._0
             this.butDisplayDGVcatalog_CreateBuy.TabIndex = 9;
             this.butDisplayDGVcatalog_CreateBuy.Text = "Подобрать товар";
             this.butDisplayDGVcatalog_CreateBuy.UseVisualStyleBackColor = true;
-            this.butDisplayDGVcatalog_CreateBuy.Click += new System.EventHandler(this.ButDisplayDGVcatalog_CreateBuy_Click);
+            this.butDisplayDGVcatalog_CreateBuy.Click += new System.EventHandler(this.ButDisplayDGVcatalog_CreateSell_Click);
             // 
-            // DGVcatalog_CreateBuy
+            // DGVcatalog_CreateSell
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Lavender;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.DGVcatalog_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            this.DGVcatalog_CreateSell.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            this.DGVcatalog_CreateSell.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.DGVcatalog_CreateBuy.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.DGVcatalog_CreateBuy.BackgroundColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVcatalog_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle7;
-            this.DGVcatalog_CreateBuy.Location = new System.Drawing.Point(3, 163);
-            this.DGVcatalog_CreateBuy.MultiSelect = false;
-            this.DGVcatalog_CreateBuy.Name = "DGVcatalog_CreateBuy";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVcatalog_CreateBuy.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.DGVcatalog_CreateBuy.RowHeadersVisible = false;
-            this.DGVcatalog_CreateBuy.RowTemplate.Height = 23;
-            this.DGVcatalog_CreateBuy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVcatalog_CreateBuy.Size = new System.Drawing.Size(382, 357);
-            this.DGVcatalog_CreateBuy.TabIndex = 1;
+            this.DGVcatalog_CreateSell.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGVcatalog_CreateSell.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVcatalog_CreateSell.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.DGVcatalog_CreateSell.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVcatalog_CreateSell.DefaultCellStyle = dataGridViewCellStyle15;
+            this.DGVcatalog_CreateSell.Location = new System.Drawing.Point(3, 163);
+            this.DGVcatalog_CreateSell.MultiSelect = false;
+            this.DGVcatalog_CreateSell.Name = "DGVcatalog_CreateSell";
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVcatalog_CreateSell.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            this.DGVcatalog_CreateSell.RowHeadersVisible = false;
+            this.DGVcatalog_CreateSell.RowTemplate.Height = 23;
+            this.DGVcatalog_CreateSell.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DGVcatalog_CreateSell.Size = new System.Drawing.Size(382, 357);
+            this.DGVcatalog_CreateSell.TabIndex = 1;
             // 
             // CreateSell_Form
             // 
@@ -408,7 +408,7 @@ namespace Enterprise_Store_beta_1._0
             this.splitContainer_CreateSell.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_CreateSell)).EndInit();
             this.splitContainer_CreateSell.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.DGVcatalog_CreateBuy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVcatalog_CreateSell)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_CreateSell)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGVcatalog_CreateSell)).EndInit();
             this.ResumeLayout(false);
@@ -435,7 +435,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.Button butDisplayDGVcatalog_CreateBuy;
         internal System.Windows.Forms.Label lblSumma;
         private System.Windows.Forms.Button butOK_CreateBuy;
-        private System.Windows.Forms.DataGridView DGVcatalog_CreateBuy;
+        private System.Windows.Forms.DataGridView DGVcatalog_CreateSell;
         private System.Windows.Forms.BindingSource bind_DGV_CreateSell;
         private System.Windows.Forms.BindingSource bind_DGVcatalog_CreateSell;
         internal System.Windows.Forms.TextBox txtDate_CreateSell;

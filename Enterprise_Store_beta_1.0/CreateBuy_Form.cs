@@ -19,7 +19,6 @@ namespace Enterprise_Store_beta_1._0
         public Supply Supply { get; set; }
         public int SupplyID { get; set; } //id док-та "Покупка/комиссия"
        
-        //public int SupplyID { get; set; }
         #region //Панель "Каталог товаров" подобрать товар
         #region // Открытие панели "Каталог товаров" - КНОПКА <подобрать товар>
         private void ButDisplayDGVcatalog_CreateBuy_Click(object sender, EventArgs e)
@@ -78,11 +77,11 @@ namespace Enterprise_Store_beta_1._0
             DGVcatalog_CreateBuy.Columns["id"].Visible = false;
             //DGVcatalog_CreateBuy.Columns["category"].Visible = false;
             DGVcatalog_CreateBuy.Columns["category"].HeaderText = ""; //заголовок
-            DGVcatalog_CreateBuy.Columns["category"].FillWeight = 20;
+            DGVcatalog_CreateBuy.Columns["category"].FillWeight = 15;
             DGVcatalog_CreateBuy.Columns["name"].HeaderText = "Номенклатура";
-            DGVcatalog_CreateBuy.Columns["name"].FillWeight = 60;
+            DGVcatalog_CreateBuy.Columns["name"].FillWeight = 40;
             DGVcatalog_CreateBuy.Columns["brand"].HeaderText = "Производитель";
-            DGVcatalog_CreateBuy.Columns["brand"].FillWeight = 20;
+            DGVcatalog_CreateBuy.Columns["brand"].FillWeight = 15;
             DGVcatalog_CreateBuy.Columns["availableInStock"].Visible = true;
             DGVcatalog_CreateBuy.Columns["availableInStock"].HeaderText = "На складе";
             DGVcatalog_CreateBuy.Columns["availableInStock"].FillWeight = 10;
@@ -374,6 +373,10 @@ namespace Enterprise_Store_beta_1._0
         // Кнопка закрытия формы. Обновление данных в форме список док-тов "Покупка/комиссия"
         private void CreateBuy_Form_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if (e.CloseReason == CloseReason.MdiFormClosing)
+            {
+                return;
+            }
             ButOK_CreateBuy_Click( sender,  e);
             //buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
         } 

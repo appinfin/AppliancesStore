@@ -3,6 +3,7 @@ using ModelLibrary_Estore_1;
 using System;
 using System.Linq;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Enterprise_Store_beta_1._0
 {
@@ -16,27 +17,37 @@ namespace Enterprise_Store_beta_1._0
 
         private void Test_Form_Load(object sender, EventArgs e)
         {
+            var priceSelling = Manager.GetPriceSell(5);
+            decimal PriceSelling = priceSelling * (decimal)1.3;
+            this.txtProductName.Text = Math.Round(PriceSelling, 2, MidpointRounding.ToEven).ToString();
+            
+            var f = new SetPriceQty();
+            //f.Text += " " + productName;
+            f.PriceSelling = priceSelling * (decimal)1.3;
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+            }
 
-            using Db_Enterprise_Store_Context db = new();
+                using Db_Enterprise_Store_Context db = new();
 
 
-            var sq = db.Products
-                .Include(s => s.SupplyPriceQties)
-                .ThenInclude(s => s.Supply)
-                .ThenInclude(s => s.StoragesStorage)
-                .Select(ss => new
-                {
-                    ss.ProductId,
-                    ss.ProductName,
-                    supplyCount = ss.SupplyPriceQties,//.Count,
+            //var sq = db.Products
+            //    .Include(s => s.SupplyPriceQties)
+            //    .ThenInclude(s => s.Supply)
+            //    .ThenInclude(s => s.StoragesStorage)
+            //    .Select(ss => new
+            //    {
+            //        ss.ProductId,
+            //        ss.ProductName,
+            //        supplyCount = ss.SupplyPriceQties,//.Count,
 
-                    availableInStock = ss.SupplyPriceQties
-                                    .Where(s => s.Supply.StoragesStorage.StorageId == 2)
-                                    .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum(),
+            //        availableInStock = ss.SupplyPriceQties
+            //                        .Where(s => s.Supply.StoragesStorage.StorageId == 2)
+            //                        .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum(),
 
-                    allAvailableInStock = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).AsQueryable()
-                })
-                .ToQueryString();
+            //        allAvailableInStock = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity)
+            //    })
+            //    .ToQueryString();
 
             var sqq = db.Products
                 .Include(s => s.SupplyPriceQties)
@@ -58,7 +69,7 @@ namespace Enterprise_Store_beta_1._0
 
             bindComBox_Brand.DataSource = sqq;
             dataGridView1.DataSource = bindComBox_Brand;
-            textBox1.Text = sq;
+            //textBox1.Text = sq;
 
 
 

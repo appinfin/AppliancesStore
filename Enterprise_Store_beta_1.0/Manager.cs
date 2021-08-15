@@ -166,6 +166,7 @@ namespace Enterprise_Store_beta_1._0
         public static void SetAttributeDocumentSell(Db_Enterprise_Store_Context db,
                                                    CreateSell_Form createSell_Form)
         {
+            createSell_Form.Realization = db.Realizations.Where(s => s.RealizationId == createSell_Form.RealizationID).First();
             //получение даты, контрагента, склада
             var attributeDoc = db.Realizations.Where(s => s.RealizationId == createSell_Form.RealizationID)
                     .Select(r => new
@@ -223,5 +224,51 @@ namespace Enterprise_Store_beta_1._0
             #endregion
         }
         #endregion
+
+        #region //получение списка товаров в док-те "Реализация/заказ"
+        ///<summary>
+        ///Формирует представление списка товаров док-та "Реализация/заказ"
+        ///</summary>
+        ///
+        internal static BindingSource GetListProductSell(int RealizationID)
+        {
+            BindingSource bind_DGV_CreateSell = new();
+            #region //Запрос к БД: отображение д-та "Реализация/заказ"
+            using Db_Enterprise_Store_Context db = new();
+            //список товаров соответствующих коду док-та <Поступление товаров>
+            //выбранного для редактирования
+            var _realPrQty = db.RealizationPriceQtys.Where(r => r.RealizationId == RealizationID)
+                .Select(r => new
+                { //формирование представления
+                    r.ProductId,
+                    r.Product.ProductName,
+                    r.PriceSelling,
+                    r.Quantity,
+                    Summa = r.PriceSelling * (decimal)r.Quantity,
+                    textButton = ""
+                })
+                .ToList();
+
+            //Привязка данных
+            bind_DGV_CreateSell.DataSource = _realPrQty;
+
+            return bind_DGV_CreateSell;
+            #endregion
+        }
+        #endregion
+
+        public static decimal GetPriceSell(int SelectedId)
+        {
+            decimal priceSell = 0;
+
+            Db_Enterprise_Store_Context db = new();
+            var price = db.SupplyPriceQtys
+                .Include(s => s.Supply)
+                .Where(p => p.ProductId == SelectedId)
+                .Select(p => new { p.PricePurchase, date = p.Supply.Date })
+                .OrderBy(p => p.date).First();
+
+            return priceSell = price.PricePurchase;//[0].PricePurchase;
+        }
     }
 }

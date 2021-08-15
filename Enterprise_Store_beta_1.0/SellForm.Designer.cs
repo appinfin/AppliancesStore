@@ -40,9 +40,16 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_SellForm_Action_CreateSell = new System.Windows.Forms.ToolStripMenuItem();
             this.bind_DGV_SellForm = new System.Windows.Forms.BindingSource(this.components);
             this.DGV_SellForm = new System.Windows.Forms.DataGridView();
+            this.tStrip_SellForm_Refresh = new System.Windows.Forms.ToolStripButton();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ctxtMenu_SellForm = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tStrip_ctxMenu_BuyForm_Open = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_ctxtMenu_BuyForm_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_ctxMenu_BuyForm_Edit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_SellForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_SellForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SellForm)).BeginInit();
+            this.ctxtMenu_SellForm.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip_SellForm
@@ -50,7 +57,8 @@ namespace Enterprise_Store_beta_1._0
             this.toolStrip_SellForm.AllowMerge = false;
             this.toolStrip_SellForm.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip_SellForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tStrip_SellForm_Actions});
+            this.tStrip_SellForm_Actions,
+            this.tStrip_SellForm_Refresh});
             this.toolStrip_SellForm.Location = new System.Drawing.Point(0, 0);
             this.toolStrip_SellForm.Name = "toolStrip_SellForm";
             this.toolStrip_SellForm.Size = new System.Drawing.Size(792, 25);
@@ -116,6 +124,54 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_SellForm.Size = new System.Drawing.Size(792, 547);
             this.DGV_SellForm.TabIndex = 2;
             // 
+            // tStrip_SellForm_Refresh
+            // 
+            this.tStrip_SellForm_Refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tStrip_SellForm_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("tStrip_SellForm_Refresh.Image")));
+            this.tStrip_SellForm_Refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tStrip_SellForm_Refresh.Name = "tStrip_SellForm_Refresh";
+            this.tStrip_SellForm_Refresh.Size = new System.Drawing.Size(61, 22);
+            this.tStrip_SellForm_Refresh.Text = "Обновить";
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 300;
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 200;
+            this.toolTip1.ReshowDelay = 60;
+            this.toolTip1.ToolTipTitle = "Открытие документа";
+            // 
+            // ctxtMenu_SellForm
+            // 
+            this.ctxtMenu_SellForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tStrip_ctxMenu_BuyForm_Open,
+            this.tStrip_ctxtMenu_BuyForm_Delete,
+            this.tStrip_ctxMenu_BuyForm_Edit});
+            this.ctxtMenu_SellForm.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
+            this.ctxtMenu_SellForm.Name = "contextMenuStrip1";
+            this.ctxtMenu_SellForm.Size = new System.Drawing.Size(162, 70);
+            // 
+            // tStrip_ctxMenu_BuyForm_Open
+            // 
+            this.tStrip_ctxMenu_BuyForm_Open.Name = "tStrip_ctxMenu_BuyForm_Open";
+            this.tStrip_ctxMenu_BuyForm_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.tStrip_ctxMenu_BuyForm_Open.Size = new System.Drawing.Size(161, 22);
+            this.tStrip_ctxMenu_BuyForm_Open.Text = "Открыть";
+            // 
+            // tStrip_ctxtMenu_BuyForm_Delete
+            // 
+            this.tStrip_ctxtMenu_BuyForm_Delete.Name = "tStrip_ctxtMenu_BuyForm_Delete";
+            this.tStrip_ctxtMenu_BuyForm_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.tStrip_ctxtMenu_BuyForm_Delete.Size = new System.Drawing.Size(161, 22);
+            this.tStrip_ctxtMenu_BuyForm_Delete.Text = "Удалить";
+            // 
+            // tStrip_ctxMenu_BuyForm_Edit
+            // 
+            this.tStrip_ctxMenu_BuyForm_Edit.Name = "tStrip_ctxMenu_BuyForm_Edit";
+            this.tStrip_ctxMenu_BuyForm_Edit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.tStrip_ctxMenu_BuyForm_Edit.Size = new System.Drawing.Size(161, 22);
+            this.tStrip_ctxMenu_BuyForm_Edit.Text = "Изменить";
+            // 
             // SellForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,6 +188,7 @@ namespace Enterprise_Store_beta_1._0
             this.toolStrip_SellForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_SellForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SellForm)).EndInit();
+            this.ctxtMenu_SellForm.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +200,11 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStripMenuItem tStrip_SellForm_Action_CreateSell;
         internal System.Windows.Forms.BindingSource bind_DGV_SellForm;
         private System.Windows.Forms.DataGridView DGV_SellForm;
+        private System.Windows.Forms.ToolStripButton tStrip_SellForm_Refresh;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ContextMenuStrip ctxtMenu_SellForm;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_BuyForm_Open;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxtMenu_BuyForm_Delete;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_BuyForm_Edit;
     }
 }
