@@ -138,7 +138,7 @@ namespace Enterprise_Store_beta_1._0
         {
             DataGridViewCellEventArgs ev = new(0, 0);
             DGV_SellForm_CellDoubleClick(sender, ev);
-        } 
+        }
         #endregion
     }
 }

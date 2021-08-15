@@ -41,11 +41,11 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_SellForm_Refresh = new System.Windows.Forms.ToolStripButton();
             this.bind_DGV_SellForm = new System.Windows.Forms.BindingSource(this.components);
             this.DGV_SellForm = new System.Windows.Forms.DataGridView();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ctxtMenu_SellForm = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tStrip_ctxMenu_SellForm_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.tStrip_ctxtMenu_SellForm_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.tStrip_ctxMenu_SellForm_Edit = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolStrip_SellForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_SellForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SellForm)).BeginInit();
@@ -97,6 +97,7 @@ namespace Enterprise_Store_beta_1._0
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Lavender;
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(3);
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -105,20 +106,24 @@ namespace Enterprise_Store_beta_1._0
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGV_SellForm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DGV_SellForm.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.DGV_SellForm.BackgroundColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SellForm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SellForm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_SellForm.ContextMenuStrip = this.ctxtMenu_SellForm;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(3);
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -129,22 +134,17 @@ namespace Enterprise_Store_beta_1._0
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3);
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SellForm.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DGV_SellForm.RowTemplate.Height = 23;
+            this.DGV_SellForm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV_SellForm.Size = new System.Drawing.Size(792, 547);
             this.DGV_SellForm.TabIndex = 2;
+            this.toolTip1.SetToolTip(this.DGV_SellForm, "ДВОЙНОЙ КЛИК левой кнопкой мыши\r\nОТКРЫТЬ документ");
             this.DGV_SellForm.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SellForm_CellDoubleClick);
-            // 
-            // toolTip1
-            // 
-            this.toolTip1.AutomaticDelay = 300;
-            this.toolTip1.AutoPopDelay = 5000;
-            this.toolTip1.InitialDelay = 200;
-            this.toolTip1.ReshowDelay = 60;
-            this.toolTip1.ToolTipTitle = "Открытие документа";
             // 
             // ctxtMenu_SellForm
             // 
@@ -178,6 +178,15 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_ctxMenu_SellForm_Edit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
             this.tStrip_ctxMenu_SellForm_Edit.Size = new System.Drawing.Size(161, 22);
             this.tStrip_ctxMenu_SellForm_Edit.Text = "Изменить";
+            this.tStrip_ctxMenu_SellForm_Edit.Click += new System.EventHandler(this.TStrip_ctxMenu_SellForm_Open_Click);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.AutomaticDelay = 300;
+            this.toolTip1.AutoPopDelay = 5000;
+            this.toolTip1.InitialDelay = 200;
+            this.toolTip1.ReshowDelay = 60;
+            this.toolTip1.ToolTipTitle = "Открытие документа";
             // 
             // SellForm
             // 
