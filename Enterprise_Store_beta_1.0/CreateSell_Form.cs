@@ -1,13 +1,8 @@
-﻿using ModelLibrary_Estore_1;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using ModelLibrary_Estore_1;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Enterprise_Store_beta_1._0
@@ -39,13 +34,33 @@ namespace Enterprise_Store_beta_1._0
 
             //выборка групп товаров
             var productGroupName = db.ProductsGroups
-                .Select(n => new { category = "Группа", id = n.ProductGroupId, name = n.ProductGroupName, brand = "" })
-                .OrderBy(n => n.category)
+                .Select(n => new
+                {
+                    category = "Группа",
+                    id = n.ProductGroupId,
+                    name = n.ProductGroupName,
+                    brand = "",
+                    availableInStock = "",
+                    allAvailableInStock = ""
+                })
                 .ToList();
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
+                .Include(s => s.SupplyPriceQties)
                 .Where(p => p.ProductsGroupsProductGroupId == null)
-                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
+                .Select(p => new
+                {
+                    category = "Товар",
+                    id = p.ProductId,
+                    name = p.ProductName,
+                    brand = p.BrandsBrand.BrandName,
+
+                    availableInStock = p.SupplyPriceQties
+                                    .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
+                                    .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+
+                    allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                })
                 .OrderBy(n => n.name);
 
             //соединяем списки productGroupName и productsWithoutGroupName
@@ -62,22 +77,25 @@ namespace Enterprise_Store_beta_1._0
         #endregion
 
         #region //Представление выборки в DGVcatalog_CreateSell
+        /// <summary>
+        /// Формирует колонки в dgv их отображение и размер
+        /// </summary>
         void ViewDGVcatalogCreateSell()
         {
             DGVcatalog_CreateSell.Columns["id"].Visible = false;
             //DGVcatalog_CreateSell.Columns["category"].Visible = false;
             DGVcatalog_CreateSell.Columns["category"].HeaderText = ""; //заголовок
-            DGVcatalog_CreateSell.Columns["category"].FillWeight = 20;
+            DGVcatalog_CreateSell.Columns["category"].FillWeight = 10;
             DGVcatalog_CreateSell.Columns["name"].HeaderText = "Номенклатура";
-            DGVcatalog_CreateSell.Columns["name"].FillWeight = 60;
+            DGVcatalog_CreateSell.Columns["name"].FillWeight = 40;
             DGVcatalog_CreateSell.Columns["brand"].HeaderText = "Производитель";
-            DGVcatalog_CreateSell.Columns["brand"].FillWeight = 20;
+            DGVcatalog_CreateSell.Columns["brand"].FillWeight = 15;
             DGVcatalog_CreateSell.Columns["availableInStock"].Visible = true;
             DGVcatalog_CreateSell.Columns["availableInStock"].HeaderText = "На складе";
-            DGVcatalog_CreateSell.Columns["availableInStock"].FillWeight = 10;
+            DGVcatalog_CreateSell.Columns["availableInStock"].FillWeight = 15;
             DGVcatalog_CreateSell.Columns["allAvailableInStock"].Visible = true;
             DGVcatalog_CreateSell.Columns["allAvailableInStock"].HeaderText = "На всех складах";
-            DGVcatalog_CreateSell.Columns["allAvailableInStock"].FillWeight = 10;
+            DGVcatalog_CreateSell.Columns["allAvailableInStock"].FillWeight = 15;
         }
         #endregion
 
@@ -94,8 +112,8 @@ namespace Enterprise_Store_beta_1._0
 
             //создаём диалоговое окно <Кол-во, цена>
             var f = new SetPriceQty();
-            f.Text += " " + productName;
-            f.PriceSelling = priceSelling * (decimal)1.3;
+            f.Text += " " + productName; //цена кол-во имя товара
+            f.PriceSelling = priceSelling * (decimal)1.3; //цена с наценкой
             if (f.ShowDialog() == DialogResult.OK)
             {
                 //создаём экземпляр новой строки
@@ -103,6 +121,10 @@ namespace Enterprise_Store_beta_1._0
                 RealizationPriceQty newRow = new();
                 newRow.RealizationId = RealizationID;
                 newRow.ProductId = SelectedId;
+                if (f.PriceSelling == 0)
+                {
+                    f.PriceSelling = f.PricePurchase;
+                }
                 newRow.PriceSelling = f.PriceSelling;
                 newRow.Quantity = (double)f.Quantity;
 
@@ -114,8 +136,7 @@ namespace Enterprise_Store_beta_1._0
                     db.SaveChanges();
 
                     //привязка списка товаров к DGV и обновление отображения
-                    DGV_CreateSell.DataSource = Manager.GetListProductBuy(RealizationID);
-                    //this.Refresh();
+                    DGV_CreateSell.DataSource = Manager.GetListProductSell(RealizationID);
 
                     //получаем итоговую сумму товаров
                     this.lblSumma.Text = "Сумма: "
@@ -124,7 +145,9 @@ namespace Enterprise_Store_beta_1._0
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("ERROR !!!");
+                    MessageBox.Show("Товар уже находится в списке.\n" +
+                                    "Если хотите добавить этот товар по другой цене\n" +
+                                    "создайте новый документ <Поступление товара>.");
                 }
             }
         }
@@ -139,10 +162,6 @@ namespace Enterprise_Store_beta_1._0
             if ((string)DGVcatalog_CreateSell.CurrentRow.Cells["category"].Value == "Группа")
             {
                 using Db_Enterprise_Store_Context db = new();
-                //var productsWithGroupName = db.Products
-                //    .Where(p => p.ProductsGroupsProductGroupId == SelectedId)
-                //    .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
-                //    .ToList();
 
                 //выборка товаров в группе
                 var productsWithGroupName = db.Products
@@ -170,51 +189,332 @@ namespace Enterprise_Store_beta_1._0
             }
             #endregion
 
-            #region если "Товар", проверяем его наличие в списке и добавляем
-            //при условии, что список не пустой
+            #region // если "Товар", то добавляем в список
             else
             {
-                if (DGV_CreateSell.Rows.Count > 0)
-                {
-                    var rowsCollection = DGV_CreateSell.Rows; //получаем коллекцию строк DGV
-                    //поиск товара в списке <Поступление товара>
-                    //по текущему выбранному Id из Каталога товаров
-                    foreach (DataGridViewRow row in rowsCollection)
-                    {
-                        //сравниваем Id выбранного товара с
-                        //имеющимися в списке <Поступление товара>
-                        bool b = SelectedId.Equals(row.Cells[0].Value);
-                        if (b == false)
-                        {
-                            //если Id не совпадают, тогда продолжаем перебор списка и сравнение
-                            if (rowsCollection.Count > row.Index + 1)
-                            {
-                                continue;
-                            }
-                            //по завершению списка добавляем строку с товаром
-                            else
-                            {
-                                AddProductInListSell(SelectedId);
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Товар уже находится в списке.\n" +
-                                    "Если хотите добавить этот товар по другой цене\n" +
-                                    "создайте новый документ <Поступление товара>.");
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    AddProductInListSell(SelectedId);
-                }
+                AddProductInListSell(SelectedId);
+                #region //закомментирован код поиск товара в списке док-та
+                //if (DGV_CreateSell.Rows.Count > 0)
+                //{
+                //    var rowsCollection = DGV_CreateSell.Rows; //получаем коллекцию строк DGV
+                //    //поиск товара в списке <Поступление товара>
+                //    //по текущему выбранному Id из Каталога товаров
+                //    foreach (DataGridViewRow row in rowsCollection)
+                //    {
+                //        //сравниваем Id выбранного товара с
+                //        //имеющимися в списке <Поступление товара>
+                //        bool b = SelectedId.Equals(row.Cells[0].Value);
+                //        if (b == false)
+                //        {
+                //            //если Id не совпадают, тогда продолжаем перебор списка и сравнение
+                //            if (rowsCollection.Count > row.Index + 1)
+                //            {
+                //                continue;
+                //            }
+                //            //по завершению списка добавляем строку с товаром
+                //            else
+                //            {
+                //                AddProductInListSell(SelectedId);
+                //                break;
+                //            }
+                //        }
+                //        else
+                //        {
+                //            MessageBox.Show("Товар уже находится в списке.\n" +
+                //                    "Если хотите добавить этот товар по другой цене\n" +
+                //                    "создайте новый документ <Поступление товара>.");
+                //            break;
+                //        }
+                //    }
+                //}
+                //else
+                //{
+                //    AddProductInListSell(SelectedId);
+                //} 
+                #endregion
             }
             #endregion
         }
         #endregion
-#endregion
+
+        #endregion
+
+        #region //Очистка списка товаров в док-те "Реализация/заказ"
+        //нажатее кнопки <Очистить список>
+        private void ButClearList_CreateSell_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.OK == MessageBox.Show("Вы уверены, что нужно очистить список?\n" +
+                                                   "Список будет удалён безвозвратно!!!",
+                                                   "Очистить список?",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question))
+            {
+                using Db_Enterprise_Store_Context db = new();
+                //выбираем строки 
+                var res = db.RealizationPriceQtys.Where(s => s.RealizationId == RealizationID).AsEnumerable();
+                
+                try
+                {
+                    db.RemoveRange(res);
+                    db.SaveChanges();
+                    DGV_CreateSell.Rows.Clear(); //очистка DGV
+                    lblSumma.Text = String.Format("Сумма {0:C2}", 0);
+                }
+                catch
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+        }
+        #endregion
+
+        #region // Установка атрибутов док-та "Реализация/заказ"
+        #region //Календарь и кнопка для его отображения
+
+        //изменение даты док-та "Покупка/комиссия"
+        private void MonthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            this.txtDate_CreateSell.Text = "" + monthCalendar1.SelectionStart;
+        }
+
+        #endregion
+
+        #region// Выбор контрагентов.
+        private void ButSelectCounterparty_CreateSell_Form_Click(object sender, EventArgs e)
+        {
+            CatalogCounterparty_Form catalogCounterparty = new();
+
+            if (catalogCounterparty.ShowDialog() == DialogResult.OK)
+            {
+                using Db_Enterprise_Store_Context db = new();
+                //получаем строку из БД по id текущего открытого док-та "Покупка/комиссия"
+                Realization currentDocRealization = db.Realizations
+                    .Where(s => s.RealizationId == RealizationID)
+                    .FirstOrDefault();
+                //изменяем данные в БД (меняем Id контрагента)
+                currentDocRealization.CounterpartysCounterpartyId = catalogCounterparty.CurrentCounterparty.CounterpartyId;
+
+                try
+                {
+                    db.SaveChanges(); //сохраняем изменения в БД
+                    this.txtCounterparty_CreateSell.Text = catalogCounterparty.CurrentCounterparty.CounterpartyName;
+                    //Manager.SetAttributeDocumentBuy(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
+                }
+                catch
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+                finally
+                {
+                    catalogCounterparty.Dispose();
+                }
+            }
+        }
+        #endregion
+
+        #region // Выбор склада
+        private void ButSelectStorage_CreateSell_Form_Click(object sender, EventArgs e)
+        {
+            CatalogStorage_Form catalogStorage = new();
+
+            if (catalogStorage.ShowDialog() == DialogResult.OK)
+            {
+                using Db_Enterprise_Store_Context db = new();
+                //получаем строку из БД по id текущего открытого док-та "Покупка/комиссия"
+                var currentDoc = db.Realizations
+                    .Where(s => s.RealizationId == RealizationID)
+                    .FirstOrDefault();
+                currentDoc.StoragesStorageId = catalogStorage.CurrentStorage.StorageId;
+                this.Realization.StoragesStorageId = catalogStorage.CurrentStorage.StorageId;
+
+                try
+                {
+                    db.SaveChanges();
+                    Manager.SetAttributeDocumentSell(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
+                    ButDisplayDGVcatalog_CreateSell_Click(sender, e);
+
+                }
+                catch
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+        }
+        #endregion
+
+        // Выбор персонала
+
+        #endregion
+
+        #region // Кнопка "Провести", Кнопка закрытия формы - Обновление формы Buy_Form
+        // Кнопка "Провести". Обновление данных в форме список док-тов "Покупка/комиссия"
+        private void ButOK_CreateSell_Click(object sender, EventArgs e)
+        {
+            var openForms = Application.OpenForms;
+            SellForm sellForm = (SellForm)openForms["SellForm"];
+            sellForm.TStrip_SellForm_Refresh_Click(sender, e);
+        }
+
+        // Кнопка закрытия формы. Обновление данных в форме список док-тов "Покупка/комиссия"
+        private void CreateSell_Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.MdiFormClosing)
+            {
+                return;
+            }
+            ButOK_CreateSell_Click(sender, e);
+            //buyForm.TStrip_BuyForm_Refresh_Click(sender, e);
+        }
+        #endregion
+
+        #region // Кнопка "Добавить" на панели выбор товара из списка
+        private void ButCatalogProduct_Add_Click(object sender, EventArgs e)
+        {
+            AddProduct_Form addProduct_Form = new();
+            addProduct_Form.ShowDialog();
+            ButDisplayDGVcatalog_CreateSell_Click(sender, e);
+        }
+        #endregion
+
+        #region // Кнопка "Изменить" на панели выбор товара из списка
+        private void ButCatalogProduct_Edit_Click(object sender, EventArgs e)
+        {
+            var productID = (int)DGVcatalog_CreateSell.CurrentRow.Cells["id"].Value;
+            AddProduct_Form addProduct_Form = new();
+            addProduct_Form.PutAttrbuteProduct(productID);
+
+            addProduct_Form.ShowDialog();
+
+            ButDisplayDGVcatalog_CreateSell_Click(sender, e);
+        }
+        #endregion
+
+        #region //Кнопка "Удалить" товар.
+        private void ButCatalogProduct_Delete_Click_1(object sender, EventArgs e)
+        {
+
+            if (DialogResult.OK == MessageBox.Show("Вы уверены, что нужно удалить товар?\n" +
+                                                   "Товар будет удалён безвозвратно!!!",
+                                                   "Удалить товар?",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question))
+            {
+                var productID = (int)DGVcatalog_CreateSell.CurrentRow.Cells["id"].Value;
+                using Db_Enterprise_Store_Context db = new();
+                //кол-во ссылок на док-ты "Покупка/комиссия" где есть выбранный удаляемый товар
+                var countRefOnDoc = db.SupplyPriceQtys.Where(s => s.ProductId == productID).Count();
+                if (countRefOnDoc == 0)
+                {
+                    try
+                    {
+                        var selectedProduct = db.Products.First(p => p.ProductId == productID);
+                        var rem = db.Remove(selectedProduct);
+                        var countSave = db.SaveChanges();
+                        ButDisplayDGVcatalog_CreateSell_Click(sender, e);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Невозможно удалить.\n" +
+                                    "Товар ссылается на док-ты Покупка/комиссия",
+                                    "Удаление товара"
+                                    , MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
+                }
+            }
+        }
+        #endregion
+
+        #region // Удаление товара из списка товаров в док-те "Реализация/заказ"
+        /// <summary>
+        /// Нажатие кнопки "Х" в строке списка товаров док-та "Покупка/комиссия"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DGV_CreateSell_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex !=
+            DGV_CreateSell.Columns["Delete_row"].Index) return;
+
+            if (DialogResult.OK == MessageBox.Show("Вы уверены, что нужно удалить товар из списка?",
+                                                   "Удалить товар из списка?",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question))
+            {
+                int selectedProductID = (int)DGV_CreateSell.CurrentRow.Cells["ProductId"].Value;
+                using Db_Enterprise_Store_Context db = new();
+                var currentProductForRemove = db.RealizationPriceQtys.Where(r => r.RealizationId == RealizationID)
+                                  .First(p => p.ProductId == selectedProductID);
+                try
+                {
+                    db.Remove(currentProductForRemove);
+                    db.SaveChanges();
+                    DGV_CreateSell.Rows.RemoveAt(e.RowIndex);
+                    //получаем итоговую сумму товаров
+                    this.lblSumma.Text = "Сумма: "
+                                            + Manager.GetSummaDocument(this.DGV_CreateSell)
+                                            .ToString("C");
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+        }
+        #endregion
+
+        #region //Поиск по названию после набора не менее 3-х символов в txtSearch_CreateBuy
+        /// <summary>
+        /// Поиск товара по названию в каталоге товаров.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TxtSearch_CreateSell_TextChanged(object sender, EventArgs e)
+        {
+            while (txtSearch_CreateSell.Text.Length < 3)
+            {
+                return;
+            }
+
+            Db_Enterprise_Store_Context db = new();
+
+            var foundProduct = db.Products
+                    .Where(p => p.ProductName.StartsWith(txtSearch_CreateSell.Text))
+                    .Include(s => s.SupplyPriceQties)
+                    .Select(p => new
+                    {
+                        category = "Товар",
+                        id = p.ProductId,
+                        name = p.ProductName,
+                        brand = p.BrandsBrand.BrandName,
+
+                        availableInStock = p.SupplyPriceQties
+                                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
+                                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+
+                        allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                    })
+                    .OrderBy(n => n.name).ToList();
+
+
+            bind_DGVcatalog_CreateSell.DataSource = foundProduct;
+            DGVcatalog_CreateSell.DataSource = bind_DGVcatalog_CreateSell;
+
+            ViewDGVcatalogCreateSell();
+        }
+
+
+
+
+
+
+
+        #endregion
+
+
     }
 }

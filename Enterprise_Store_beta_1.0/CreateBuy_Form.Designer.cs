@@ -65,9 +65,8 @@ namespace Enterprise_Store_beta_1._0
             this.txtSearch_CreateBuy = new System.Windows.Forms.TextBox();
             this.butCatalogProduct_Delete = new System.Windows.Forms.Button();
             this.butCatalogProduct_Edit = new System.Windows.Forms.Button();
-            this.butAddProduct_CreateBuy = new System.Windows.Forms.Button();
+            this.butCatalogProduct_Add = new System.Windows.Forms.Button();
             this.DGVcatalog_CreateBuy = new System.Windows.Forms.DataGridView();
-            this.contextMenuStripDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bind_DGV_CreateBuy = new System.Windows.Forms.BindingSource(this.components);
             this.bind_DGVcatalog_CreateBuy = new System.Windows.Forms.BindingSource(this.components);
             this.toolTip_selectProduct_CreateBuy_Form = new System.Windows.Forms.ToolTip(this.components);
@@ -127,7 +126,7 @@ namespace Enterprise_Store_beta_1._0
             // 
             // splitContainer_CreateBuy
             // 
-            this.splitContainer_CreateBuy.Cursor = System.Windows.Forms.Cursors.Default;
+            this.splitContainer_CreateBuy.Cursor = System.Windows.Forms.Cursors.VSplit;
             this.splitContainer_CreateBuy.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer_CreateBuy.IsSplitterFixed = true;
             this.splitContainer_CreateBuy.Location = new System.Drawing.Point(0, 0);
@@ -143,6 +142,7 @@ namespace Enterprise_Store_beta_1._0
             this.splitContainer_CreateBuy.Panel1.Controls.Add(this.butDisplayDGVcatalog_CreateBuy);
             this.splitContainer_CreateBuy.Panel1.Controls.Add(this.butOK_CreateBuy);
             this.splitContainer_CreateBuy.Panel1.Controls.Add(this.DGV_CreateBuy);
+            this.splitContainer_CreateBuy.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
             // 
             // splitContainer_CreateBuy.Panel2
             // 
@@ -150,8 +150,9 @@ namespace Enterprise_Store_beta_1._0
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.txtSearch_CreateBuy);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Delete);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Edit);
-            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butAddProduct_CreateBuy);
+            this.splitContainer_CreateBuy.Panel2.Controls.Add(this.butCatalogProduct_Add);
             this.splitContainer_CreateBuy.Panel2.Controls.Add(this.DGVcatalog_CreateBuy);
+            this.splitContainer_CreateBuy.Panel2.Cursor = System.Windows.Forms.Cursors.Default;
             this.splitContainer_CreateBuy.Size = new System.Drawing.Size(892, 572);
             this.splitContainer_CreateBuy.SplitterDistance = 500;
             this.splitContainer_CreateBuy.SplitterIncrement = 10;
@@ -449,15 +450,15 @@ namespace Enterprise_Store_beta_1._0
             this.butCatalogProduct_Edit.UseVisualStyleBackColor = true;
             this.butCatalogProduct_Edit.Click += new System.EventHandler(this.ButCatalogProduct_Edit_Click);
             // 
-            // butAddProduct_CreateBuy
+            // butCatalogProduct_Add
             // 
-            this.butAddProduct_CreateBuy.Location = new System.Drawing.Point(16, 99);
-            this.butAddProduct_CreateBuy.Name = "butAddProduct_CreateBuy";
-            this.butAddProduct_CreateBuy.Size = new System.Drawing.Size(75, 28);
-            this.butAddProduct_CreateBuy.TabIndex = 1;
-            this.butAddProduct_CreateBuy.Text = "Добавить";
-            this.butAddProduct_CreateBuy.UseVisualStyleBackColor = true;
-            this.butAddProduct_CreateBuy.Click += new System.EventHandler(this.ButAddProduct_CreateBuy_Click);
+            this.butCatalogProduct_Add.Location = new System.Drawing.Point(16, 99);
+            this.butCatalogProduct_Add.Name = "butCatalogProduct_Add";
+            this.butCatalogProduct_Add.Size = new System.Drawing.Size(75, 28);
+            this.butCatalogProduct_Add.TabIndex = 1;
+            this.butCatalogProduct_Add.Text = "Добавить";
+            this.butCatalogProduct_Add.UseVisualStyleBackColor = true;
+            this.butCatalogProduct_Add.Click += new System.EventHandler(this.ButCatalogProduct_Add_Click);
             // 
             // DGVcatalog_CreateBuy
             // 
@@ -490,12 +491,6 @@ namespace Enterprise_Store_beta_1._0
             this.toolTip_selectProduct_CreateBuy_Form.SetToolTip(this.DGVcatalog_CreateBuy, "ДВОЙНОЙ КЛИК для\r\nДОБАВЛЕНИЯ в список товаров");
             this.DGVcatalog_CreateBuy.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVcatalog_CreateBuy_CellDoubleClick);
             // 
-            // contextMenuStripDataGridViewTextBoxColumn
-            // 
-            this.contextMenuStripDataGridViewTextBoxColumn.DataPropertyName = "ContextMenuStrip";
-            this.contextMenuStripDataGridViewTextBoxColumn.HeaderText = "ContextMenuStrip";
-            this.contextMenuStripDataGridViewTextBoxColumn.Name = "contextMenuStripDataGridViewTextBoxColumn";
-            // 
             // CreateBuy_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -527,15 +522,14 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.TableLayoutPanel tabLayoutPanel_CreateBuy;
         private System.Windows.Forms.Button butSelectStorage_CreateBuy;
         private System.Windows.Forms.Button butSelectDate_CreateBuy;
-        internal System.Windows.Forms.Label lblDate_CreateBuy;
-        internal System.Windows.Forms.Label lblStorage_CreateBuy;
-        internal System.Windows.Forms.Label lblProvider_CreateBuy;
+        private System.Windows.Forms.Label lblDate_CreateBuy;
+        private System.Windows.Forms.Label lblStorage_CreateBuy;
+        private System.Windows.Forms.Label lblProvider_CreateBuy;
         internal System.Windows.Forms.TextBox txtDate_CreateBuy;
         internal System.Windows.Forms.TextBox txtCounterparty_CreateBuy;
         internal System.Windows.Forms.TextBox txtStorage_CreateBuy;
         private System.Windows.Forms.Button butSelectCounterparty_CreateBuy;
         private System.Windows.Forms.DataGridView DGVcatalog_CreateBuy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contextMenuStripDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource bind_DGV_CreateBuy;
         internal System.Windows.Forms.DataGridView DGV_CreateBuy;
         private System.Windows.Forms.BindingSource bind_DGVcatalog_CreateBuy;
@@ -544,7 +538,7 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.Button butCatalogProduct_Delete;
         private System.Windows.Forms.Button butCatalogProduct_Edit;
-        private System.Windows.Forms.Button butAddProduct_CreateBuy;
+        private System.Windows.Forms.Button butCatalogProduct_Add;
         private System.Windows.Forms.ToolTip toolTip_selectProduct_CreateBuy_Form;
         private System.Windows.Forms.TextBox txtSearch_CreateBuy;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;

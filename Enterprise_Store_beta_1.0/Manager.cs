@@ -82,7 +82,6 @@ namespace Enterprise_Store_beta_1._0
             //список товаров соответствующих коду док-та <Поступление товаров>
             //выбранного для редактирования
             var _supPrQty = db.SupplyPriceQtys.Where(s => s.SupplyId == SupplyID)
-                //.Include(s => s.Product)
                 .Select(s => new
                 { //формирование представления
                     s.ProductId,
@@ -261,14 +260,23 @@ namespace Enterprise_Store_beta_1._0
         {
             decimal priceSell = 0;
 
-            Db_Enterprise_Store_Context db = new();
-            var price = db.SupplyPriceQtys
-                .Include(s => s.Supply)
-                .Where(p => p.ProductId == SelectedId)
-                .Select(p => new { p.PricePurchase, date = p.Supply.Date })
-                .OrderBy(p => p.date).First();
+            try
+            {
+                Db_Enterprise_Store_Context db = new();
+                var price = db.SupplyPriceQtys
+                    .Include(s => s.Supply)
+                    .Where(p => p.ProductId == SelectedId)
+                    .Select(p => new { p.PricePurchase, date = p.Supply.Date })
+                    .OrderBy(p => p.date).First();
+                return priceSell = price.PricePurchase;
+            }
+            catch (System.Exception)
+            {
+                MessageBox.Show("Товара нет на складе!!!");
+                return priceSell = 0;
+            }
 
-            return priceSell = price.PricePurchase;//[0].PricePurchase;
+            
         }
     }
 }

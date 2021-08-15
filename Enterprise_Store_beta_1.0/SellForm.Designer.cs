@@ -38,14 +38,14 @@ namespace Enterprise_Store_beta_1._0
             this.toolStrip_SellForm = new System.Windows.Forms.ToolStrip();
             this.tStrip_SellForm_Actions = new System.Windows.Forms.ToolStripDropDownButton();
             this.tStrip_SellForm_Action_CreateSell = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_SellForm_Refresh = new System.Windows.Forms.ToolStripButton();
             this.bind_DGV_SellForm = new System.Windows.Forms.BindingSource(this.components);
             this.DGV_SellForm = new System.Windows.Forms.DataGridView();
-            this.tStrip_SellForm_Refresh = new System.Windows.Forms.ToolStripButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.ctxtMenu_SellForm = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tStrip_ctxMenu_BuyForm_Open = new System.Windows.Forms.ToolStripMenuItem();
-            this.tStrip_ctxtMenu_BuyForm_Delete = new System.Windows.Forms.ToolStripMenuItem();
-            this.tStrip_ctxMenu_BuyForm_Edit = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_ctxMenu_SellForm_Open = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_ctxtMenu_SellForm_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStrip_ctxMenu_SellForm_Edit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip_SellForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bind_DGV_SellForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_SellForm)).BeginInit();
@@ -82,17 +82,31 @@ namespace Enterprise_Store_beta_1._0
             this.tStrip_SellForm_Action_CreateSell.Text = "Создать продажа";
             this.tStrip_SellForm_Action_CreateSell.Click += new System.EventHandler(this.ToolStrip_SellForm_Action_CreateSell_Click);
             // 
+            // tStrip_SellForm_Refresh
+            // 
+            this.tStrip_SellForm_Refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tStrip_SellForm_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("tStrip_SellForm_Refresh.Image")));
+            this.tStrip_SellForm_Refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tStrip_SellForm_Refresh.Name = "tStrip_SellForm_Refresh";
+            this.tStrip_SellForm_Refresh.Size = new System.Drawing.Size(61, 22);
+            this.tStrip_SellForm_Refresh.Text = "Обновить";
+            this.tStrip_SellForm_Refresh.Click += new System.EventHandler(this.TStrip_SellForm_Refresh_Click);
+            // 
             // DGV_SellForm
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Lavender;
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SellForm.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.DGV_SellForm.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGV_SellForm.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGV_SellForm.BackgroundColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -101,7 +115,7 @@ namespace Enterprise_Store_beta_1._0
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SellForm.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGV_SellForm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -109,10 +123,9 @@ namespace Enterprise_Store_beta_1._0
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DGV_SellForm.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DGV_SellForm.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DGV_SellForm.Location = new System.Drawing.Point(0, 25);
             this.DGV_SellForm.Name = "DGV_SellForm";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -123,15 +136,7 @@ namespace Enterprise_Store_beta_1._0
             this.DGV_SellForm.RowTemplate.Height = 23;
             this.DGV_SellForm.Size = new System.Drawing.Size(792, 547);
             this.DGV_SellForm.TabIndex = 2;
-            // 
-            // tStrip_SellForm_Refresh
-            // 
-            this.tStrip_SellForm_Refresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tStrip_SellForm_Refresh.Image = ((System.Drawing.Image)(resources.GetObject("tStrip_SellForm_Refresh.Image")));
-            this.tStrip_SellForm_Refresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tStrip_SellForm_Refresh.Name = "tStrip_SellForm_Refresh";
-            this.tStrip_SellForm_Refresh.Size = new System.Drawing.Size(61, 22);
-            this.tStrip_SellForm_Refresh.Text = "Обновить";
+            this.DGV_SellForm.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV_SellForm_CellDoubleClick);
             // 
             // toolTip1
             // 
@@ -144,33 +149,35 @@ namespace Enterprise_Store_beta_1._0
             // ctxtMenu_SellForm
             // 
             this.ctxtMenu_SellForm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tStrip_ctxMenu_BuyForm_Open,
-            this.tStrip_ctxtMenu_BuyForm_Delete,
-            this.tStrip_ctxMenu_BuyForm_Edit});
+            this.tStrip_ctxMenu_SellForm_Open,
+            this.tStrip_ctxtMenu_SellForm_Delete,
+            this.tStrip_ctxMenu_SellForm_Edit});
             this.ctxtMenu_SellForm.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.ctxtMenu_SellForm.Name = "contextMenuStrip1";
             this.ctxtMenu_SellForm.Size = new System.Drawing.Size(162, 70);
             // 
-            // tStrip_ctxMenu_BuyForm_Open
+            // tStrip_ctxMenu_SellForm_Open
             // 
-            this.tStrip_ctxMenu_BuyForm_Open.Name = "tStrip_ctxMenu_BuyForm_Open";
-            this.tStrip_ctxMenu_BuyForm_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.tStrip_ctxMenu_BuyForm_Open.Size = new System.Drawing.Size(161, 22);
-            this.tStrip_ctxMenu_BuyForm_Open.Text = "Открыть";
+            this.tStrip_ctxMenu_SellForm_Open.Name = "tStrip_ctxMenu_SellForm_Open";
+            this.tStrip_ctxMenu_SellForm_Open.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.tStrip_ctxMenu_SellForm_Open.Size = new System.Drawing.Size(161, 22);
+            this.tStrip_ctxMenu_SellForm_Open.Text = "Открыть";
+            this.tStrip_ctxMenu_SellForm_Open.Click += new System.EventHandler(this.TStrip_ctxMenu_SellForm_Open_Click);
             // 
-            // tStrip_ctxtMenu_BuyForm_Delete
+            // tStrip_ctxtMenu_SellForm_Delete
             // 
-            this.tStrip_ctxtMenu_BuyForm_Delete.Name = "tStrip_ctxtMenu_BuyForm_Delete";
-            this.tStrip_ctxtMenu_BuyForm_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.tStrip_ctxtMenu_BuyForm_Delete.Size = new System.Drawing.Size(161, 22);
-            this.tStrip_ctxtMenu_BuyForm_Delete.Text = "Удалить";
+            this.tStrip_ctxtMenu_SellForm_Delete.Name = "tStrip_ctxtMenu_SellForm_Delete";
+            this.tStrip_ctxtMenu_SellForm_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.tStrip_ctxtMenu_SellForm_Delete.Size = new System.Drawing.Size(161, 22);
+            this.tStrip_ctxtMenu_SellForm_Delete.Text = "Удалить";
+            this.tStrip_ctxtMenu_SellForm_Delete.Click += new System.EventHandler(this.TStrip_ctxtMenu_SellForm_Delete_Click);
             // 
-            // tStrip_ctxMenu_BuyForm_Edit
+            // tStrip_ctxMenu_SellForm_Edit
             // 
-            this.tStrip_ctxMenu_BuyForm_Edit.Name = "tStrip_ctxMenu_BuyForm_Edit";
-            this.tStrip_ctxMenu_BuyForm_Edit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
-            this.tStrip_ctxMenu_BuyForm_Edit.Size = new System.Drawing.Size(161, 22);
-            this.tStrip_ctxMenu_BuyForm_Edit.Text = "Изменить";
+            this.tStrip_ctxMenu_SellForm_Edit.Name = "tStrip_ctxMenu_SellForm_Edit";
+            this.tStrip_ctxMenu_SellForm_Edit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E)));
+            this.tStrip_ctxMenu_SellForm_Edit.Size = new System.Drawing.Size(161, 22);
+            this.tStrip_ctxMenu_SellForm_Edit.Text = "Изменить";
             // 
             // SellForm
             // 
@@ -203,8 +210,8 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.ToolStripButton tStrip_SellForm_Refresh;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ContextMenuStrip ctxtMenu_SellForm;
-        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_BuyForm_Open;
-        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxtMenu_BuyForm_Delete;
-        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_BuyForm_Edit;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_SellForm_Open;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxtMenu_SellForm_Delete;
+        private System.Windows.Forms.ToolStripMenuItem tStrip_ctxMenu_SellForm_Edit;
     }
 }

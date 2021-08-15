@@ -81,7 +81,6 @@ namespace Enterprise_Store_beta_1._0
             {
                 //получаем значение Id документа
                 //из ячейки DGV, выбранной строки, в колонке "SupplyId"
-                
                 SupplyID = (int)DGV_BuyForm.CurrentRow.Cells["SupplyId"].Value,
 
                 //присваиваем родителя для формы
@@ -138,11 +137,13 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
+        #region // Контекстное меню кнопка Открыть
         private void tStrip_ctxMenu_BuyForm_Open_Click(object sender, EventArgs e)
         {
-            DataGridViewCellEventArgs ev = new(0,0);
+            DataGridViewCellEventArgs ev = new(0, 0);
             DGV_BuyForm_CellDoubleClick(sender, ev);
-        }
+        } 
+        #endregion
     }
 }
 

@@ -14,7 +14,7 @@ namespace Enterprise_Store_beta_1._0
             DGV_SellForm.DataSource = bind_DGV_SellForm;
         }
 
-        #region #region //Отображение док-тов "Реализация/заказ"
+        #region //Отображение док-тов "Реализация/заказ"
         private void SellForm_Load(object sender, EventArgs e)
         {
             #region 
@@ -62,8 +62,83 @@ namespace Enterprise_Store_beta_1._0
             createSell_Form.Show();
             #endregion
         }
+
+
         #endregion
 
-        
+        #region //Редактирование док-та <Реализация/заказы> - двойной клик по строке док-та
+        private void DGV_SellForm_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //создаём экземпляр формы <Поступление товара>
+            CreateSell_Form createSell_Form = new()
+            {
+                //получаем значение Id документа
+                //из ячейки DGV, выбранной строки, в колонке "SupplyId"
+                RealizationID = (int)DGV_SellForm.CurrentRow.Cells["RealizationId"].Value,
+
+                //присваиваем родителя для формы
+                //родитель Form1 (MdiContainer)
+                MdiParent = this.MdiParent
+            };
+
+            //устанавливаем атрибуты док-та
+            using Db_Enterprise_Store_Context db = new();
+            Manager.SetAttributeDocumentSell(db, createSell_Form); //устанавливаем атрибуты док-та
+            createSell_Form.DGV_CreateSell.DataSource = Manager.GetListProductSell(createSell_Form.RealizationID);
+            createSell_Form.lblSumma.Text = "Сумма: "
+                                            + Manager.GetSummaDocument(createSell_Form.DGV_CreateSell)
+                                            .ToString("C");
+
+            createSell_Form.Show(); //отображаем форму
+        }
+
+        #endregion
+
+        #region //Удаление док-та "Реализация/заказ"
+        private void TStrip_ctxtMenu_SellForm_Delete_Click(object sender, EventArgs e)
+        {
+            if (DialogResult.OK == MessageBox.Show("Вы уверены, что нужно удалить документ?\n" +
+                                                   "Документ будет удалён безвозвратно!!!",
+                                                   "Удалить документ Покупка/комиссия?",
+                                                   MessageBoxButtons.OKCancel,
+                                                   MessageBoxIcon.Question))
+            {
+                var idR = (int)DGV_SellForm.CurrentRow.Cells["RealizationId"].Value;
+                using Db_Enterprise_Store_Context db = new();
+
+                Realization selectedRealization = new() { RealizationId = idR };
+                db.Attach(selectedRealization);
+                db.Remove(selectedRealization);
+                try
+                {
+                    var countSave = db.SaveChanges();
+                    this.DGV_SellForm.DataSource = Manager.GetListDocumentSell();
+                    this.Refresh();
+                }
+                catch
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+        }
+
+        #endregion
+
+        #region //Обновить список док-тов "Реализация/заказ"
+        internal void TStrip_SellForm_Refresh_Click(object sender, EventArgs e)
+        {
+            this.DGV_SellForm.DataSource = Manager.GetListDocumentSell();
+            this.Refresh();
+        }
+
+        #endregion
+
+        #region // Контекстное меню кнопка Открыть
+        private void TStrip_ctxMenu_SellForm_Open_Click(object sender, EventArgs e)
+        {
+            DataGridViewCellEventArgs ev = new(0, 0);
+            DGV_SellForm_CellDoubleClick(sender, ev);
+        } 
+        #endregion
     }
 }
