@@ -112,6 +112,7 @@ namespace Enterprise_Store_beta_1._0
             this.butSelectDate_CreateSell.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolTip_selectProduct_CreateSell_Form.SetToolTip(this.butSelectDate_CreateSell, "выбрать/изменить");
             this.butSelectDate_CreateSell.UseVisualStyleBackColor = true;
+            this.butSelectDate_CreateSell.Click += new System.EventHandler(this.ButSelectDate_CreateSell_Click);
             // 
             // butSelectStorage_CreateSell
             // 
@@ -279,6 +280,7 @@ namespace Enterprise_Store_beta_1._0
             this.monthCalendar1.Name = "monthCalendar1";
             this.monthCalendar1.TabIndex = 13;
             this.monthCalendar1.Visible = false;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar1_DateChanged);
             // 
             // butOK_CreateSell
             // 

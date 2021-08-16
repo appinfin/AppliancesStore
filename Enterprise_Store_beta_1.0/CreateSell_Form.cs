@@ -270,7 +270,36 @@ namespace Enterprise_Store_beta_1._0
 
         #region // Установка атрибутов док-та "Реализация/заказ"
         #region //Календарь и кнопка для его отображения
+        private void ButSelectDate_CreateSell_Click(object sender, EventArgs e)
+        {
+            //если не отображается, тогда отобразить
+            if (!this.monthCalendar1.Visible)
+            {
+                this.monthCalendar1.Visible = true; //отобразить
+                this.monthCalendar1.BringToFront(); //на передний план
+            }
+            //если отображается, тогда скрыть и сохранить дату
+            else
+            {
+                this.monthCalendar1.Visible = false; //скрыть
+                using Db_Enterprise_Store_Context db = new();
+                var currentDoc = db.Realizations
+                    .Where(s => s.RealizationId == RealizationID)
+                    .FirstOrDefault();
+                var currentDateDoc = currentDoc.Date;//старые значения даты для textBox при ошибке для отката
+                currentDoc.Date = monthCalendar1.SelectionStart;
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    txtDate_CreateSell.Text = currentDateDoc.ToString();
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
 
+            }
+        }
         //изменение даты док-та "Покупка/комиссия"
         private void MonthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -513,8 +542,9 @@ namespace Enterprise_Store_beta_1._0
 
 
 
+
         #endregion
 
-
+        
     }
 }
