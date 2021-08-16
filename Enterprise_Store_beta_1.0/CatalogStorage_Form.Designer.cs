@@ -60,6 +60,7 @@ namespace Enterprise_Store_beta_1._0
             this.tStripMenu_CatalogStorage_Delete});
             this.tStripMenu_CatalogStorage.Location = new System.Drawing.Point(0, 0);
             this.tStripMenu_CatalogStorage.Name = "tStripMenu_CatalogStorage";
+            this.tStripMenu_CatalogStorage.Padding = new System.Windows.Forms.Padding(0);
             this.tStripMenu_CatalogStorage.Size = new System.Drawing.Size(492, 25);
             this.tStripMenu_CatalogStorage.TabIndex = 0;
             this.tStripMenu_CatalogStorage.Text = "toolStrip1";
@@ -197,7 +198,7 @@ namespace Enterprise_Store_beta_1._0
             this.Controls.Add(this.DGV_CatalogStorage_Form);
             this.Controls.Add(this.tStripMenu_CatalogStorage);
             this.Name = "CatalogStorage_Form";
-            this.Text = "CatalogStorage_Form";
+            this.Text = "Каталог складов";
             this.Load += new System.EventHandler(this.CatalogStorage_Form_Load);
             this.tStripMenu_CatalogStorage.ResumeLayout(false);
             this.tStripMenu_CatalogStorage.PerformLayout();

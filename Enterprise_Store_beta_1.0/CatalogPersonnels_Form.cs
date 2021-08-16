@@ -12,36 +12,33 @@ using ModelLibrary_Estore_1;
 
 namespace Enterprise_Store_beta_1._0
 {
-    public partial class CatalogStorage_Form : Form
+    public partial class CatalogPersonnels_Form : Form
     {
-        //internal int StorageID { get; set; }
-
-        // Инициализация
-        public CatalogStorage_Form()
+        public CatalogPersonnels_Form()
         {
             InitializeComponent();
         }
 
-        BindingSource bind_DGV_CatalogStorage_Form = new();
-        internal Storage CurrentStorage { get; set; }
+        BindingSource bind_DGV_CatalogPersonnels_Form = new();
+        internal Personnel CurrentPersonnel { get; set; }
 
-        // При отображении формы получаем список складов
-        private void CatalogStorage_Form_Load(object sender, EventArgs e)
+        // При отображении формы получаем список сотрудников
+        private void CatalogPersonnels_Form_Load(object sender, EventArgs e)
         {
             // Получаем источник данных, привязываем его и настраиваем столбцы DGV
-            bind_DGV_CatalogStorage_Form.DataSource = Manager.GetListStorage();
-            DGV_CatalogStorage_Form.DataSource = bind_DGV_CatalogStorage_Form;
-            DGV_CatalogStorage_Form.Columns["Realizations"].Visible = false;
-            DGV_CatalogStorage_Form.Columns["Supplies"].Visible = false;
+            bind_DGV_CatalogPersonnels_Form.DataSource = Manager.GetListPersonnels();
+            DGV_CatalogPersonnels_Form.DataSource = bind_DGV_CatalogPersonnels_Form;
+            DGV_CatalogPersonnels_Form.Columns["Realizations"].Visible = false;
+            //DGV_CatalogPersonnels_Form.Columns["Supplies"].Visible = false;
         }
 
-        #region // Двойной клик по строке для выбора и установки склада или редактирования
-        private void DGV_CatalogStorage_Form_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        #region // Двойной клик по строке для выбора и установки менеджера или редактирования
+        private void DGV_CatalogPersonnels_Form_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             #region //если окно в модальном режиме для выбора контрагента
             if (this.Modal)
             {
-                CurrentStorage = (Storage)bind_DGV_CatalogStorage_Form.Current;
+                CurrentPersonnel = (Personnel)bind_DGV_CatalogPersonnels_Form.Current;
                 this.DialogResult = DialogResult.OK;
             }
             #endregion
@@ -49,24 +46,24 @@ namespace Enterprise_Store_beta_1._0
             #region //иначе окно в независимом режиме для редактирования ячеек
             else
             {
-                DGV_CatalogStorage_Form.BeginEdit(false);
+                DGV_CatalogPersonnels_Form.BeginEdit(false);
             }
             #endregion
         }
         #endregion
 
-        private void DGV_CatalogStorage_Form_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        private void DGV_CatalogPersonnels_Form_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            #region // если новая строка или колонка StorageName пустая то return
-            if (DGV_CatalogStorage_Form.Rows[e.RowIndex].IsNewRow ||
-                DGV_CatalogStorage_Form.IsCurrentCellDirty == false ||
-                DGV_CatalogStorage_Form["StorageName", e.RowIndex]
+            #region // если новая строка или колонка PersonnelName пустая то return
+            if (DGV_CatalogPersonnels_Form.Rows[e.RowIndex].IsNewRow ||
+                DGV_CatalogPersonnels_Form.IsCurrentCellDirty == false ||
+                DGV_CatalogPersonnels_Form["PersonnelName", e.RowIndex]
                     .EditedFormattedValue
                     .ToString()
                     .Trim() == string.Empty)
             {
-                DGV_CatalogStorage_Form.CancelEdit();
-                DGV_CatalogStorage_Form.EndEdit();
+                DGV_CatalogPersonnels_Form.CancelEdit();
+                DGV_CatalogPersonnels_Form.EndEdit();
                 return;
             }
             #endregion
@@ -74,22 +71,22 @@ namespace Enterprise_Store_beta_1._0
             #region // Сохранить запись или отменить изменения
             if (DialogResult.Cancel == MessageBox.Show(
                     "Сохранить запись?",
-                    "Сохранить склад?",
+                    "Сохранить сотрудника?",
                     MessageBoxButtons.OKCancel,
                     MessageBoxIcon.Question))
             {
-                DGV_CatalogStorage_Form.CancelEdit();
-                DGV_CatalogStorage_Form.EndEdit();
+                DGV_CatalogPersonnels_Form.CancelEdit();
+                DGV_CatalogPersonnels_Form.EndEdit();
             }
             else
             {
                 #region // Получаем текущий эл-т списка и добавляем или обновляем в бд
-                DGV_CatalogStorage_Form.EndEdit(); // конец редактирования
-                Storage currentItem = (Storage)bind_DGV_CatalogStorage_Form.Current;
-                
+                DGV_CatalogPersonnels_Form.EndEdit(); // конец редактирования
+                Personnel currentItem = (Personnel)bind_DGV_CatalogPersonnels_Form.Current;
+
                 try
                 {
-                    if (currentItem.StorageId <= 0) //если новая запись добавляем в бд
+                    if (currentItem.PersonnelId <= 0) //если новая запись добавляем в бд
                     {
                         using Db_Enterprise_Store_Context db = new();
                         db.Add(currentItem);
@@ -105,29 +102,29 @@ namespace Enterprise_Store_beta_1._0
                 catch (Exception)
                 {
                     MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
-                    DGV_CatalogStorage_Form.CancelEdit();
-                    DGV_CatalogStorage_Form.EndEdit();
+                    DGV_CatalogPersonnels_Form.CancelEdit();
+                    DGV_CatalogPersonnels_Form.EndEdit();
                 }
                 #endregion
             }
             #endregion
         }
 
-        private void TStripMenu_CatalogStorage_Delete_Click(object sender, EventArgs e)
+        private void TStripMenu_CatalogPersonnels_Delete_Click(object sender, EventArgs e)
         {
             if (DialogResult.OK == MessageBox.Show("Данные будут удалены безвозвратно.",
-                                                   "Удалить контрагента?",
+                                                   "Удалить сотрудника?",
                                                    MessageBoxButtons.OKCancel,
                                                    MessageBoxIcon.Exclamation))
             {
-                Storage currentItem = (Storage)bind_DGV_CatalogStorage_Form.Current;
+                Personnel currentItem = (Personnel)bind_DGV_CatalogPersonnels_Form.Current;
 
                 try
                 {
                     using Db_Enterprise_Store_Context db = new();
                     db.Remove(currentItem);
                     db.SaveChanges();
-                    bind_DGV_CatalogStorage_Form.RemoveCurrent();
+                    bind_DGV_CatalogPersonnels_Form.RemoveCurrent();
                 }
                 catch (DbUpdateException ex)
                 {
@@ -138,7 +135,7 @@ namespace Enterprise_Store_beta_1._0
 
         private void CtxMenu_CatalogStorage_Delete_Click(object sender, EventArgs e)
         {
-            TStripMenu_CatalogStorage_Delete_Click(sender, e);
+            TStripMenu_CatalogPersonnels_Delete_Click(sender, e);
         }
     }
 }

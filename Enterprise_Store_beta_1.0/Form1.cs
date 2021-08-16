@@ -92,15 +92,25 @@ namespace Enterprise_Store_beta_1._0
         {
             CatalogStorage_Form catalogStorage_Form = new();
             //catalogStorage_Form.MdiParent = this;
-            catalogStorage_Form.ShowDialog();
+            catalogStorage_Form.Show();
         }
         #endregion
 
+        #region //Файл >>> Каталог складов (открываем форму)
+        private void TStrip_Form1_CatalogPersonnels_Click(object sender, EventArgs e)
+        {
+            CatalogPersonnels_Form catalogPersonnels_Form = new();
+            catalogPersonnels_Form.Show();
+        }
+
+        #endregion
         private void Form1_Load(object sender, EventArgs e)
         {
             toolStripMenuBuy_Click(sender, e);
             toolStripMenuSell_Click(sender, e);
             VerticallyTileMyWindows(sender, e);
         }
+
+
     }
 }

@@ -432,6 +432,7 @@ namespace Enterprise_Store_beta_1._0
             this.butSelectPersonnel_CreateSell.Text = "...";
             this.butSelectPersonnel_CreateSell.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.butSelectPersonnel_CreateSell.UseVisualStyleBackColor = true;
+            this.butSelectPersonnel_CreateSell.Click += new System.EventHandler(this.ButSelectPersonnel_CreateSell_Click);
             // 
             // txtSearch_CreateSell
             // 

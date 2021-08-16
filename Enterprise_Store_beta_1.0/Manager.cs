@@ -160,6 +160,22 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
+        #region// Получаем список сотрудников
+        internal static BindingSource GetListPersonnels()
+        {
+            BindingSource bind_DGV_Personnels = new();
+            //создание экземпляра контекста данных
+            using Db_Enterprise_Store_Context db = new();
+
+            //Запрос к бд Storages, выборка складов
+            var personnels = db.Personnels.ToList();
+
+            //создаём объект источник данных для привязки к DGV
+            bind_DGV_Personnels.DataSource = personnels;
+            return bind_DGV_Personnels;
+        }
+        #endregion
+
 
         #region //установка атрибутов док-та "Реализация/заказ" по Id док-та
         public static void SetAttributeDocumentSell(Db_Enterprise_Store_Context db,
@@ -177,7 +193,7 @@ namespace Enterprise_Store_beta_1._0
                     })
                     .ToList();
 
-            #region //формирование представления даты, контрагента и склада в DGV этой формы
+            #region //формирование представления даты, контрагента, склада и менеджера в DGV этой формы
             createSell_Form.txtDate_CreateSell.Text = attributeDoc[0].Date.ToString();
             createSell_Form.txtCounterparty_CreateSell.Text = attributeDoc[0].CounterpartyName.ToString();
             createSell_Form.txtStorage_CreateSell.Text = attributeDoc[0].StorageName.ToString();

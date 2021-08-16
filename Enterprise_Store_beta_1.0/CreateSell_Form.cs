@@ -371,8 +371,35 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        // Выбор персонала
+        #region // Выбор персонала
+        private void ButSelectPersonnel_CreateSell_Click(object sender, EventArgs e)
+        {
+            CatalogPersonnels_Form catalogPersonnels = new();
 
+            if (catalogPersonnels.ShowDialog() == DialogResult.OK)
+            {
+                using Db_Enterprise_Store_Context db = new();
+                //получаем строку из БД по id текущего открытого док-та "Реализация/заказы"
+                var currentDoc = db.Realizations
+                    .Where(s => s.RealizationId == RealizationID)
+                    .FirstOrDefault();
+                currentDoc.PersonnelsPersonnelId = catalogPersonnels.CurrentPersonnel.PersonnelId;
+                this.Realization.PersonnelsPersonnelId = catalogPersonnels.CurrentPersonnel.PersonnelId;
+
+                try
+                {
+                    db.SaveChanges();
+                    Manager.SetAttributeDocumentSell(db, this); //устанавливаем атрибуты док-та "Покупка/комиссия"
+                    ButDisplayDGVcatalog_CreateSell_Click(sender, e);
+
+                }
+                catch
+                {
+                    MessageBox.Show("Упс! Что-то пошло не так. Попробуйте ещё раз.");
+                }
+            }
+        } 
+        #endregion
         #endregion
 
         #region // Кнопка "Провести", Кнопка закрытия формы - Обновление формы Buy_Form
@@ -543,8 +570,9 @@ namespace Enterprise_Store_beta_1._0
 
 
 
+
         #endregion
 
-        
+
     }
 }
