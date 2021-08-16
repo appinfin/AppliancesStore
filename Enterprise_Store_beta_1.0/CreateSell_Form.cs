@@ -55,11 +55,21 @@ namespace Enterprise_Store_beta_1._0
                     name = p.ProductName,
                     brand = p.BrandsBrand.BrandName,
 
-                    availableInStock = p.SupplyPriceQties
-                                    .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
-                                    .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+                    //availableInStock = p.SupplyPriceQties
+                    //                .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
+                    //                .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
 
-                    allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                    //allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+
+                    //получаем  поступление - реализация = кол-во на складе
+                    availableInStock = (p.SupplyPriceQties
+                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId) //когда склад == указанному складу в док-те "Поступление товара"
+                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() - p.RealizationPriceQties // реализация с этого же склада
+                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Realization.StoragesStorageId) // когда склад == указанному складу в док-те "Поступление товара"
+                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString(),
+
+                    allAvailableInStock = (p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() // все поступления
+                    - p.RealizationPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString() // все реализации
                 })
                 .OrderBy(n => n.name);
 
@@ -99,6 +109,8 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
+
+        #region #region // метод AddProductInListSell - Добавляет товар в список док-та
         /// <summary>
         /// Добавляет товар в список док-та "Реализация/заказ".
         /// Где (int SelectedId) - выбранный Id товара
@@ -113,7 +125,7 @@ namespace Enterprise_Store_beta_1._0
             //создаём диалоговое окно <Кол-во, цена>
             var f = new SetPriceQty();
             f.Text += " " + productName; //цена кол-во имя товара
-            f.PriceSelling = priceSelling * (decimal)1.3; //цена с наценкой
+            f.PriceSelling = priceSelling; //цена с наценкой и скидкой для отображения в форме
             if (f.ShowDialog() == DialogResult.OK)
             {
                 //создаём экземпляр новой строки
@@ -121,11 +133,11 @@ namespace Enterprise_Store_beta_1._0
                 RealizationPriceQty newRow = new();
                 newRow.RealizationId = RealizationID;
                 newRow.ProductId = SelectedId;
-                if (f.PriceSelling == 0)
-                {
-                    f.PriceSelling = f.PricePurchase;
-                }
-                newRow.PriceSelling = f.PriceSelling;
+                //if (f.PriceSelling == 0) //если товара нет в покупке, то цена =0 и 
+                //{
+                //    f.PriceSelling = f.PricePurchase; // равна введённому в textBox числу
+                //}
+                newRow.PriceSelling = f.PricePurchase;
                 newRow.Quantity = (double)f.Quantity;
 
                 try
@@ -150,7 +162,8 @@ namespace Enterprise_Store_beta_1._0
                                     "создайте новый документ <Поступление товара>.");
                 }
             }
-        }
+        } 
+        #endregion
 
         #region //Двойной клик по строке товара или группы товаров
         private void DGVcatalog_CreateSell_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -193,45 +206,6 @@ namespace Enterprise_Store_beta_1._0
             else
             {
                 AddProductInListSell(SelectedId);
-                #region //закомментирован код поиск товара в списке док-та
-                //if (DGV_CreateSell.Rows.Count > 0)
-                //{
-                //    var rowsCollection = DGV_CreateSell.Rows; //получаем коллекцию строк DGV
-                //    //поиск товара в списке <Поступление товара>
-                //    //по текущему выбранному Id из Каталога товаров
-                //    foreach (DataGridViewRow row in rowsCollection)
-                //    {
-                //        //сравниваем Id выбранного товара с
-                //        //имеющимися в списке <Поступление товара>
-                //        bool b = SelectedId.Equals(row.Cells[0].Value);
-                //        if (b == false)
-                //        {
-                //            //если Id не совпадают, тогда продолжаем перебор списка и сравнение
-                //            if (rowsCollection.Count > row.Index + 1)
-                //            {
-                //                continue;
-                //            }
-                //            //по завершению списка добавляем строку с товаром
-                //            else
-                //            {
-                //                AddProductInListSell(SelectedId);
-                //                break;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show("Товар уже находится в списке.\n" +
-                //                    "Если хотите добавить этот товар по другой цене\n" +
-                //                    "создайте новый документ <Поступление товара>.");
-                //            break;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    AddProductInListSell(SelectedId);
-                //} 
-                #endregion
             }
             #endregion
         }

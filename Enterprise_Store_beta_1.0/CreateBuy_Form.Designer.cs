@@ -39,6 +39,7 @@ namespace Enterprise_Store_beta_1._0
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.butSelectStorage_CreateBuy = new System.Windows.Forms.Button();
             this.butSelectCounterparty_CreateBuy = new System.Windows.Forms.Button();
             this.butOK_CreateBuy = new System.Windows.Forms.Button();
@@ -294,6 +295,7 @@ namespace Enterprise_Store_beta_1._0
             // DGV_CreateBuy
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Info;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
             this.DGV_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
@@ -462,7 +464,10 @@ namespace Enterprise_Store_beta_1._0
             // 
             // DGVcatalog_CreateBuy
             // 
-            this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Lavender;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            this.DGVcatalog_CreateBuy.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DGVcatalog_CreateBuy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -471,14 +476,14 @@ namespace Enterprise_Store_beta_1._0
             this.DGVcatalog_CreateBuy.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVcatalog_CreateBuy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVcatalog_CreateBuy.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVcatalog_CreateBuy.DefaultCellStyle = dataGridViewCellStyle9;
             this.DGVcatalog_CreateBuy.Location = new System.Drawing.Point(3, 133);
             this.DGVcatalog_CreateBuy.MultiSelect = false;
             this.DGVcatalog_CreateBuy.Name = "DGVcatalog_CreateBuy";

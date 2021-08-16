@@ -2,6 +2,7 @@
 using ModelLibrary_Estore_1;
 using System.Linq;
 using System.Windows.Forms;
+using System;
 
 namespace Enterprise_Store_beta_1._0
 {
@@ -282,9 +283,15 @@ namespace Enterprise_Store_beta_1._0
                 var price = db.SupplyPriceQtys
                     .Include(s => s.Supply)
                     .Where(p => p.ProductId == SelectedId)
-                    .Select(p => new { p.PricePurchase, date = p.Supply.Date })
+                    .Select(p => new { p.PricePurchase, p.Product.ProductSale, date = p.Supply.Date })
                     .OrderBy(p => p.date).First();
-                return priceSell = price.PricePurchase;
+
+                if (price.ProductSale != null)
+                {
+                    return priceSell = price.PricePurchase * 1.3M - (price.PricePurchase * 1.3M * (decimal)price.ProductSale / 100);
+                }
+
+                return priceSell = price.PricePurchase * 1.3M;
             }
             catch (System.Exception)
             {

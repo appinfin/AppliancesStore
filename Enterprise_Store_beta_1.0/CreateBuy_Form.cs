@@ -55,15 +55,17 @@ namespace Enterprise_Store_beta_1._0
                     id = p.ProductId,
                     name = p.ProductName,
                     brand = p.BrandsBrand.BrandName,
+                    //получаем  поступление - реализация = кол-во на складе
+                    availableInStock = (p.SupplyPriceQties
+                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId) //когда склад == указанному складу в док-те "Поступление товара"
+                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() - p.RealizationPriceQties // реализация с этого же склада
+                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Supply.StoragesStorageId) // когда склад == указанному складу в док-те "Поступление товара"
+                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString(),
 
-                    availableInStock = p.SupplyPriceQties
-                                    .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
-                                    .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
-
-                    allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                    allAvailableInStock = (p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() // все поступления
+                    - p.RealizationPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString() // все реализации
                 })
                 .OrderBy(n => n.name);
-
 
             //соединяем списки productGroupName и productsWithoutGroupName
             //вставляем список в список с указанного индекса
@@ -254,7 +256,7 @@ namespace Enterprise_Store_beta_1._0
                 using Db_Enterprise_Store_Context db = new();
                 //выбираем строки 
                 var res = db.SupplyPriceQtys.Where(s => s.SupplyId == SupplyID).AsEnumerable();
-                
+
                 try
                 {
                     db.RemoveRange(res);
