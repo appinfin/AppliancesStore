@@ -45,13 +45,7 @@ namespace ModelLibrary_Estore_1.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            //migrationBuilder.Sql(
-            //    @"TRUNCATE TABLE Counterpartys;
-            //      TRUNCATE TABLE Brands;
-            //      TRUNCATE TABLE Storages;
-            //      TRUNCATE TABLE Units;
-            //      TRUNCATE TABLE Personnels;"
-            //);
+
         }
     }
 }

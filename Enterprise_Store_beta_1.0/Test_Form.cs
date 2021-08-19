@@ -1,258 +1,199 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ModelLibrary_Estore_1;
 using System;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
-using System.Globalization;
+
 
 namespace Enterprise_Store_beta_1._0
 {
-    public partial class Test_Form : Form
+    public partial class Test_form : Form
     {
-
-        public Test_Form()
+        public Test_form()
         {
             InitializeComponent();
         }
 
-        private void Test_Form_Load(object sender, EventArgs e)
+        private void Test_form_Load(object sender, EventArgs e)
         {
-            var priceSelling = Manager.GetPriceSell(5);
-            decimal PriceSelling = priceSelling * (decimal)1.3;
-            this.txtProductName.Text = Math.Round(PriceSelling, 2, MidpointRounding.ToEven).ToString();
             
-            var f = new SetPriceQty();
-            //f.Text += " " + productName;
-            f.PriceSelling = priceSelling * (decimal)1.3;
-            if (f.ShowDialog() == DialogResult.OK)
-            {
-            }
+            var defaulPageSetting = printDocument1.DefaultPageSettings;
+            var printerSetting = printDocument1.PrinterSettings;
+            using Db_Enterprise_Store_Context db = new();
 
-                using Db_Enterprise_Store_Context db = new();
+            //var sqq = db.RealizationPriceQtys
 
-
-            //var sq = db.Products
-            //    .Include(s => s.SupplyPriceQties)
-            //    .ThenInclude(s => s.Supply)
-            //    .ThenInclude(s => s.StoragesStorage)
-            //    .Select(ss => new
+            //var sqq = db.Personnels
+            //    .Include(p => p.Realizations)
+            //    .ThenInclude(r => r.RealizationPriceQties)
+            //    .Select(p => new 
             //    {
-            //        ss.ProductId,
-            //        ss.ProductName,
-            //        supplyCount = ss.SupplyPriceQties,//.Count,
+            //        p.PersonnelName,
+                    //real = p.Realizations.Where(p => p.PersonnelsPersonnelId==p.PersonnelsPersonnel.PersonnelId),
+                    //real = p.Realizations
 
-            //        availableInStock = ss.SupplyPriceQties
-            //                        .Where(s => s.Supply.StoragesStorage.StorageId == 2)
-            //                        .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum(),
+                    //.Select(r => r.RealizationPriceQties.Select(p => new{ re = p.PriceSelling * (decimal)p.Quantity }).Select(r=>r.re).Sum())
+                    //.Select(r => r.RealizationPriceQties.Select(p => p.PriceSelling * (decimal)p.Quantity).Sum())
 
-            //        allAvailableInStock = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity)
-            //    })
-            //    .ToQueryString();
+                //})
+                //.Select(p => new
+                //{
+                //    //TotalPriceRealizations = p.PriceSelling * (decimal)p.Quantity
+                //    //TotalPriceRealizations = p.RealizationPriceQties.Select(p => p.PriceSelling * (decimal)p.Quantity).Sum()
+                //})
+                //.ToList();
 
-            var sqq = db.Products
-                .Include(s => s.SupplyPriceQties)
-                .ThenInclude(s => s.Supply)
-                .ThenInclude(s => s.StoragesStorage)
-                .Select(ss => new
+            var sqq2 = db.Personnels.Select(
+                per => new
                 {
-                    ss.ProductId,
-                    ss.ProductName,
-                    supplyCount = ss.SupplyPriceQties,//.Count,
-
-                    availableInStock = ss.SupplyPriceQties
-                                    .Where(s => s.Supply.StoragesStorage.StorageId == 2)
-                                    .Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum(),
-
-                    allAvailableInStock = ss.SupplyPriceQties.Select(s => new { s.Quantity }).Select(s => s.Quantity).Sum()
+                    per.PersonnelName,
+                    summa = per.Realizations.SelectMany(real => real.RealizationPriceQties).Sum(rpq => (decimal)rpq.Quantity * rpq.PriceSelling)
                 })
                 .ToList();
 
-            bindComBox_Brand.DataSource = sqq;
-            dataGridView1.DataSource = bindComBox_Brand;
-            //textBox1.Text = sq;
+            bindingSource1.DataSource = sqq2;
+            dataGridView1.DataSource = bindingSource1;
+        }
 
+        private void PreviewPrint_Click(object sender, EventArgs e)
+        {
+            
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.PrintPreviewControl.Zoom = 0.75;
+            printPreviewDialog1.ShowDialog();
+        }
 
+        private void PrintDoc_Click(object sender, EventArgs e)
+        {
+            printDocument1.Print();
+        }
 
+        private void PrintDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            var font = this.Font;
+            Pen pen = new (Color.Azure, 2F);
+            var stringSizeF = e.Graphics.MeasureString("Hello, world!!!", this.Font);
+            RectangleF rect = new() { Size = stringSizeF, X = 40F, Y = 40F };
+            e.Graphics.DrawRectangle(pen, Rectangle.Truncate(rect));
+            e.Graphics.DrawString("Hello, world!!!", this.Font, Brushes.Red, rect);
+            var pageArea = e.PageBounds;
+            var marginBounds = e.MarginBounds;
+            //var area = Rectangle.Truncate(e.PageSettings.PrintableArea);
+            e.Graphics.DrawRectangle(Pens.Red, marginBounds);
+            var stringPrint = dataGridView1[0, 10].Value.ToString();
+            //e.Graphics.DrawRectangle(Pens.Green, area);
+            var rectangleCell = dataGridView1.GetCellDisplayRectangle(0, 10, true);
+            var rectangleRow = dataGridView1.GetRowDisplayRectangle(0, true);
+            var point = rectangleCell.Location;
+            var rectangell = dataGridView1.GetCellDisplayRectangle(0, 0, true);
+            e.Graphics.DrawRectangle(Pens.Black, rectangleCell);
+            e.Graphics.DrawRectangle(Pens.Black, rectangleRow);
+            e.Graphics.DrawString(stringPrint, this.Font, Brushes.Black, point);
+            
 
-            #region // Запрос атрибутов док-та  к БД
-            //var allBrands = db.Brands.ToList();
-            //bindComBox_Brand.DataSource = allBrands;
-            //comBoxBrand.DataSource = bindComBox_Brand; //привязка бренд
-            //comBoxBrand.SelectedItem = null; //ставим пустой эл-т
-            //comBoxBrand.Text = "- выбрать из списка -";
+            #region Print string format Example
+            ///////
+            Rectangle displayRectangle =
+        new Rectangle(new Point(102, 45), new Size(80, 80));
 
-            //var allGroups = db.ProductsGroups.ToList();
-            //bindComBox_ProductGroup.DataSource = allGroups; //привязка групп товаров
-            //comBoxProductGroup.DataSource = bindComBox_ProductGroup;
-            //comBoxProductGroup.SelectedItem = null;
-            //comBoxProductGroup.Text = "- выбрать из списка -";
+            // Construct 2 new StringFormat objects
+            StringFormat format1 = new StringFormat(StringFormatFlags.NoClip);
+            StringFormat format2 = new StringFormat(format1);
 
-            //var allUnits = db.Units.ToList();
-            //bindComBox_Unit.DataSource = allUnits; //привязка ед.изм
-            //comBoxUnit.DataSource = bindComBox_Unit;
-            //comBoxUnit.SelectedItem = null;
-            //comBoxUnit.Text = "- выбрать из списка -"; 
+            // Set the LineAlignment and Alignment properties for
+            // both StringFormat objects to different values.
+            format1.LineAlignment = StringAlignment.Near;
+            format1.Alignment = StringAlignment.Center;
+            format2.LineAlignment = StringAlignment.Center;
+            format2.Alignment = StringAlignment.Far;
+
+            // Draw the bounding rectangle and a string for each
+            // StringFormat object.
+            e.Graphics.DrawRectangle(Pens.Black, displayRectangle);
+            e.Graphics.DrawString("Showing Format1 Center", this.Font,
+                Brushes.Red, (RectangleF)displayRectangle, format1);
+            e.Graphics.DrawString("Showing Format2 Far", this.Font,
+                Brushes.Red, (RectangleF)displayRectangle, format2);
             #endregion
+            #region // Пример печати многостраничного док-та
+            //Font printFont = new("Arial", 12);
+            //var row = dataGridView1.Rows[0].ToString();
+            //ev.Graphics.DrawString(row, printFont, Brushes.Black, 0, 0);
 
-            #region Привязка к ДГВ построчно
-            //    dataGridView1.ColumnCount = 4;
-            //    string[] row1 = new string[] { "Meatloaf", "Main Dish", "ground beef",
-            //"**" };
-            //    string[] row2 = new string[] { "Key Lime Pie", "Dessert",
-            //"lime juice, evaporated milk", "****" };
-            //    string[] row3 = new string[] { "Orange-Salsa Pork Chops", "Main Dish",
-            //"pork chops, salsa, orange juice", "****" };
-            //    string[] row4 = new string[] { "Black Bean and Rice Salad", "Salad",
-            //"black beans, brown rice", "****" };
-            //    string[] row5 = new string[] { "Chocolate Cheesecake", "Dessert",
-            //"cream cheese", "***" };
-            //    string[] row6 = new string[] { "Black Bean Dip", "Appetizer",
-            //"black beans, sour cream", "***" };
-            //    object[] rows = new object[] { row1, row2, row3, row4, row5, row6 };
+            //float linesPerPage = 0;
+            //float yPos = 0;
+            //int count = 0;
+            //float leftMargin = ev.MarginBounds.Left;
+            //float topMargin = ev.MarginBounds.Top;
+            //String line = null;
 
-            //    foreach (string[] rowArray in rows)
-            //    {
-            //        dataGridView1.Rows.Add(rowArray);
-            //    } 
+            //// Calculate the number of lines per page.
+            //linesPerPage = ev.MarginBounds.Height /
+            //   printFont.GetHeight(ev.Graphics);
+
+            //// Iterate over the file, printing each line.
+            //while (count < linesPerPage &&
+            //   ((line = streamToPrint.ReadLine()) != null))
+            //{
+            //    yPos = topMargin + (count * printFont.GetHeight(ev.Graphics));
+            //    ev.Graphics.DrawString(line, printFont, Brushes.Black,
+            //       leftMargin, yPos, new StringFormat());
+            //    count++;
+            //}
+
+            //// If more lines exist, print another page.
+            //if (line != null)
+            //    ev.HasMorePages = true;
+            //else
+            //    ev.HasMorePages = false; 
             #endregion
         }
 
-        #region //Добавить товар и сохранить в БД кнопка "Сохранить"
-        private void Button1_Click(object sender, EventArgs e)
+        private void PrintDialog_Click(object sender, EventArgs e)
         {
-            var sProductName = txtProductName.Text.Trim();//удаляем пробелы начала и конца строки
-            if (sProductName == string.Empty) //если строка пустая то Message
-            {
-                MessageBox.Show(@"Поле ""Наименование"" пусто");
-            }
-            else
-            {
-                Product product = new();
-                //var id = product.ProductId;
-                product.ProductName = sProductName;
-                product.BrandsBrandId = (int?)comBoxBrand.SelectedValue;
-                product.ProductsGroupsProductGroupId = (int?)comBoxProductGroup.SelectedValue;
-                product.UnitsIdUnit = (int?)comBoxUnit.SelectedValue;
-                if (numSale_AddProduct.Value == 0) //если скидка 0%
-                {
-                    product.ProductSale = null; //тогда null
-                }
-                else
-                {
-                    product.ProductSale = (double)numSale_AddProduct.Value;
-                }
-                try
-                {
-                    using Db_Enterprise_Store_Context db = new();
-                    if (product.ProductId == 0)
-                    {
-                        db.Add(product);
-                        db.SaveChanges();
-                        var b = Int32.TryParse(txtProductId.Text, out int productID);
-                        if (b)
-                        {
+            printDialog1.ShowDialog();
 
-                            product.ProductId = productID;
-                            db.Update(product);
-                            db.SaveChanges();
-                            txtProductId.Text = "";
-                        }
-                        else
-                        {
-                            MessageBox.Show("Упс!!! Что-то пошло не так.\n" +
-                                            "Попробуйте ещё раз");
-                        }
-                    }
-                    else
-                    {
-                        db.Add(product);
-                        db.SaveChanges();
-                    }
-
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Упс!!! Что-то пошло не так.\n" +
-                                            "Попробуйте ещё раз");
-                }
-
-                txtProductName.Text = "";
-                comBoxBrand.Text = "- выбрать из списка -";
-                comBoxProductGroup.Text = "- выбрать из списка -";
-                comBoxUnit.Text = "- выбрать из списка -";
-            }
-        }
-        #endregion
-
-        public void ViewAttrbuteProduct(int productID)
-        {
-            using Db_Enterprise_Store_Context db = new();
-            var productInfo = db.Products.Find(productID); // Находим товар по Id
-            // Заполняем поля формы текущими значениями выбранного товара для редактирования
-            txtProductId.Text = productInfo.ProductId.ToString();
-            txtProductName.Text = productInfo.ProductName;
-            if (productInfo.BrandsBrandId != null)
-            {
-                comBoxBrand.SelectedValue = productInfo.BrandsBrandId;
-            }
-            if (productInfo.ProductsGroupsProductGroupId != null)
-            {
-                comBoxProductGroup.SelectedValue = productInfo.ProductsGroupsProductGroupId;
-            }
-            if (productInfo.UnitsIdUnit != null)
-            {
-                comBoxUnit.SelectedValue = productInfo.UnitsIdUnit;
-            }
-            if (productInfo.ProductSale == null)
-            {
-                numSale_AddProduct.Value = 0;
-            }
-            else
-            {
-                numSale_AddProduct.Value = (decimal)productInfo.ProductSale;
-            }
         }
 
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void PageSetupDialog_Click(object sender, EventArgs e)
         {
-            //var et = this.dataGridView1.SelectedCells[0].EditType;
-            //bool b = this.dataGridView1.BeginEdit(true);
-        }
+            var p = pageSetupDialog1;
+            var psDialog = pageSetupDialog1.PageSettings;
+            var psDoc = printDocument1.DefaultPageSettings;
 
-        private void txtProductName_Leave(object sender, EventArgs e)
-        {
-            var idx = comBoxBrand.FindString(txtProductName.Text);
-            comBoxBrand.SelectedIndex = idx;
-        }
+            pageSetupDialog1.ShowDialog();
 
-        #region // ПОИСК
-        private void txtProductName_TextChanged(object sender, EventArgs e)
-        {
-            while (txtProductName.Text.Length < 3)
+            psDialog = pageSetupDialog1.PageSettings;
+            psDoc = printDocument1.DefaultPageSettings;
+
+            PaperSize myPaperSize = new()
             {
-                return;
-            }
-            MessageBox.Show("Text change", "ПОИСК", MessageBoxButtons.OK, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-            Db_Enterprise_Store_Context db = new();
-            var s = db.Products.Where(p => p.ProductName.StartsWith(txtProductName.Text))
-                .Select(p => new { category = "Товар", id = p.ProductId, name = p.ProductName, brand = p.BrandsBrand.BrandName })
-                .ToList();
+                PaperName = "my_A4Rotade",
+                RawKind = 77,
+                Width = 1169,
+                Height = 826
+            };
+            
+            //printDocument1.DefaultPageSettings.PaperSize = myPaperSize;
+        }
 
-            bindDGV.DataSource = s;
-            dataGridView1.DataSource = bindDGV;
+        private void PrintDocument1_BeginPrint(object sender, PrintEventArgs e)
+        {
 
-            #region //Представление выборки в dataGridView1
-            dataGridView1.Columns["id"].Visible = false;
-            //dataGridView1.Columns["category"].Visible = false;
-            dataGridView1.Columns["category"].HeaderText = ""; //заголовок
-            dataGridView1.Columns["category"].FillWeight = 20;
-            dataGridView1.Columns["name"].HeaderText = "Номенклатура";
-            dataGridView1.Columns["name"].FillWeight = 60;
-            dataGridView1.Columns["brand"].HeaderText = "Производитель";
-            dataGridView1.Columns["brand"].FillWeight = 20;
-            #endregion
+            pageSetupDialog1.ShowDialog();
+            
+        }
+
+        private void PrintDocument1_QueryPageSettings(object sender, QueryPageSettingsEventArgs e)
+        {
+            //printDialog1.ShowDialog();
+        }
+
+        private void PrintDocument1_EndPrint(object sender, PrintEventArgs e)
+        {
 
         }
-        #endregion
     }
 }

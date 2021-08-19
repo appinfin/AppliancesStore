@@ -23,11 +23,12 @@ namespace Enterprise_Store_beta_1._0
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             //Application.Run(new Class1());
-            //Application.Run(new Test_Form());
+            //Application.Run(new Test_form());
+            
             //Application.Run(new CatalogCounterparty_Form());
             //Application.Run(new CatalogStorage_Form());
             //Application.Run(new CatalogPersonnels_Form());
-            
+
             //Application.Run(new Calendar_Form());
             //Application.Run(new AddProduct_Form());
             //Application.Run(new BuyForm());

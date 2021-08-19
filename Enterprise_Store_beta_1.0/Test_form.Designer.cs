@@ -1,7 +1,7 @@
 ﻿
 namespace Enterprise_Store_beta_1._0
 {
-    partial class Test_Form
+    partial class Test_form
     {
         /// <summary>
         /// Required designer variable.
@@ -30,208 +30,93 @@ namespace Enterprise_Store_beta_1._0
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Node1");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Товары", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            this.tableLayoutPanel_AddProduct = new System.Windows.Forms.TableLayoutPanel();
-            this.numSale_AddProduct = new System.Windows.Forms.NumericUpDown();
-            this.txtProductId = new System.Windows.Forms.TextBox();
-            this.comBoxBrand = new System.Windows.Forms.ComboBox();
-            this.lblProductBrand = new System.Windows.Forms.Label();
-            this.lblProductId = new System.Windows.Forms.Label();
-            this.lblProductName = new System.Windows.Forms.Label();
-            this.lblProductGroup = new System.Windows.Forms.Label();
-            this.lblProductUnits = new System.Windows.Forms.Label();
-            this.lblProductSale = new System.Windows.Forms.Label();
-            this.txtProductName = new System.Windows.Forms.TextBox();
-            this.comBoxProductGroup = new System.Windows.Forms.ComboBox();
-            this.comBoxUnit = new System.Windows.Forms.ComboBox();
-            this.bindComBox_Brand = new System.Windows.Forms.BindingSource(this.components);
-            this.butSave_AddProduct = new System.Windows.Forms.Button();
-            this.bindComBox_ProductGroup = new System.Windows.Forms.BindingSource(this.components);
-            this.bindComBox_Unit = new System.Windows.Forms.BindingSource(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Test_form));
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.PreviewPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.PrintDoc = new System.Windows.Forms.ToolStripMenuItem();
+            this.PrintDialog = new System.Windows.Forms.ToolStripMenuItem();
+            this.PageSetupDialog = new System.Windows.Forms.ToolStripMenuItem();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.treeView1 = new System.Windows.Forms.TreeView();
-            this.bindDGV = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tableLayoutPanel_AddProduct.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSale_AddProduct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Brand)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindComBox_ProductGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Unit)).BeginInit();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel_AddProduct
+            // menuStrip1
             // 
-            this.tableLayoutPanel_AddProduct.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel_AddProduct.ColumnCount = 4;
-            this.tableLayoutPanel_AddProduct.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel_AddProduct.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_AddProduct.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel_AddProduct.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.numSale_AddProduct, 3, 2);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.txtProductId, 1, 0);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.comBoxBrand, 1, 2);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.lblProductBrand, 0, 2);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.lblProductId, 0, 0);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.lblProductName, 0, 1);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.lblProductGroup, 2, 0);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.lblProductUnits, 2, 1);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.lblProductSale, 2, 2);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.txtProductName, 1, 1);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.comBoxProductGroup, 3, 0);
-            this.tableLayoutPanel_AddProduct.Controls.Add(this.comBoxUnit, 3, 1);
-            this.tableLayoutPanel_AddProduct.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel_AddProduct.Location = new System.Drawing.Point(12, 12);
-            this.tableLayoutPanel_AddProduct.Name = "tableLayoutPanel_AddProduct";
-            this.tableLayoutPanel_AddProduct.Padding = new System.Windows.Forms.Padding(3);
-            this.tableLayoutPanel_AddProduct.RowCount = 3;
-            this.tableLayoutPanel_AddProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_AddProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_AddProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel_AddProduct.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_AddProduct.Size = new System.Drawing.Size(600, 100);
-            this.tableLayoutPanel_AddProduct.TabIndex = 3;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PreviewPrint,
+            this.PrintDoc,
+            this.PrintDialog,
+            this.PageSetupDialog});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // numSale_AddProduct
+            // PreviewPrint
             // 
-            this.numSale_AddProduct.DecimalPlaces = 2;
-            this.numSale_AddProduct.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numSale_AddProduct.Location = new System.Drawing.Point(401, 68);
-            this.numSale_AddProduct.Name = "numSale_AddProduct";
-            this.numSale_AddProduct.Size = new System.Drawing.Size(193, 21);
-            this.numSale_AddProduct.TabIndex = 6;
-            this.numSale_AddProduct.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.PreviewPrint.Name = "PreviewPrint";
+            this.PreviewPrint.Size = new System.Drawing.Size(57, 20);
+            this.PreviewPrint.Text = "preview";
+            this.PreviewPrint.Click += new System.EventHandler(this.PreviewPrint_Click);
             // 
-            // txtProductId
+            // PrintDoc
             // 
-            this.txtProductId.BackColor = System.Drawing.SystemColors.Control;
-            this.txtProductId.Cursor = System.Windows.Forms.Cursors.No;
-            this.txtProductId.Location = new System.Drawing.Point(144, 6);
-            this.txtProductId.MaxLength = 16;
-            this.txtProductId.Name = "txtProductId";
-            this.txtProductId.ReadOnly = true;
-            this.txtProductId.Size = new System.Drawing.Size(193, 21);
-            this.txtProductId.TabIndex = 1;
+            this.PrintDoc.Name = "PrintDoc";
+            this.PrintDoc.Size = new System.Drawing.Size(41, 20);
+            this.PrintDoc.Text = "print";
+            this.PrintDoc.Click += new System.EventHandler(this.PrintDoc_Click);
             // 
-            // comBoxBrand
+            // PrintDialog
             // 
-            this.comBoxBrand.DisplayMember = "BrandName";
-            this.comBoxBrand.Location = new System.Drawing.Point(144, 68);
-            this.comBoxBrand.Name = "comBoxBrand";
-            this.comBoxBrand.Size = new System.Drawing.Size(193, 21);
-            this.comBoxBrand.TabIndex = 3;
-            this.comBoxBrand.ValueMember = "BrandId";
+            this.PrintDialog.Name = "PrintDialog";
+            this.PrintDialog.Size = new System.Drawing.Size(70, 20);
+            this.PrintDialog.Text = "PrintDialog";
+            this.PrintDialog.Click += new System.EventHandler(this.PrintDialog_Click);
             // 
-            // lblProductBrand
+            // PageSetupDialog
             // 
-            this.lblProductBrand.AutoSize = true;
-            this.lblProductBrand.Location = new System.Drawing.Point(8, 70);
-            this.lblProductBrand.Margin = new System.Windows.Forms.Padding(5);
-            this.lblProductBrand.Name = "lblProductBrand";
-            this.lblProductBrand.Size = new System.Drawing.Size(128, 13);
-            this.lblProductBrand.TabIndex = 0;
-            this.lblProductBrand.Text = "Производитель (бренд)";
-            this.lblProductBrand.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.PageSetupDialog.Name = "PageSetupDialog";
+            this.PageSetupDialog.Size = new System.Drawing.Size(100, 20);
+            this.PageSetupDialog.Text = "PageSetupDialog";
+            this.PageSetupDialog.Click += new System.EventHandler(this.PageSetupDialog_Click);
             // 
-            // lblProductId
+            // printDialog1
             // 
-            this.lblProductId.AutoSize = true;
-            this.lblProductId.Location = new System.Drawing.Point(8, 8);
-            this.lblProductId.Margin = new System.Windows.Forms.Padding(5);
-            this.lblProductId.Name = "lblProductId";
-            this.lblProductId.Size = new System.Drawing.Size(27, 13);
-            this.lblProductId.TabIndex = 0;
-            this.lblProductId.Text = "Код";
-            this.lblProductId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.printDialog1.AllowCurrentPage = true;
+            this.printDialog1.AllowSelection = true;
+            this.printDialog1.AllowSomePages = true;
+            this.printDialog1.Document = this.printDocument1;
+            this.printDialog1.UseEXDialog = true;
             // 
-            // lblProductName
+            // printDocument1
             // 
-            this.lblProductName.AutoSize = true;
-            this.lblProductName.Location = new System.Drawing.Point(8, 39);
-            this.lblProductName.Margin = new System.Windows.Forms.Padding(5);
-            this.lblProductName.Name = "lblProductName";
-            this.lblProductName.Size = new System.Drawing.Size(80, 13);
-            this.lblProductName.TabIndex = 0;
-            this.lblProductName.Text = "Наименование";
+            this.printDocument1.DocumentName = "test_print";
+            this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.PrintDocument1_BeginPrint);
+            this.printDocument1.EndPrint += new System.Drawing.Printing.PrintEventHandler(this.PrintDocument1_EndPrint);
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1_PrintPage);
+            this.printDocument1.QueryPageSettings += new System.Drawing.Printing.QueryPageSettingsEventHandler(this.PrintDocument1_QueryPageSettings);
             // 
-            // lblProductGroup
+            // printPreviewDialog1
             // 
-            this.lblProductGroup.AutoSize = true;
-            this.lblProductGroup.Location = new System.Drawing.Point(345, 8);
-            this.lblProductGroup.Margin = new System.Windows.Forms.Padding(5);
-            this.lblProductGroup.Name = "lblProductGroup";
-            this.lblProductGroup.Size = new System.Drawing.Size(43, 13);
-            this.lblProductGroup.TabIndex = 0;
-            this.lblProductGroup.Text = "Группа";
-            this.lblProductGroup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblProductUnits
-            // 
-            this.lblProductUnits.AutoSize = true;
-            this.lblProductUnits.Location = new System.Drawing.Point(345, 39);
-            this.lblProductUnits.Margin = new System.Windows.Forms.Padding(5);
-            this.lblProductUnits.Name = "lblProductUnits";
-            this.lblProductUnits.Size = new System.Drawing.Size(48, 13);
-            this.lblProductUnits.TabIndex = 0;
-            this.lblProductUnits.Text = "Ед. изм.";
-            // 
-            // lblProductSale
-            // 
-            this.lblProductSale.AutoSize = true;
-            this.lblProductSale.Location = new System.Drawing.Point(345, 70);
-            this.lblProductSale.Margin = new System.Windows.Forms.Padding(5);
-            this.lblProductSale.Name = "lblProductSale";
-            this.lblProductSale.Size = new System.Drawing.Size(45, 13);
-            this.lblProductSale.TabIndex = 0;
-            this.lblProductSale.Text = "Скидка";
-            this.lblProductSale.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // txtProductName
-            // 
-            this.txtProductName.Location = new System.Drawing.Point(144, 37);
-            this.txtProductName.Name = "txtProductName";
-            this.txtProductName.PlaceholderText = "- наименование товара -";
-            this.txtProductName.Size = new System.Drawing.Size(193, 21);
-            this.txtProductName.TabIndex = 2;
-            this.txtProductName.TextChanged += new System.EventHandler(this.txtProductName_TextChanged);
-            this.txtProductName.Leave += new System.EventHandler(this.txtProductName_Leave);
-            // 
-            // comBoxProductGroup
-            // 
-            this.comBoxProductGroup.DisplayMember = "ProductGroupName";
-            this.comBoxProductGroup.FormattingEnabled = true;
-            this.comBoxProductGroup.Location = new System.Drawing.Point(401, 6);
-            this.comBoxProductGroup.Name = "comBoxProductGroup";
-            this.comBoxProductGroup.Size = new System.Drawing.Size(193, 21);
-            this.comBoxProductGroup.TabIndex = 4;
-            this.comBoxProductGroup.ValueMember = "ProductGroupId";
-            // 
-            // comBoxUnit
-            // 
-            this.comBoxUnit.DisplayMember = "UnitName";
-            this.comBoxUnit.FormattingEnabled = true;
-            this.comBoxUnit.Location = new System.Drawing.Point(401, 37);
-            this.comBoxUnit.Name = "comBoxUnit";
-            this.comBoxUnit.Size = new System.Drawing.Size(193, 21);
-            this.comBoxUnit.TabIndex = 5;
-            this.comBoxUnit.ValueMember = "IdUnit";
-            // 
-            // butSave_AddProduct
-            // 
-            this.butSave_AddProduct.Location = new System.Drawing.Point(532, 118);
-            this.butSave_AddProduct.Name = "butSave_AddProduct";
-            this.butSave_AddProduct.Size = new System.Drawing.Size(80, 25);
-            this.butSave_AddProduct.TabIndex = 5;
-            this.butSave_AddProduct.Text = "Сохранить";
-            this.butSave_AddProduct.UseVisualStyleBackColor = true;
-            this.butSave_AddProduct.Click += new System.EventHandler(this.Button1_Click);
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(1600, 852);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.MainMenuStrip = this.menuStrip1;
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            this.printPreviewDialog1.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             // 
             // dataGridView1
             // 
@@ -240,65 +125,46 @@ namespace Enterprise_Store_beta_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 153);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 24);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(20);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(600, 225);
-            this.dataGridView1.TabIndex = 6;
-            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(800, 335);
+            this.dataGridView1.TabIndex = 2;
             // 
-            // treeView1
+            // pageSetupDialog1
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.treeView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.treeView1.Location = new System.Drawing.Point(618, 12);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node1";
-            treeNode1.Text = "Node1";
-            treeNode2.Name = "folderProducts";
-            treeNode2.Tag = "AllProducts";
-            treeNode2.Text = "Товары";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.treeView1.Size = new System.Drawing.Size(419, 523);
-            this.treeView1.TabIndex = 7;
+            this.pageSetupDialog1.Document = this.printDocument1;
+            this.pageSetupDialog1.EnableMetric = true;
             // 
-            // textBox1
+            // richTextBox1
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(12, 384);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(600, 151);
-            this.textBox1.TabIndex = 8;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.richTextBox1.Location = new System.Drawing.Point(0, 365);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(800, 207);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "";
             // 
-            // Test_Form
+            // Test_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 547);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.treeView1);
+            this.ClientSize = new System.Drawing.Size(800, 572);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.butSave_AddProduct);
-            this.Controls.Add(this.tableLayoutPanel_AddProduct);
-            this.Name = "Test_Form";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Карточка товара";
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
+            this.Name = "Test_form";
+            this.Text = "Test_form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Test_Form_Load);
-            this.tableLayoutPanel_AddProduct.ResumeLayout(false);
-            this.tableLayoutPanel_AddProduct.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSale_AddProduct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Brand)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindComBox_ProductGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindComBox_Unit)).EndInit();
+            this.Load += new System.EventHandler(this.Test_form_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -306,32 +172,18 @@ namespace Enterprise_Store_beta_1._0
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_AddProduct;
-
-        private System.Windows.Forms.Label lblProductId;
-        private System.Windows.Forms.Label lblProductName;
-        private System.Windows.Forms.Label lblProductBrand;
-        private System.Windows.Forms.Label lblProductGroup;
-        private System.Windows.Forms.Label lblProductUnits;
-        private System.Windows.Forms.Label lblProductSale;
-
-        private System.Windows.Forms.TextBox txtProductId;
-        private System.Windows.Forms.TextBox txtProductName;
-
-
-        private System.Windows.Forms.ComboBox comBoxBrand;
-        private System.Windows.Forms.BindingSource bindComBox_Brand;
-        private System.Windows.Forms.Button butSave_AddProduct;
-        private System.Windows.Forms.ComboBox comBoxProductGroup;
-        private System.Windows.Forms.ComboBox comBoxUnit;
-        private System.Windows.Forms.BindingSource bindComBox_ProductGroup;
-        private System.Windows.Forms.BindingSource bindComBox_Unit;
-        private System.Windows.Forms.NumericUpDown numSale_AddProduct;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        internal System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.BindingSource bindDGV;
+        private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ToolStripMenuItem PreviewPrint;
+        private System.Windows.Forms.ToolStripMenuItem PrintDoc;
+        private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ToolStripMenuItem PrintDialog;
+        private System.Windows.Forms.ToolStripMenuItem PageSetupDialog;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

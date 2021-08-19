@@ -55,12 +55,6 @@ namespace Enterprise_Store_beta_1._0
                     name = p.ProductName,
                     brand = p.BrandsBrand.BrandName,
 
-                    //availableInStock = p.SupplyPriceQties
-                    //                .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
-                    //                .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
-
-                    //allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
-
                     //получаем  поступление - реализация = кол-во на складе
                     availableInStock = (p.SupplyPriceQties
                         .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId) //когда склад == указанному складу в док-те "Поступление товара"
