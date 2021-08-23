@@ -40,8 +40,8 @@ namespace Enterprise_Store_beta_1._0
                     id = n.ProductGroupId,
                     name = n.ProductGroupName,
                     brand = "",
-                    availableInStock = "",
-                    allAvailableInStock = ""
+                    availableInStock = new Double?(),
+                    allAvailableInStock = new Double?()
                 })
                 .ToList();
             //выборка товаров без группы
@@ -55,15 +55,16 @@ namespace Enterprise_Store_beta_1._0
                     name = p.ProductName,
                     brand = p.BrandsBrand.BrandName,
 
-                    //получаем  поступление - реализация = кол-во на складе
-                    availableInStock = (p.SupplyPriceQties
-                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId) //когда склад == указанному складу в док-те "Поступление товара"
-                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() - p.RealizationPriceQties // реализация с этого же склада
-                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Realization.StoragesStorageId) // когда склад == указанному складу в док-те "Поступление товара"
-                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString(),
+                    availableInStock = (double?)p.SupplyPriceQties //получаем  поступление - реализация = кол-во на складе
+                    //когда склад == указанному складу в док-те "Реализация товара"
+                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
+                        .Select(spq => spq.Quantity).Sum()
+                        - p.RealizationPriceQties // реализация с этого же склада
+                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
+                        .Select(rpq => rpq.Quantity).Sum(),
 
-                    allAvailableInStock = (p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() // все поступления
-                    - p.RealizationPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString() // все реализации
+                    allAvailableInStock = (double?)p.SupplyPriceQties.Select(spq => spq.Quantity).Sum() // все поступления
+                        - p.RealizationPriceQties.Select(rpq => rpq.Quantity).Sum() // все реализации
                 })
                 .OrderBy(n => n.name);
 
@@ -181,11 +182,16 @@ namespace Enterprise_Store_beta_1._0
                         name = p.ProductName,
                         brand = p.BrandsBrand.BrandName,
 
-                        availableInStock = p.SupplyPriceQties
-                                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
-                                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+                        availableInStock = (double?)p.SupplyPriceQties //получаем  поступление - реализация = кол-во на складе
+                        //когда склад == указанному складу в док-те "Реализация товара"
+                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
+                        .Select(spq => spq.Quantity).Sum()
+                        - p.RealizationPriceQties // реализация с этого же склада
+                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
+                        .Select(rpq => rpq.Quantity).Sum(),
 
-                        allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                        allAvailableInStock = (double?)p.SupplyPriceQties.Select(spq => spq.Quantity).Sum() // все поступления
+                        - p.RealizationPriceQties.Select(rpq => rpq.Quantity).Sum() // все реализации
                     })
                     .OrderBy(n => n.name).ToList();
 

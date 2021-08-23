@@ -40,14 +40,14 @@ namespace Enterprise_Store_beta_1._0
                     id = n.ProductGroupId,
                     name = n.ProductGroupName,
                     brand = "",
-                    availableInStock = "",
-                    allAvailableInStock = ""
+                    availableInStock = new Double?(),
+                    allAvailableInStock = new Double?()
                 })
                 .OrderBy(n => n.category)
                 .ToList();
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
-                .Include(s => s.SupplyPriceQties)
+                //.Include(s => s.SupplyPriceQties)
                 .Where(p => p.ProductsGroupsProductGroupId == null)
                 .Select(p => new
                 {
@@ -55,15 +55,17 @@ namespace Enterprise_Store_beta_1._0
                     id = p.ProductId,
                     name = p.ProductName,
                     brand = p.BrandsBrand.BrandName,
-                    //получаем  поступление - реализация = кол-во на складе
-                    availableInStock = (p.SupplyPriceQties
-                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId) //когда склад == указанному складу в док-те "Поступление товара"
-                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() - p.RealizationPriceQties // реализация с этого же склада
-                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Supply.StoragesStorageId) // когда склад == указанному складу в док-те "Поступление товара"
-                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString(),
 
-                    allAvailableInStock = (p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum() // все поступления
-                    - p.RealizationPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum()).ToString() // все реализации
+                    availableInStock = (double?)p.SupplyPriceQties //получаем  поступление - реализация = кол-во на складе
+                    //когда склад == указанному складу в док-те "Поступление товара"
+                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
+                        .Select(spq => spq.Quantity).Sum()
+                        - p.RealizationPriceQties // реализация с этого же склада
+                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
+                        .Select(rpq => rpq.Quantity).Sum(),
+
+                    allAvailableInStock = (double?)p.SupplyPriceQties.Select(spq => spq.Quantity).Sum() // все поступления
+                        - p.RealizationPriceQties.Select(rpq => rpq.Quantity).Sum() // все реализации
                 })
                 .OrderBy(n => n.name);
 
@@ -524,13 +526,19 @@ namespace Enterprise_Store_beta_1._0
                         name = p.ProductName,
                         brand = p.BrandsBrand.BrandName,
 
-                        availableInStock = p.SupplyPriceQties
-                                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
-                                        .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
+                        availableInStock = (double?)p.SupplyPriceQties //получаем  поступление - реализация = кол-во на складе
+                        //когда склад == указанному складу в док-те "Поступление товара"
+                        .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
+                        .Select(spq => spq.Quantity).Sum()
+                        - p.RealizationPriceQties // реализация с этого же склада
+                        .Where(r => r.Realization.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
+                        .Select(rpq => rpq.Quantity).Sum(),
 
-                        allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+                        allAvailableInStock = (double?)p.SupplyPriceQties.Select(spq => spq.Quantity).Sum() // все поступления
+                        - p.RealizationPriceQties.Select(rpq => rpq.Quantity).Sum() // все реализации
                     })
-                    .OrderBy(n => n.name).ToList();
+                    .OrderBy(n => n.name)
+                    .ToList();
 
 
             bind_DGVcatalog_CreateBuy.DataSource = foundProduct;

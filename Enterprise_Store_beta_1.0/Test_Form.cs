@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ModelLibrary_Estore_1;
+﻿using ModelLibrary_Estore_1;
 using System;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Windows.Forms;
-
 
 namespace Enterprise_Store_beta_1._0
 {
@@ -18,48 +16,167 @@ namespace Enterprise_Store_beta_1._0
 
         private void Test_form_Load(object sender, EventArgs e)
         {
-            
+
             var defaulPageSetting = printDocument1.DefaultPageSettings;
             var printerSetting = printDocument1.PrinterSettings;
+            var date = new DateTime(2021, 08, 10); // r.Date >= date  
+            var date2 = new DateTime(2021, 08, 16) + new TimeSpan(23,59,59); // r.Date <= date2
+            
             using Db_Enterprise_Store_Context db = new();
 
-            //var sqq = db.RealizationPriceQtys
+            #region // Выборка для отчёта продаж
 
-            //var sqq = db.Personnels
-            //    .Include(p => p.Realizations)
-            //    .ThenInclude(r => r.RealizationPriceQties)
-            //    .Select(p => new 
+            #region nameAndSum
+            //var nameAndSum = db.Personnels
+            //        .Select(per => new
+            //        {
+            //            per.PersonnelName,
+
+            //            realForEachProd = per.Realizations
+            //            .Where(r => r.Date >= date && r.Date <= date2)
+            //                .Select(real => new
+            //                {
+            //                    r = real.RealizationPriceQties.Select(p => p.Product.ProductName),
+            //                    sum = real.RealizationPriceQties.Select(q => q.PriceSelling * (decimal)q.Quantity).Sum()
+            //                }),
+
+            //            sumForEachRealization = per.Realizations // сумма каждой реализации
+            //            .Where(r => r.Date >= date && r.Date <= date2)
+            //            .Select(real => real.RealizationPriceQties.Select(q => q.PriceSelling * (decimal)q.Quantity)
+            //            .Sum()),
+
+            //            sumAllRealization = per.Realizations // сумма всех реализаций
+            //            .Where(r => r.Date >= date && r.Date <= date2)
+            //            .SelectMany(real => real.RealizationPriceQties)
+            //            .Sum(rpq => (decimal)rpq.Quantity * rpq.PriceSelling)
+            //        })
+            //        //.Skip(2)
+            //        //.Take(2)
+            //        .ToList();
+            #endregion
+
+            #region nameAndSum2 GroupBy //сумма всех продаж за период и з.п.
+            //var sumAllRealizationAndSalary = db.RealizationPriceQtys
+            //    .Where(r => r.Realization.Date >= date && r.Realization.Date <= date2)
+            //    .GroupBy(el => el.Realization.PersonnelsPersonnel.PersonnelName)//группируем все проданные товары по PersonnelName
+
+            //    .Select(g => new
             //    {
-            //        p.PersonnelName,
-                    //real = p.Realizations.Where(p => p.PersonnelsPersonnelId==p.PersonnelsPersonnel.PersonnelId),
-                    //real = p.Realizations
+            //        persName = g.Key,
+            //        sumRealization = g.Select(r => r.PriceSelling * (decimal)r.Quantity).Sum(),
+            //        theSalary = g.Select(r => r.PriceSelling * (decimal)r.Quantity).Sum() * (decimal)0.05
+            //    })
+            //    .ToList();
+            #endregion
 
-                    //.Select(r => r.RealizationPriceQties.Select(p => new{ re = p.PriceSelling * (decimal)p.Quantity }).Select(r=>r.re).Sum())
-                    //.Select(r => r.RealizationPriceQties.Select(p => p.PriceSelling * (decimal)p.Quantity).Sum())
+            #region nameAndSum3 //отчёт о продаже каждого товара
+            //var nameAndSum3 = db.Personnels
+            //    .SelectMany(p => p.Realizations.SelectMany(r => r.RealizationPriceQties))
+            //    .Select(rpq => new
+            //    {
+            //        rpq.Realization.PersonnelsPersonnel.PersonnelName,
+            //        rpq.Product.ProductName,
+            //        rpq.PriceSelling,
+            //        rpq.Quantity,
+            //        total = rpq.PriceSelling * (decimal)rpq.Quantity
+            //    })
+            //    .ToList();
+            #endregion
 
-                //})
-                //.Select(p => new
-                //{
-                //    //TotalPriceRealizations = p.PriceSelling * (decimal)p.Quantity
-                //    //TotalPriceRealizations = p.RealizationPriceQties.Select(p => p.PriceSelling * (decimal)p.Quantity).Sum()
-                //})
-                //.ToList();
+            #region nameAndSum4
+            //var date = new DateTime(2021, 08, 11); // r.Date >= date  
+            //var date2 = new DateTime(2021, 08, 12) + new TimeSpan(23, 59, 59); // r.Date <= date2
 
-            var sqq2 = db.Personnels.Select(
-                per => new
+            //using Db_Enterprise_Store_Context db = new();
+            double percentPerSale = 0.05; //доля от суммы продаж
+            var queryReportSalesForEachPersonnel = db.Personnels
+                .Select(per => new
                 {
-                    per.PersonnelName,
-                    summa = per.Realizations.SelectMany(real => real.RealizationPriceQties).Sum(rpq => (decimal)rpq.Quantity * rpq.PriceSelling)
-                })
-                .ToList();
+                    per.PersonnelId, // id персонала
+                    per.PersonnelName, // имя персонала
 
-            bindingSource1.DataSource = sqq2;
+                    realizationForEachProduct = per.Realizations //реализация по каждому товару
+                        .Where(r => r.Date >= date && r.Date <= date2) // за период
+                        .SelectMany(r => r.RealizationPriceQties)
+                        .Select(rpq => new
+                        {
+                            rpq.Realization.PersonnelsPersonnel.PersonnelName,
+
+                            Product_Name = rpq.Product.ProductName,
+                            rpq.PriceSelling,
+                            rpq.Quantity,
+                            totalForEachProduct = rpq.PriceSelling * (decimal)rpq.Quantity,
+
+                            sumAllRealizations = per.Realizations //сумма продаж 
+                            .Where(r => r.Date >= date && r.Date <= date2) // на период
+                            .SelectMany(r => r.RealizationPriceQties.Select(rpq => rpq.PriceSelling * (decimal)rpq.Quantity)).Sum(),
+
+                            theSalary = per.Realizations // процент от продаж з.п. сотрудника
+                            .Where(r => r.Date >= date && r.Date <= date2)
+                            .SelectMany(r => r.RealizationPriceQties
+                                .Select(rpq => rpq.PriceSelling * (decimal)rpq.Quantity)).Sum() * (decimal)percentPerSale,
+
+                        }).ToList()
+                }).ToList();
+
+            var v = queryReportSalesForEachPersonnel[1].realizationForEachProduct;
+            #endregion
+
+            #region nameAndSum5
+            //    double percentPerSale2 = 0.05; //доля от суммы продаж
+            //    var nameAndSum5 = db.Personnels
+            //        .Select(per => //new
+            //        //{
+            //            per.Realizations //реализация по каждому товару
+            //                .Where(r => r.Date >= date && r.Date <= date2)
+            //                .SelectMany(r => r.RealizationPriceQties)
+            //                .Select(rpq => new
+            //                {
+            //                    rpq.Realization.PersonnelsPersonnel.PersonnelName,
+
+            //                    sumAllRealizations = per.Realizations //сумма продаж 
+            //                    .Where(r => r.Date >= date && r.Date <= date2) // на период
+            //                    .SelectMany(r => r.RealizationPriceQties.Select(rpq => rpq.PriceSelling * (decimal)rpq.Quantity)).Sum(),
+
+            //                    theSalary = per.Realizations // процент от продаж з.п. сотрудника
+            //                    .Where(r => r.Date >= date && r.Date <= date2)
+            //                    .SelectMany(r => r.RealizationPriceQties
+            //                        .Select(rpq => rpq.PriceSelling * (decimal)rpq.Quantity)).Sum() * (decimal)percentPerSale2,
+
+            //                    Product_Name = rpq.Product.ProductName,
+            //                    rpq.PriceSelling,
+            //                    rpq.Quantity,
+            //                    totalForEachProduct = rpq.PriceSelling * (decimal)rpq.Quantity
+            //                }))
+            //        //})
+            //.ToList();
+
+            #endregion
+
+            #region //Product name qty
+            //var p = db.Products
+            //    .Select(p => new
+            //    {
+            //        p.ProductId,
+            //        p.ProductName,
+            //        Quantity = p.RealizationPriceQties
+            //        .Select(rpq => rpq.Quantity).Sum()
+            //    })
+            //    .ToList(); 
+            #endregion
+
+            #endregion
+
+            //bindingSource1.DataSource = nameAndSum;
+            //bindingSource1.DataSource = nameAndSum2;
+            //bindingSource1.DataSource = nameAndSum3;
+            bindingSource1.DataSource = v;
             dataGridView1.DataSource = bindingSource1;
         }
 
         private void PreviewPrint_Click(object sender, EventArgs e)
         {
-            
+
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.PrintPreviewControl.Zoom = 0.75;
             printPreviewDialog1.ShowDialog();
@@ -73,7 +190,7 @@ namespace Enterprise_Store_beta_1._0
         private void PrintDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
             var font = this.Font;
-            Pen pen = new (Color.Azure, 2F);
+            Pen pen = new(Color.Azure, 2F);
             var stringSizeF = e.Graphics.MeasureString("Hello, world!!!", this.Font);
             RectangleF rect = new() { Size = stringSizeF, X = 40F, Y = 40F };
             e.Graphics.DrawRectangle(pen, Rectangle.Truncate(rect));
@@ -91,7 +208,7 @@ namespace Enterprise_Store_beta_1._0
             e.Graphics.DrawRectangle(Pens.Black, rectangleCell);
             e.Graphics.DrawRectangle(Pens.Black, rectangleRow);
             e.Graphics.DrawString(stringPrint, this.Font, Brushes.Black, point);
-            
+
 
             #region Print string format Example
             ///////
@@ -175,7 +292,7 @@ namespace Enterprise_Store_beta_1._0
                 Width = 1169,
                 Height = 826
             };
-            
+
             //printDocument1.DefaultPageSettings.PaperSize = myPaperSize;
         }
 
@@ -183,7 +300,7 @@ namespace Enterprise_Store_beta_1._0
         {
 
             pageSetupDialog1.ShowDialog();
-            
+
         }
 
         private void PrintDocument1_QueryPageSettings(object sender, QueryPageSettingsEventArgs e)

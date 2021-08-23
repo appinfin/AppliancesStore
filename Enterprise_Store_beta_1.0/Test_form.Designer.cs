@@ -42,7 +42,6 @@ namespace Enterprise_Store_beta_1._0
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -57,7 +56,7 @@ namespace Enterprise_Store_beta_1._0
             this.PageSetupDialog});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(752, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -125,13 +124,15 @@ namespace Enterprise_Store_beta_1._0
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 24);
+            this.dataGridView1.Location = new System.Drawing.Point(29, 118);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(20);
+            this.dataGridView1.MaximumSize = new System.Drawing.Size(696, 1080);
+            this.dataGridView1.MinimumSize = new System.Drawing.Size(696, 32);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 335);
+            this.dataGridView1.Size = new System.Drawing.Size(696, 425);
             this.dataGridView1.TabIndex = 2;
             // 
             // pageSetupDialog1
@@ -139,24 +140,15 @@ namespace Enterprise_Store_beta_1._0
             this.pageSetupDialog1.Document = this.printDocument1;
             this.pageSetupDialog1.EnableMetric = true;
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 365);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(800, 207);
-            this.richTextBox1.TabIndex = 3;
-            this.richTextBox1.Text = "";
-            // 
             // Test_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 572);
-            this.Controls.Add(this.richTextBox1);
+            this.ClientSize = new System.Drawing.Size(752, 572);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(760, 28);
             this.Name = "Test_form";
             this.Text = "Test_form";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -184,6 +176,5 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.ToolStripMenuItem PrintDialog;
         private System.Windows.Forms.ToolStripMenuItem PageSetupDialog;
-        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
