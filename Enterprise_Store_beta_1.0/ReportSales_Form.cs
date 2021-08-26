@@ -18,6 +18,7 @@ namespace Enterprise_Store_beta_1._0
 
         private void ReportSales_Form_Load(object sender, EventArgs e)
         {
+            
             printController = printDocument1.PrintController;
 
             this.monthCalendar1.Visible = false; //скрыть календарь
@@ -196,74 +197,117 @@ namespace Enterprise_Store_beta_1._0
         private void PreviewPrint_Click(object sender, EventArgs e)
         {
             printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.PrintPreviewControl.Zoom = 1.0;
-            MenuStrip menuStrip = printPreviewDialog1.MainMenuStrip;
-            
+            printPreviewDialog1.PrintPreviewControl.Zoom = 0.75;
             printPreviewDialog1.ShowDialog();
-            //printPreviewDialog1.Show();
+            rowIndex = 0; //индекс строки dgv для перебора всех строк в цикле печати
+            paginationPage = 1;
         }
 
         private void PrintDoc_Click(object sender, EventArgs e)
         {
-            
             printDocument1.Print();
         }
 
+        int rowIndex = 0; //индекс строки dgv для перебора всех строк в цикле печати
+        int paginationPage = 1;
         private void PrintDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
-            var pageUnit = e.Graphics.PageUnit;
+            
+            //var pageUnit = e.Graphics.PageUnit;
             Rectangle marginBounds = e.MarginBounds;
-            Rectangle pageBounds = e.PageBounds;
-            PageSettings pageSettings = e.PageSettings;
+            //Rectangle pageBounds = e.PageBounds;
+            //PageSettings pageSettings = e.PageSettings;
             StringFormat format1 = new StringFormat(StringFormatFlags.NoClip);
-            StringFormat format2 = new StringFormat(format1);
-
             format1.LineAlignment = StringAlignment.Center;
             format1.Alignment = StringAlignment.Far;
 
-            Rectangle rectangleCell;
+            StringFormat paginationPageStringFormat = new StringFormat(format1);
+            paginationPageStringFormat.LineAlignment = StringAlignment.Near;
+
+            //Rectangle rectangleRow;
+            Rectangle rectangleCell = Rectangle.Empty; //прямоугольник ячейки dgv
             Font font = dataGridView1.Font;
             Pen pen = new(Color.LightGray);
 
             int rowsPerPage;
             int maximumPage;
             //int minimumPage = 0;
-            float yPos = 0;
-            int count = 0;
+            //float yPos = 0;
+            //int count = 0;
             string hederString;
-            string stringPrint;
+            string paginationPageString = string.Empty;
+            
+            string printString;
 
-            hederString = lblHeaderString.Text;
-            var hederStringSizeF = e.Graphics.MeasureString(hederString, lblHeaderString.Font);
-            RectangleF hederStringRectangleF = new(e.MarginBounds.Location, hederStringSizeF);
+            hederString = lblHeaderString.Text; //строка заголовка
+
+            var hederStringSizeF = e.Graphics.MeasureString(hederString, lblHeaderString.Font); //измеряем строку
+            //RectangleF hederStringRectangleF = new(e.MarginBounds.Location, hederStringSizeF); //прямоугольник указанной строки
             int marginBoundsHeightExceptHeder = (int)Math.Ceiling(e.MarginBounds.Height - hederStringSizeF.Height); //высота страницы без заголовка
-            int rectangleRowHight = dataGridView1.GetRowDisplayRectangle(0, true).Height;
+            
+            int rectangleRowHight = dataGridView1.GetRowDisplayRectangle(0, false).Height;
 
             var rowCountDGV = dataGridView1.RowCount;
             var columnCountDGV = dataGridView1.ColumnCount;
             rowsPerPage = e.MarginBounds.Height / rectangleRowHight; //кол-во строк на страницу
-            maximumPage = rowCountDGV / rowsPerPage;
-            e.PageSettings.PrinterSettings.MaximumPage = maximumPage;
+            maximumPage = (int)Math.Ceiling( (double)rowCountDGV / rowsPerPage);
+            printDocument1.PrinterSettings.MaximumPage = maximumPage;// maximumPage;
 
             e.Graphics.DrawRectangle(Pens.Red, e.MarginBounds); //marginBounds
-            e.Graphics.DrawRectangle(Pens.DarkGreen, e.PageBounds);
-            e.Graphics.DrawRectangle(pen, Rectangle.Truncate(hederStringRectangleF)); //hederStringRectangleF
-            e.Graphics.DrawString(hederString, lblHeaderString.Font, Brushes.Black, hederStringRectangleF); //hederString
+            //e.Graphics.DrawRectangle(Pens.DarkGreen, e.PageBounds);
+            //e.Graphics.DrawRectangle(pen, Rectangle.Truncate(hederStringRectangleF)); //hederStringRectangleF
+            e.Graphics.DrawString(hederString, lblHeaderString.Font, Brushes.Black, e.MarginBounds.Location); //строка загаловка отчёта
+
+            paginationPageString = paginationPage + " из " + maximumPage;
+            e.Graphics.DrawString(paginationPageString, label1.Font, Brushes.Black, e.MarginBounds, paginationPageStringFormat); //строка нумерации страниц
+
+            Point locatonRectangleCell = new Point { X = e.MarginBounds.Location.X, Y = e.MarginBounds.Location.Y };
+            rectangleCell.X = locatonRectangleCell.X;
+            rectangleCell.Y = locatonRectangleCell.Y + (int)hederStringSizeF.Height;
+
+            //int locationRowX = 0;
+            //locationRowX += e.MarginBounds.Location.X;
+            //int locationRowY = 0;
+            //locationRowY += e.MarginBounds.Location.Y;
 
             //e.HasMorePages = true;
-            for (int rowIndex = 0; rowIndex < rowCountDGV; rowIndex++)
+            Size sizeCell;
+            Size preferredSize;
+            
+            while (rowIndex < rowCountDGV)
             {
-                var rectangleRow = dataGridView1.GetRowDisplayRectangle(rowIndex, true);
 
+            //}
+            //for (int rowIndex = 0; rowIndex < rowCountDGV; rowIndex++)
+            //{
+                rectangleCell.X = locatonRectangleCell.X;
+                sizeCell = dataGridView1[0, rowIndex].Size;
                 for (int columnIndex = 0; columnIndex < columnCountDGV; columnIndex++)
                 {
-                    rectangleCell = dataGridView1.GetCellDisplayRectangle(columnIndex, rowIndex, true);
-                    //rectangleCell.X += 39;
-                    stringPrint = (string)dataGridView1[columnIndex, rowIndex].FormattedValue;
+                    sizeCell = dataGridView1[columnIndex, rowIndex].Size;
+                    preferredSize = dataGridView1[columnIndex, rowIndex].PreferredSize;
+                    rectangleCell.Size = sizeCell;
+
+                    printString = (string)dataGridView1[columnIndex, rowIndex].FormattedValue;
                     e.Graphics.DrawRectangle(pen, rectangleCell);
-                    e.Graphics.DrawString(stringPrint, font, Brushes.Black, (RectangleF)rectangleCell, format1);
+                    e.Graphics.DrawString(printString, font, Brushes.Black, (RectangleF)rectangleCell, format1);
+
+                    rectangleCell.X += sizeCell.Width;
                 }
-                
+                ++rowIndex;
+                rectangleCell.Y += sizeCell.Height;
+                if (rectangleCell.Y >= e.MarginBounds.Height)
+                {
+                    e.HasMorePages = true;
+                    rectangleCell.Y = 0;
+                    paginationPage++;
+                    return;
+                }
+                else
+                {
+                    e.HasMorePages = false;
+                    
+                }
             }
 
             #region MyRegion
@@ -383,7 +427,8 @@ namespace Enterprise_Store_beta_1._0
 
         private void PrintDocument1_QueryPageSettings(object sender, QueryPageSettingsEventArgs e)
         {
-            var ps = e.PageSettings;
+            //e.PageSettings.PrinterSettings.FromPage += 1;
+            //var ps = e.PageSettings;
             
             //printDialog1.ShowDialog();
         }
