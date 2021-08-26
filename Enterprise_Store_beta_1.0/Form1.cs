@@ -111,6 +111,10 @@ namespace Enterprise_Store_beta_1._0
             VerticallyTileMyWindows(sender, e);
         }
 
-
+        private void TStrip_Form1_ReportSales_Click(object sender, EventArgs e)
+        {
+            ReportSales_Form reportSales_Form = new();
+            reportSales_Form.Show();
+        }
     }
 }
