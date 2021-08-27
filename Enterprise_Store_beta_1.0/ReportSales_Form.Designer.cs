@@ -29,22 +29,19 @@ namespace Enterprise_Store_beta_1._0
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportSales_Form));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.PreviewPrint = new System.Windows.Forms.ToolStripMenuItem();
-            this.PrintDoc = new System.Windows.Forms.ToolStripMenuItem();
-            this.PrintDialog = new System.Windows.Forms.ToolStripMenuItem();
-            this.PageSetupDialog = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStripMenu_PreviewPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStripMenu_PageSetupDialog = new System.Windows.Forms.ToolStripMenuItem();
+            this.tStripMenu_PrintDialog = new System.Windows.Forms.ToolStripMenuItem();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.pageSetupDialog1 = new System.Windows.Forms.PageSetupDialog();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -54,51 +51,43 @@ namespace Enterprise_Store_beta_1._0
             this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.monthCalendar2 = new System.Windows.Forms.MonthCalendar();
             this.button1 = new System.Windows.Forms.Button();
+            
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.PreviewPrint,
-            this.PrintDoc,
-            this.PrintDialog,
-            this.PageSetupDialog});
+            this.tStripMenu_PreviewPrint,
+            this.tStripMenu_PageSetupDialog,
+            this.tStripMenu_PrintDialog});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(752, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // PreviewPrint
+            // tStripMenu_PreviewPrint
             // 
-            this.PreviewPrint.Name = "PreviewPrint";
-            this.PreviewPrint.Size = new System.Drawing.Size(57, 20);
-            this.PreviewPrint.Text = "preview";
-            this.PreviewPrint.Click += new System.EventHandler(this.PreviewPrint_Click);
+            this.tStripMenu_PreviewPrint.Name = "tStripMenu_PreviewPrint";
+            this.tStripMenu_PreviewPrint.Size = new System.Drawing.Size(56, 20);
+            this.tStripMenu_PreviewPrint.Text = "Печать";
+            this.tStripMenu_PreviewPrint.Click += new System.EventHandler(this.PreviewPrint_Click);
             // 
-            // PrintDoc
+            // tStripMenu_PageSetupDialog
             // 
-            this.PrintDoc.Name = "PrintDoc";
-            this.PrintDoc.Size = new System.Drawing.Size(41, 20);
-            this.PrintDoc.Text = "print";
-            this.PrintDoc.Click += new System.EventHandler(this.PrintDoc_Click);
+            this.tStripMenu_PageSetupDialog.Name = "tStripMenu_PageSetupDialog";
+            this.tStripMenu_PageSetupDialog.Size = new System.Drawing.Size(128, 20);
+            this.tStripMenu_PageSetupDialog.Text = "Параметры страницы";
+            this.tStripMenu_PageSetupDialog.Click += new System.EventHandler(this.PageSetupDialog_Click);
             // 
-            // PrintDialog
+            // tStripMenu_PrintDialog
             // 
-            this.PrintDialog.Name = "PrintDialog";
-            this.PrintDialog.Size = new System.Drawing.Size(70, 20);
-            this.PrintDialog.Text = "PrintDialog";
-            this.PrintDialog.Click += new System.EventHandler(this.PrintDialog_Click);
-            // 
-            // PageSetupDialog
-            // 
-            this.PageSetupDialog.Name = "PageSetupDialog";
-            this.PageSetupDialog.Size = new System.Drawing.Size(100, 20);
-            this.PageSetupDialog.Text = "PageSetupDialog";
-            this.PageSetupDialog.Click += new System.EventHandler(this.PageSetupDialog_Click);
+            this.tStripMenu_PrintDialog.Name = "tStripMenu_PrintDialog";
+            this.tStripMenu_PrintDialog.Size = new System.Drawing.Size(115, 20);
+            this.tStripMenu_PrintDialog.Text = "Параметры печати";
+            this.tStripMenu_PrintDialog.Click += new System.EventHandler(this.PrintDialog_Click);
             // 
             // printDialog1
             // 
@@ -112,9 +101,7 @@ namespace Enterprise_Store_beta_1._0
             // 
             this.printDocument1.DocumentName = "test_print";
             this.printDocument1.BeginPrint += new System.Drawing.Printing.PrintEventHandler(this.PrintDocument1_BeginPrint);
-            this.printDocument1.EndPrint += new System.Drawing.Printing.PrintEventHandler(this.PrintDocument1_EndPrint);
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1_PrintPage);
-            this.printDocument1.QueryPageSettings += new System.Drawing.Printing.QueryPageSettingsEventHandler(this.PrintDocument1_QueryPageSettings);
             // 
             // printPreviewDialog1
             // 
@@ -131,33 +118,33 @@ namespace Enterprise_Store_beta_1._0
             // 
             // dataGridView1
             // 
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.ColumnHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(3);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(3);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.Location = new System.Drawing.Point(28, 118);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(20);
             this.dataGridView1.MaximumSize = new System.Drawing.Size(696, 1080);
@@ -165,8 +152,8 @@ namespace Enterprise_Store_beta_1._0
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(696, 425);
@@ -250,6 +237,7 @@ namespace Enterprise_Store_beta_1._0
             this.button1.Text = "создать отчёт";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
+            
             // 
             // ReportSales_Form
             // 
@@ -275,7 +263,6 @@ namespace Enterprise_Store_beta_1._0
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,13 +275,10 @@ namespace Enterprise_Store_beta_1._0
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource bindingSource1;
-        private System.Windows.Forms.ToolStripMenuItem PreviewPrint;
-        private System.Windows.Forms.ToolStripMenuItem PrintDoc;
+        private System.Windows.Forms.ToolStripMenuItem tStripMenu_PreviewPrint;
         private System.Windows.Forms.PageSetupDialog pageSetupDialog1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ToolStripMenuItem PrintDialog;
-        private System.Windows.Forms.ToolStripMenuItem PageSetupDialog;
+        private System.Windows.Forms.ToolStripMenuItem tStripMenu_PageSetupDialog;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
@@ -302,5 +286,6 @@ namespace Enterprise_Store_beta_1._0
         private System.Windows.Forms.MonthCalendar monthCalendar1;
         private System.Windows.Forms.MonthCalendar monthCalendar2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ToolStripMenuItem tStripMenu_PrintDialog;
     }
 }
