@@ -46,7 +46,7 @@ namespace Enterprise_Store_beta_1._0
                 .ToList();
             //выборка товаров без группы
             var productsWithoutGroupName = db.Products
-                .Include(s => s.SupplyPriceQties)
+                //.Include(s => s.SupplyPriceQties)
                 .Where(p => p.ProductsGroupsProductGroupId == null)
                 .Select(p => new
                 {
@@ -56,7 +56,7 @@ namespace Enterprise_Store_beta_1._0
                     brand = p.BrandsBrand.BrandName,
 
                     availableInStock = (double?)p.SupplyPriceQties //получаем  поступление - реализация = кол-во на складе
-                    //когда склад == указанному складу в док-те "Реализация товара"
+                        //когда склад == указанному складу в док-те "Реализация товара"
                         .Where(s => s.Supply.StoragesStorage.StorageId == this.Realization.StoragesStorageId)
                         .Select(spq => spq.Quantity).Sum()
                         - p.RealizationPriceQties // реализация с этого же склада
@@ -174,7 +174,7 @@ namespace Enterprise_Store_beta_1._0
                 //выборка товаров в группе
                 var productsWithGroupName = db.Products
                     .Where(p => p.ProductsGroupsProductGroupId == SelectedId)
-                    .Include(s => s.SupplyPriceQties)
+                    //.Include(s => s.SupplyPriceQties)
                     .Select(p => new
                     {
                         category = "Товар",
@@ -527,6 +527,7 @@ namespace Enterprise_Store_beta_1._0
                                         .Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString(),
 
                         allAvailableInStock = p.SupplyPriceQties.Select(q => new { q.Quantity }).Select(q => q.Quantity).Sum().ToString()
+
                     })
                     .OrderBy(n => n.name).ToList();
 

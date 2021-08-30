@@ -57,7 +57,7 @@ namespace Enterprise_Store_beta_1._0
                     brand = p.BrandsBrand.BrandName,
 
                     availableInStock = (double?)p.SupplyPriceQties //получаем  поступление - реализация = кол-во на складе
-                    //когда склад == указанному складу в док-те "Поступление товара"
+                        //когда склад == указанному складу в док-те "Поступление товара"
                         .Where(s => s.Supply.StoragesStorage.StorageId == this.Supply.StoragesStorageId)
                         .Select(spq => spq.Quantity).Sum()
                         - p.RealizationPriceQties // реализация с этого же склада
@@ -199,46 +199,6 @@ namespace Enterprise_Store_beta_1._0
             else
             {
                 AddProductInListBuy(SelectedId);
-                #region //закомментирован код поиск товара в списке док-та
-                //if (DGV_CreateBuy.Rows.Count > 0)
-                //{
-
-                //    var rowsCollection = DGV_CreateBuy.Rows; //получаем коллекцию строк DGV
-                //    //поиск товара в списке <Поступление товара>
-                //    //по текущему выбранному Id из Каталога товаров
-                //    foreach (DataGridViewRow row in rowsCollection)
-                //    {
-                //        //сравниваем Id выбранного товара с
-                //        //имеющимися в списке <Поступление товара>
-                //        bool b = SelectedId.Equals(row.Cells[0].Value);
-                //        if (b == false)
-                //        {
-                //            //если Id не совпадают, тогда продолжаем перебор списка и сравнение
-                //            if (rowsCollection.Count > row.Index + 1)
-                //            {
-                //                continue;
-                //            }
-                //            //по завершению списка добавляем строку с товаром
-                //            else
-                //            {
-                //                AddProductInListBuy(SelectedId);
-                //                break;
-                //            }
-                //        }
-                //        else
-                //        {
-                //            MessageBox.Show("Товар уже находится в списке.\n" +
-                //                    "Если хотите добавить этот товар по другой цене\n" +
-                //                    "создайте новый документ <Поступление товара>.");
-                //            break;
-                //        }
-                //    }
-                //}
-                //else
-                //{
-                //    AddProductInListBuy(SelectedId);
-                //} 
-                #endregion
             }
             #endregion
         }

@@ -59,7 +59,7 @@ namespace Enterprise_Store_beta_1._0
                 })
                 .OrderByDescending(d => d.Date) //сортируем по убыванию даты
                 //.Skip(0) //пропускаем число строк от начала списка например 0
-                .Take(30) //получаем нужное кол-во строк например 30
+                //.Take(30) //получаем нужное кол-во строк например 30
                 .ToList(); //преобразуем полученные данные в список
             #endregion
 
@@ -102,7 +102,8 @@ namespace Enterprise_Store_beta_1._0
         }
         #endregion
 
-        #region //Получаем итоговую сумму док-та "Покупка/комиссия"
+
+        #region //Получаем итоговую сумму док-та
         //GetSummaDocumentBuy(DataGridView dataGridView)
         /// <summary>
         /// Возвращает итоговую сумму списка товаров. В списке должна быть колонка с именем "Summa"
@@ -121,6 +122,7 @@ namespace Enterprise_Store_beta_1._0
             }
             else
             {
+                dataGridView.Rows.Clear();
                 return 0;
             }
 
@@ -230,7 +232,7 @@ namespace Enterprise_Store_beta_1._0
                 })
                 .OrderByDescending(d => d.Date) //сортируем по убыванию даты
                 //.Skip(0) //пропускаем число строк от начала списка например 0
-                .Take(30) //получаем нужное кол-во строк например 30
+                //.Take(30) //получаем нужное кол-во строк например 30
                 .ToList(); //преобразуем полученные данные в список
             #endregion
 
@@ -298,8 +300,6 @@ namespace Enterprise_Store_beta_1._0
                 MessageBox.Show("Товара нет на складе!!!");
                 return priceSell = 0;
             }
-
-            
         }
     }
 }

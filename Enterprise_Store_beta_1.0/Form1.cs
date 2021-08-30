@@ -113,8 +113,22 @@ namespace Enterprise_Store_beta_1._0
 
         private void TStrip_Form1_ReportSales_Click(object sender, EventArgs e)
         {
-            ReportSales_Form reportSales_Form = new();
-            reportSales_Form.Show();
+            bool ok = true;
+            //получаем список окон
+            foreach (Form f in Application.OpenForms)
+                //ищем окно с указанным именем
+                //если находим то не создаём новое
+                if (f.Name == "ReportSales_Form")
+                {
+                    ok = false;
+                }
+            //если не находим то создаём новое окно
+            if (ok)
+            {
+                ReportSales_Form reportSales_Form = new();
+                reportSales_Form.MdiParent = this;
+                reportSales_Form.Show();
+            }
         }
     }
 }

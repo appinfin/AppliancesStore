@@ -39,9 +39,9 @@ namespace ModelLibrary_Estore_1
                 string path = Directory.GetCurrentDirectory();
 #pragma warning disable CS1030 // Директива #warning
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Database=db_Enterprise_Store_1;Integrated Security=True;"); //Database = db_Enterprise_Store_1;
+                //optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Database=db_Enterprise_Store_1;Integrated Security=True;"); //Database = db_Enterprise_Store_1;
                 //optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;AttachDbFilename=F:\\source\\repos\\AppliancesStore\\Enterprise_Store_beta_1.0\\bin\\Debug\\net5.0-windows\\db_Enterprise_Store_1.mdf;Integrated Security=True;");
-                //optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;AttachDbFilename="+path+"\\db_Enterprise_Store_1.mdf;Integrated Security=True;");
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;AttachDbFilename="+path+"\\db_Enterprise_Store_1.mdf;Integrated Security=True;");
 #pragma warning restore CS1030 // Директива #warning db_Enterprise_Store_1
             }
         }

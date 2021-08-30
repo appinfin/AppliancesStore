@@ -29,6 +29,7 @@ namespace Enterprise_Store_beta_1._0
         {
             printPreviewDialog1.Document = printDocument1; // документ для печати
             printPreviewDialog1.PrintPreviewControl.Zoom = 0.75; // 
+            printPreviewDialog1.PrintPreviewControl.Rows = 3;
             printPreviewDialog1.ShowDialog();
             rowIndex = 0; //индекс строки dgv для перебора всех строк в цикле печати
             paginationPage = 1;
@@ -62,9 +63,9 @@ namespace Enterprise_Store_beta_1._0
             var rowCountDGV = dataGridView1.RowCount;
             var columnCountDGV = dataGridView1.ColumnCount;
 
+            //подсчёт макс. кол-ва страниц исходя из кол-ва строк в таблице
             int rowHight = dataGridView1.GetRowDisplayRectangle(0, false).Height;
-            var rowPreferredHight = dataGridView1.GetClipboardContent();
-            int rowsPerPage = e.MarginBounds.Height / rowHight; //кол-во строк на страницу
+            int rowsPerPage = marginBoundsHeightExceptHeder / rowHight; //кол-во строк на страницу
             int maximumPage = (int)Math.Ceiling( (double)rowCountDGV / rowsPerPage);
             printDocument1.PrinterSettings.MaximumPage = maximumPage; // maximumPage;
 
@@ -95,33 +96,33 @@ namespace Enterprise_Store_beta_1._0
                 //sizeCell = dataGridView1[0, rowIndex].Size;
                 for (int columnIndex = 0; columnIndex < columnCountDGV; columnIndex++)
                 {
-                    //sizeCell = dataGridView1[columnIndex, rowIndex].Size; //размер текущей ячейки
                     rectangleCell.Size = dataGridView1[columnIndex, rowIndex].Size; //размер текущей ячейки
-                    //rectangleCell.Size = sizeCell; // размер прямоугольника ячейки
-
                     printString = (string)dataGridView1[columnIndex, rowIndex].FormattedValue; // значение текущей ячейки
+
                     e.Graphics.DrawRectangle(pen, rectangleCell);
                     e.Graphics.DrawString(printString, font, Brushes.Black, (RectangleF)rectangleCell, format1);
 
-                    //rectangleCell.X += sizeCell.Width;
-                    rectangleCell.X += rectangleCell.Width;
+                    rectangleCell.X += rectangleCell.Width; //смещение на ширину ячейки для печати следующей
                 }
                 ++rowIndex;
-                //rectangleCell.Y += sizeCell.Height;
-                rectangleCell.Y += rectangleCell.Height;
+                rectangleCell.Y += rectangleCell.Height; //смещение на высоту ячейки для печати следующей строки
+
+                //если строки выходят за границу одной страницы
                 if (rectangleCell.Y >= e.MarginBounds.Height)
                 {
+                    //тогда делаем документ многостраничным
                     e.HasMorePages = true;
                     rectangleCell.Y = 0;
                     paginationPage++;
                     return;
                 }
-                else
+                else //иначе больше страниц нет
                 {
                     e.HasMorePages = false;
-
                 }
-            } 
+            }
+            pen.Dispose();
+
             #endregion
         }
 
@@ -200,6 +201,7 @@ namespace Enterprise_Store_beta_1._0
             DateTime.TryParse(textBox2.Text, out DateTime date2); // дата до
 
             using Db_Enterprise_Store_Context db = new();
+            db.ChangeTracker.AutoDetectChangesEnabled = false;
 
             #region // Отчёт о продажах и начисление зп queryReportSalesForEachPersonnel
             double percentPerSale = 0.05; //доля от суммы продаж 5%
